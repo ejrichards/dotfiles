@@ -1,0 +1,175 @@
+let mapleader = ' '
+
+" vim only stuff
+if !has('nvim')
+	set directory^=$HOME/.vim/swap//
+
+	" git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/dist/start/vim-airline
+	" vim -u NONE -c "helptags ~/.vim/pack/dist/start/vim-airline/doc"
+	if isdirectory($HOME."/.vim/pack/dist/start/vim-airline")
+		let g:airline_powerline_fonts = 1
+	endif
+endif
+
+set laststatus=2
+
+" Fix for Terminal causing cursor issue?
+"set t_u7=
+
+" Off on Nix
+syntax on
+
+set hidden
+
+set showcmd
+
+set number
+set relativenumber
+nnoremap <leader>ln <Cmd>setlocal nu! rnu!<CR>
+
+set list
+let &listchars='tab:  ,trail:·,nbsp:␣'
+nnoremap <leader>lw <Cmd>let &l:listchars=(&listchars == 'tab:  ,trail:·,nbsp:␣' ? 'tab:» ,trail:·,nbsp:␣,eol:↲' : 'tab:  ,trail:·,nbsp:␣')<CR>
+
+nnoremap <leader>ls <Cmd>let &l:signcolumn=(&signcolumn == 'auto' ? 'no' : 'auto')<CR>
+
+
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set noexpandtab
+
+set pastetoggle=<F2>
+set nohlsearch
+set incsearch
+set ignorecase
+set wildignorecase
+set smartcase
+
+"cursor changing
+let &t_ti.="\e[2 q"
+let &t_SI.="\e[6 q"
+let &t_EI.="\e[2 q"
+" Exit cursor (2 instead of 0 for Terminal workaround)
+let &t_te.="\e[2 q"
+
+" Default escape timeout, more responsive in terminal 
+set timeoutlen=1000 ttimeoutlen=10
+
+" Yank/Paste
+nnoremap <leader>p "0p
+nnoremap <leader>P "+p
+nnoremap <leader>y "+y
+
+vnoremap <leader>y "+y
+
+inoremap <C-v> <C-r>+
+
+cnoremap <C-p> <C-r>0
+cnoremap <C-v> <C-r>+
+
+" Moving text (this has to be : NOT <Cmd>)
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Window navigation
+nnoremap <tab> <C-w><C-w>
+
+" Buffer navigation
+nnoremap <silent> <leader><tab> <Cmd>bnext<CR>
+nnoremap <silent> ga <Cmd>bnext<CR>
+nnoremap <leader>cd <Cmd>cd %:p:h<CR>
+
+" Search helping
+cnoremap <C-k> s/\(.*\)/
+
+" Line endings
+command Unix setlocal ff=unix
+command Windows e ++ff=dos
+
+" Tabs
+function! WipeTab()
+	if tabpagenr() > 1
+		execute "windo bw"
+	else
+		echohl WarningMsg
+		echo "Only one tab open"
+		echohl None
+	endif
+endfunction
+nnoremap <silent> <C-q> <Cmd>call WipeTab()<CR>
+" Use gv for visual block instead
+nnoremap <leader>v <C-q>
+
+nnoremap Q <Cmd>tabclose<CR>
+nnoremap <leader>to <Cmd>tabonly<CR>
+
+
+" Files
+nnoremap <leader>ed <Cmd>Ex<CR>
+" Kills netrw buffers when leaving, "echo &filetype" to find others
+autocmd FileType netrw nnoremap <buffer> <silent> <nowait> q :bw<CR>
+autocmd FileType netrw setl bufhidden=wipe
+
+" Delete buffer, but no window closing
+function! BDSafe()
+	" Checks height and width to make sure no splits
+	if winheight(0) + &cmdheight + 1 != &lines || winwidth(0) != &columns
+		echohl WarningMsg
+		echo "Too many windows open"
+		echohl None
+	elseif &modified
+		echohl WarningMsg
+		echo "No write since last change"
+		echohl None
+	else
+		execute "bd"
+	endif
+endfunction
+nnoremap <silent> <C-c> <Cmd>call BDSafe()<CR>
+"nnoremap <C-c> <Cmd>bd<CR>
+
+" Help page
+autocmd FileType help nnoremap <buffer> <silent> q <Cmd>bw<CR>
+autocmd FileType help autocmd WinLeave <buffer> close
+autocmd FileType help setl bufhidden=wipe
+
+" Quickfix
+autocmd FileType qf nnoremap <buffer> <silent> q <Cmd>cclose<CR>
+
+" JSON magic
+command JQ %!jq .
+
+" undotree
+nnoremap <leader>u <Cmd>UndotreeToggle<CR>
+
+" Little notes thing, using [] name broke nvim vs vim
+let s:notes_buf = -1
+function! Notes()
+	if s:notes_buf != -1 && !bufexists(s:notes_buf)
+		let s:notes_buf = -1
+	endif
+
+	if s:notes_buf != -1 && !bufloaded(s:notes_buf)
+		execute 'bw ' . s:notes_buf
+		let s:notes_buf = -1
+	endif
+
+	if s:notes_buf == -1
+		12new
+		silent file [Notes]
+		let s:notes_buf = bufnr()
+		setlocal buftype=nofile
+		setlocal bufhidden=hide
+		setlocal noswapfile
+		setlocal nobuflisted
+		nnoremap <buffer> <C-c> <Cmd>close<CR>
+		nnoremap <buffer> q <Cmd>close<CR>
+		autocmd WinLeave <buffer> close
+	elseif bufwinnr(s:notes_buf) == -1
+		execute 'silent 12split +buffer' . s:notes_buf
+	endif
+endfunction
+command! Notes call Notes()
+nnoremap <leader>n <Cmd>Notes<CR>

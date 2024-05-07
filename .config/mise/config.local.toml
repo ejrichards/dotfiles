@@ -1,0 +1,4 @@
+[settings]
+status.show_env = true
+status.show_tools = true
+status.missing_tools = "always"

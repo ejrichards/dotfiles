@@ -1,0 +1,44 @@
+[core]
+	editor = nvim
+	pager = delta
+[push]
+	autoSetupRemote = true
+[alias]
+	alias = config --global --get-regexp "^alias\\."
+	ll = log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+# for "git update-index --skip-worktree ..."
+	ls-skip = ! git ls-files -v | grep '^S'
+	stash-pull = pull --rebase --autostash
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+
+# Delta config
+[interactive]
+    diffFilter = delta --color-only --dark
+[delta]
+	navigate = true    # use n and N to move between diff sections
+	true-color = always
+	features = tokyo-night
+[delta "tokyo-night"]
+	dark                          = true
+	minus-style                   = syntax "#37222c"
+	minus-non-emph-style          = syntax "#37222c"
+	minus-emph-style              = syntax "#713137"
+	minus-empty-line-marker-style = syntax "#37222c"
+	line-numbers-minus-style      = "#b2555b"
+	plus-style                    = syntax "#20303b"
+	plus-non-emph-style           = syntax "#20303b"
+	plus-emph-style               = syntax "#2c5a66"
+	plus-empty-line-marker-style  = syntax "#20303b"
+	line-numbers-plus-style       = "#266d6a"
+	line-numbers-zero-style       = "#3b4261"
+
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+
+# Domain specific (requires git 2.36)
+# No remote / mistake: `git -c user.name="" -c user.email="" commit ...`
+[include]
+	path = ~/.config/git/remotes.gitconfig

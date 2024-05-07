@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+if command -v eza &> /dev/null; then
+	alias eza='eza --group-directories-first --color=auto --time-style=relative'
+	alias ls='eza --icons=auto'
+	alias ll='eza -lahF --icons=auto --git'
+	alias la='eza -a --icons=auto'
+	alias l='eza -FG'
+else
+	export QUOTING_STYLE=literal
+	alias ll='ls -alFh'
+	alias la='ls -A'
+	alias l='ls -CF'
+	alias lq='ls --quoting-style=shell-escape'
+	alias ls='ls --group-directories-first --color=auto'
+fi
+
+if command -v bat &> /dev/null; then
+	alias cat='bat'
+elif command -v batcat &> /dev/null; then
+	alias cat='batcat'
+fi
+
+if command -v fdfind &> /dev/null; then
+	alias fd='fdfind'
+fi
+
+alias gs='git status'
+alias gsh='git show'
+alias gd='git diff'
+alias gl='git log'
+alias gc='git commit -m'
+alias gca='git commit -am'
+
+alias echopath='echo $PATH | tr ":" "\n"'
+
+alias dot="git --git-dir=$HOME/.dotgit/ --work-tree=$HOME"
