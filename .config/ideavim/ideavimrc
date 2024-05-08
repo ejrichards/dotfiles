@@ -1,0 +1,49 @@
+""" $HOME/.config/ideavim/ideavimrc
+nnoremap <Space> <NOP>
+let mapleader=" "
+
+set showcmd
+set number
+set relativenumber
+set incsearch
+set ignorecase
+set smartcase
+
+set timeoutlen=10000 ttimeoutlen=10
+
+" Yank/Paste
+nnoremap <leader>p "0p
+nnoremap <leader>P "+p
+nnoremap <leader>y "+y
+
+vnoremap <leader>y "+y
+
+inoremap <C-v> <C-r>+
+
+
+nnoremap ga :tabnext<CR>
+nnoremap Q :tabclose<CR>
+nnoremap <leader>to :tabonly<CR>
+nnoremap <leader>v <C-q>
+
+
+nmap gl <Action>(ShowErrorDescription)
+nmap <leader>f <Action>(ReformatCode)
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>go <Action>(FileStructurePopup)
+
+set ideajoin
+
+sethandler <C-a> a:ide
+sethandler <C-e> a:ide
+sethandler <C-f> a:ide
+sethandler <C-c> a:ide
+sethandler <C-v> a:ide
+sethandler <C-x> a:ide
+
+sethandler <C-d> a:vim
+sethandler <C-u> a:vim
+sethandler <C-w> a:vim
+
+Plug 'machakann/vim-highlightedyank'
