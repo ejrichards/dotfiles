@@ -60,17 +60,7 @@ return {
 			{ 'j-hui/fidget.nvim', config = true },
 			{
 				'folke/neodev.nvim',
-				opts = {
-					override = function(root_dir, library)
-						if root_dir:find(".ejrconfig", 1, true) ~= nil then
-							library.enabled = true
-							library.plugins = true
-						elseif root_dir:find("plugin", 1, true) ~= nil then
-							library.enabled = true
-							library.plugins = true
-						end
-					end,
-				},
+				opts = {},
 			},
 		},
 		config = function()

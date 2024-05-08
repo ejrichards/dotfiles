@@ -54,7 +54,13 @@ return {
 		vim.keymap.set('n', '<leader>ef', builtin.find_files);
 		vim.keymap.set('n', '<leader>eg', builtin.live_grep);
 		vim.keymap.set('n', '<leader>eh', builtin.help_tags);
-		vim.keymap.set('n', '<C-e>', builtin.git_files);
+
+		vim.keymap.set('n', '<C-e>', function ()
+			local success = pcall(builtin.git_files)
+			if not success then
+				builtin.find_files()
+			end
+		end);
 
 		-- winget install BurntSushi.ripgrep.MSVC
 		vim.keymap.set('n', '<leader>ee', builtin.grep_string);

@@ -46,6 +46,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	end,
 })
 
+require("autodot").setup()
+
 -- Lazy package config
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
