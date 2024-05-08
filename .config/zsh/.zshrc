@@ -59,12 +59,12 @@ if [[ `uname -r` = *"microsoft"* ]]; then
 	
 	function clip {
 		if [ "$#" -eq 0 ]; then
-			powershell.exe -Command "Get-Clipboard"
+			pwsh.exe -Command "Get-Clipboard"
 		elif [ "$@" = "-" ]; then
 			read input
-			powershell.exe -Command "Set-Clipboard '$input'"
+			pwsh.exe -Command "Set-Clipboard '$input'"
 		else
-			powershell.exe -Command "Set-Clipboard '$@'"
+			pwsh.exe -Command "Set-Clipboard '$@'"
 		fi
 	}
 
