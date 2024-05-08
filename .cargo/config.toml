@@ -1,0 +1,3 @@
+# strip when installing via "cargo install"
+[profile.release]
+strip = "debuginfo"
