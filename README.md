@@ -27,3 +27,9 @@ dot config --local user.signingkey $HOME/.ssh/id_ed25519_sk.pub
 dot config --local gpg.format ssh
 dot config --local commit.gpgsign true
 ```
+
+Less auth for pulling
+```
+dot remote set-url origin https://github.com/ejrichards/dotfiles.git
+dot remote set-url --push origin git@github.com:ejrichards/dotfiles.git
+```
