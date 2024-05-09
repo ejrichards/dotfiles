@@ -1,5 +1,4 @@
 [core]
-	editor = nvim
 	pager = delta
 [push]
 	autoSetupRemote = true

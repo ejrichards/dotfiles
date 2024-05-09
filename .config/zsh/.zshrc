@@ -33,7 +33,7 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]-_}={[:upper:][:lower:
 # Without hyphens
 # zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
 
-export EDITOR=vim
+export EDITOR=nvim
 alias vim='nvim'
 
 # History
