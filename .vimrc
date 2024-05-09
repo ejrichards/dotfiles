@@ -112,23 +112,10 @@ nnoremap <leader>ed <Cmd>Ex<CR>
 autocmd FileType netrw nnoremap <buffer> <silent> <nowait> q :bw<CR>
 autocmd FileType netrw setl bufhidden=wipe
 
-" Delete buffer, but no window closing
-function! BDSafe()
-	" Checks height and width to make sure no splits
-	if winheight(0) + &cmdheight + 1 != &lines || winwidth(0) != &columns
-		echohl WarningMsg
-		echo "Too many windows open"
-		echohl None
-	elseif &modified
-		echohl WarningMsg
-		echo "No write since last change"
-		echohl None
-	else
-		execute "bd"
-	endif
-endfunction
-nnoremap <silent> <C-c> <Cmd>call BDSafe()<CR>
 "nnoremap <C-c> <Cmd>bd<CR>
+
+" Wipe first [No Name] after leaving
+autocmd VimEnter * if len(bufname()) == 0 | setlocal buftype=nofile | setlocal bufhidden=wipe | setlocal noswapfile | endif
 
 " Help page
 autocmd FileType help nnoremap <buffer> <silent> q <Cmd>bw<CR>
