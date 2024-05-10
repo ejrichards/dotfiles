@@ -50,3 +50,15 @@ EOT
 chmod +x ~/.dotgit/hooks/post-checkout
 chmod +x ~/.dotgit/hooks/post-merge
 ```
+
+Update .bashrc
+```bash
+if ! grep -q '.config/bash/bashrc' ~/.bashrc; then
+    cat <<EOT >> ~/.bashrc
+
+if [ -f ~/.config/bash/bashrc ]; then
+    . ~/.config/bash/bashrc
+fi
+EOT
+fi
+```
