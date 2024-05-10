@@ -17,6 +17,6 @@ if [[ $- == *i* ]]; then
 		builtin cd "$@" && ls
 	}
 
-	source ~/.ejrconfig/bash/wd-bash.sh
+	source ~/.config/bash/wd-bash.sh
 fi
 
