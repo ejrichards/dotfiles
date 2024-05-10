@@ -7,11 +7,7 @@ Warning: Assumes no spaces in $HOME
 alias dot="git --git-dir=$HOME/.dotgit --work-tree=$HOME"
 
 cd
-
-git clone --bare git@github.com:ejrichards/dotfiles.git .dotgit
-    OR
 git clone --bare https://github.com/ejrichards/dotfiles.git .dotgit
-
 dot config --local status.showUntrackedFiles no
 dot config --local core.logAllRefUpdates true
 dot config --local remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
@@ -21,15 +17,36 @@ dot fetch
 dot checkout
 ```
 
-If read/write
+Add write
 ```bash
+dot remote set-url --push origin git@github.com:ejrichards/dotfiles.git
 dot config --local user.signingkey $HOME/.ssh/id_ed25519_sk.pub
 dot config --local gpg.format ssh
 dot config --local commit.gpgsign true
 ```
 
-Less auth for pulling
-```
-dot remote set-url origin https://github.com/ejrichards/dotfiles.git
-dot remote set-url --push origin git@github.com:ejrichards/dotfiles.git
+Hooks to clean/build caches
+```bash
+cat <<EOT > ~/.dotgit/hooks/post-checkout
+#!/usr/bin/env bash
+rm -f ~/.cache/zsh/compdump
+if command -v bat &> /dev/null; then
+	bat cache --build
+elif command -v batcat &> /dev/null; then
+	batcat cache --build
+fi
+EOT
+
+cat <<EOT > ~/.dotgit/hooks/post-merge
+#!/usr/bin/env bash
+rm -f ~/.cache/zsh/compdump
+if command -v bat &> /dev/null; then
+	bat cache --build
+elif command -v batcat &> /dev/null; then
+	batcat cache --build
+fi
+EOT
+
+chmod +x ~/.dotgit/hooks/post-checkout
+chmod +x ~/.dotgit/hooks/post-merge
 ```
