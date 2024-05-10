@@ -5,7 +5,8 @@
 [alias]
 	alias = config --global --get-regexp "^alias\\."
 	ll = log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
-# for "git update-index --skip-worktree ..."
+	skip = update-index --skip-worktree
+	no-skip = update-index --no-skip-worktree
 	ls-skip = ! git ls-files -v | grep '^S'
 	stash-pull = pull --rebase --autostash
 [gpg "ssh"]
