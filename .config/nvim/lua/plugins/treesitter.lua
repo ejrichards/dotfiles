@@ -8,6 +8,7 @@ return {
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
+		version = "*",
 		build = ":TSUpdate",
 		config = function()
 			-- Windows: Open in native tools prompt for VS
