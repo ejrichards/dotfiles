@@ -1,9 +1,7 @@
 return {
 	{ 'mbbill/undotree' },
 	{ 'numToStr/Comment.nvim',   config = true },
-	{ 'lewis6991/gitsigns.nvim', config = true },
 	{ 'NvChad/nvim-colorizer.lua', config = true },
-	{ 'rhysd/git-messenger.vim' }, -- <leader>gm
 	{
 		'folke/which-key.nvim',
 		event = "VeryLazy",
