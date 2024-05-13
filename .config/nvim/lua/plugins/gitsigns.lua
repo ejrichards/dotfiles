@@ -4,7 +4,7 @@ return {
 		on_attach = function()
 			local gitsigns = require('gitsigns')
 
-			vim.keymap.map('n', ']c', function()
+			vim.keymap.set('n', ']c', function()
 				if vim.wo.diff then
 					vim.cmd.normal({ ']c', bang = true })
 				else
@@ -12,7 +12,7 @@ return {
 				end
 			end, { desc = 'Previous Hunk' })
 
-			vim.keymap.map('n', '[c', function()
+			vim.keymap.set('n', '[c', function()
 				if vim.wo.diff then
 					vim.cmd.normal({ '[c', bang = true })
 				else

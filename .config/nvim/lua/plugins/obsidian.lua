@@ -15,7 +15,7 @@ return {
 	opts = {
 		disable_frontmatter = true,
 		mappings = {
-			["<C-e>"] = {
+			["<leader>ef"] = {
 				action = function()
 					vim.api.nvim_command('ObsidianQuickSwitch')
 				end,
