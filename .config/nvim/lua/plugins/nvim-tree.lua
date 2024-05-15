@@ -5,8 +5,8 @@ return {
 	},
 	lazy = false,
 	config = function()
+		local api = require("nvim-tree.api")
 		local function my_on_attach(bufnr)
-			local api = require("nvim-tree.api")
 
 			local function opts(desc)
 				return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -42,9 +42,17 @@ return {
 						}
 					end
 				}
+			},
+			git = {
+				enable = false
 			}
 		})
 
-		vim.api.nvim_create_user_command('Ex', 'NvimTreeOpen %:p:h', {})
+		vim.api.nvim_create_user_command('Ex', function()
+			api.tree.open({
+				path = vim.fn.expand('%:p:h'),
+				find_file = true,
+			}) end, {}) -- <leader>ed
+		vim.keymap.set('n', '<leader>ec', function() api.tree.open({ path = vim.fn.getcwd() }) end, { desc = 'NvimTree: Open PWD' })
 	end
 }
