@@ -25,6 +25,9 @@ function gl { git log $args }
 function gc { git commit -m $args }
 function gca { git commit -am $args }
 
+Set-Alias -Name which -Value Get-Command
+Set-Alias -Name vim -Value nvim
+
 Import-Module posh-git
 
 function dot { git --git-dir=$HOME\.dotgit\ --work-tree=$HOME $args }
