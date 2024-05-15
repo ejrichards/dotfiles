@@ -174,6 +174,11 @@ return {
 				capabilities = capabilities,
 			})
 
+			-- npm install -g pyright
+			lspconfig.pyright.setup({
+				capabilities = capabilities,
+			})
+
 			-- winget install LuaLS.lua-language-server
 			-- need to add actual dir to path, symlink doesn't work
 			lspconfig.lua_ls.setup({
