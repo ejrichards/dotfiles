@@ -16,9 +16,22 @@ return {
 
 			-- Windows: Open in native tools prompt for VS
 			require('nvim-treesitter.configs').setup({
-				-- A list of parser names, or "all" (the five listed parsers should always be installed)
-				ensure_installed = { "c", "javascript", "typescript", "rust", "lua", "vim", "vimdoc", "query", "zig",
-					"python", "bash" },
+				-- A list of parser names, or "all"
+				ensure_installed = {
+					"css",
+					"gitattributes",
+					"gitcommit",
+					"gitignore",
+					"go",
+					"javascript",
+					"json",
+					"rust",
+					"toml",
+					"typescript",
+					"xml",
+					"yaml",
+					"zig",
+				},
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
 				sync_install = false,
