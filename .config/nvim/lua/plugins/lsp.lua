@@ -75,6 +75,8 @@ return {
 				lineFoldingOnly = true
 			}
 
+			vim.lsp.inlay_hint.enable()
+
 			vim.diagnostic.config({
 				float = {
 					border = "rounded",
@@ -106,6 +108,10 @@ return {
 					map('gr', function() trouble.toggle('lsp_references') end, 'References')
 
 					map('<leader>rn', vim.lsp.buf.rename, 'Rename')
+
+					map('<leader>lh', function()
+						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+					end, 'Toggle inlay [h]ints')
 				end
 			})
 
@@ -187,6 +193,11 @@ return {
 						completion = {
 							callSnippet = "Replace"
 						},
+						hint = {
+							enable = true,
+							arrayIndex = "Disable",
+							paramName = "Literal",
+						},
 						workspace = {
 							checkThirdParty = false,
 						}
@@ -203,7 +214,14 @@ return {
 		opts = {
 			settings = {
 				tsserver_file_preferences = {
-					includeInlayParameterNameHints = "literals"
+					includeInlayParameterNameHints = "literals",
+					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+					includeInlayFunctionParameterTypeHints = true,
+					includeInlayVariableTypeHints = true,
+					includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+					includeInlayPropertyDeclarationTypeHints = true,
+					includeInlayFunctionLikeReturnTypeHints = true,
+					includeInlayEnumMemberValueHints = true,
 				}
 			}
 		},
