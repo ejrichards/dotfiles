@@ -7,7 +7,7 @@ return {
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
 		},
-		config = function ()
+		config = function()
 			local cmp = require('cmp')
 			local luasnip = require('luasnip')
 
@@ -22,8 +22,8 @@ return {
 					completeopt = 'menu,menuone,preview',
 				},
 				mapping = cmp.mapping.preset.insert({
-					['<CR>'] = cmp.mapping.confirm({select = true}),
-					['<C-y>'] = cmp.mapping.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}),
+					['<CR>'] = cmp.mapping.confirm({ select = true }),
+					['<C-y>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
 					['<C-Space>'] = cmp.mapping.complete(),
 					['<C-n>'] = cmp.mapping.select_next_item(),
 					['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -97,11 +97,11 @@ return {
 					map('gi', vim.lsp.buf.implementation, 'Implementation')
 					map('<F2>', vim.lsp.buf.rename, 'Rename')
 					map('<leader>cr', vim.lsp.buf.rename, 'Rename')
-					vim.keymap.set({'n', 'x'}, '<F3>', function() vim.lsp.buf.format({async = true}) end, { buffer = event.buf, desc = 'LSP: format'})
+					vim.keymap.set({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end, { buffer = event.buf, desc = 'LSP: format' })
 					map('<F4>', vim.lsp.buf.code_action, 'Code Action')
 					map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
-					vim.keymap.set({'n', 'i'}, '<C-h>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help'})
+					vim.keymap.set({ 'n', 'i' }, '<C-h>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
 					map('gT', vim.lsp.buf.type_definition, 'Type Definition')
 					map('gr', function() trouble.toggle('lsp_references') end, 'References')
 
@@ -130,7 +130,7 @@ return {
 				settings = {
 					['rust-analyzer'] = {
 						diagnostics = {
-							enable = false;
+							enable = false,
 						}
 					}
 				}
@@ -138,16 +138,17 @@ return {
 
 			-- npm install -g typescript typescript-language-server
 			--lspconfig.tsserver.setup({
-				--root_dir = lsp_util.root_pattern("tsconfig.app.json", "package.json", "tsconfig.json", "jsconfig.json", ".git")
+			--	root_dir = lsp_util.root_pattern("tsconfig.app.json", "package.json", "tsconfig.json", "jsconfig.json", ".git")
 			--})
 
 			-- OLD: npm -g install @angular/language-server@<VERSION>
 			-- NEW: Install project local, reference local "node_modules" folder
-			local angularls_cmd = { "npx", "ngserver", "--stdio", "--tsProbeLocations", "node_modules", "--ngProbeLocations", "node_modules" }
+			local angularls_cmd = { "npx", "ngserver", "--stdio", "--tsProbeLocations", "node_modules",
+				"--ngProbeLocations", "node_modules" }
 			lspconfig.angularls.setup({
 				capabilities = capabilities,
 				cmd = angularls_cmd,
-				on_new_config = function(new_config,new_root_dir)
+				on_new_config = function(new_config, new_root_dir)
 					new_config.cmd = angularls_cmd
 				end,
 				on_init = function(client)
@@ -199,6 +200,12 @@ return {
 		lazy = false,
 		priority = 99,
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
+		opts = {
+			settings = {
+				tsserver_file_preferences = {
+					includeInlayParameterNameHints = "literals"
+				}
+			}
+		},
 	}
 }
