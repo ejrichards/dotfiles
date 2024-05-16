@@ -7,9 +7,6 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.undofile = true
 
--- Use as default fallback
-vim.cmd[[colorscheme habamax]]
-
 if vim.g.neovide then
 	vim.opt.title = true
 	if vim.loop.os_uname().sysname == "Linux" then

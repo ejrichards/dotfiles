@@ -78,12 +78,10 @@ return {
 			vim.diagnostic.config({
 				float = {
 					border = "rounded",
-					source = "always",
+					source = true,
 				}
 			})
 			vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Diag Float' })
-			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous Diagnostic' })
-			vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next Diagnostic' })
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				desc = 'LSP actions',

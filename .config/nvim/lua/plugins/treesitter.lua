@@ -1,20 +1,24 @@
 return {
 	{
 		'nvim-treesitter/nvim-treesitter-context',
-		config = function ()
+		config = function()
 			vim.api.nvim_command('highlight TreesitterContextBottom gui=underline guisp=Grey cterm=underline')
 			vim.api.nvim_command('highlight TreesitterContextLineNumberBottom gui=underline guisp=Grey cterm=underline')
 		end
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
-		version = "*",
+		-- version = "*",
 		build = ":TSUpdate",
 		config = function()
+			-- Avoid conflicts with Baredot
+			require("nvim-treesitter.install").prefer_git = false
+
 			-- Windows: Open in native tools prompt for VS
 			require('nvim-treesitter.configs').setup({
 				-- A list of parser names, or "all" (the five listed parsers should always be installed)
-				ensure_installed = { "c", "javascript", "typescript", "rust", "lua", "vim", "vimdoc", "query" },
+				ensure_installed = { "c", "javascript", "typescript", "rust", "lua", "vim", "vimdoc", "query", "zig",
+					"python", "bash" },
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
 				sync_install = false,

@@ -1,6 +1,5 @@
 return {
 	{ 'mbbill/undotree' },
-	{ 'numToStr/Comment.nvim',   config = true },
 	{ 'NvChad/nvim-colorizer.lua', config = true },
 	{
 		'folke/which-key.nvim',
@@ -20,7 +19,7 @@ return {
 			input = {
 				get_config = function()
 					-- Don't seem to play well
-					if vim.api.nvim_buf_get_option(0, "filetype") == "NvimTree" then
+					if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "NvimTree" then
 						return { enabled = false }
 					end
 				end,
