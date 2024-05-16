@@ -1,0 +1,11 @@
+/*
+!.cargo/
+.cargo/*
+!.cargo/config.toml
+!.config/
+!.vim/
+!.gitignore
+!.gitconfig
+!.zshenv
+!LICENSE
+!README.md
