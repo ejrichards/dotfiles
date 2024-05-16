@@ -6,12 +6,15 @@ return {
 			'L3MON4D3/LuaSnip',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-path',
+			'onsails/lspkind.nvim',
 		},
 		config = function()
 			local cmp = require('cmp')
 			local luasnip = require('luasnip')
+			local lspkind = require('lspkind')
 
 			luasnip.config.setup({})
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -29,24 +32,31 @@ return {
 					['<C-p>'] = cmp.mapping.select_prev_item(),
 					['<C-u>'] = cmp.mapping.scroll_docs(-4),
 					['<C-d>'] = cmp.mapping.scroll_docs(4),
-
-					['<C-l>'] = cmp.mapping(function()
-						if luasnip.expand_or_locally_jumpable() then
-							luasnip.expand_or_jump()
-						end
-					end, { 'i', 's' }),
-					['<C-h>'] = cmp.mapping(function()
-						if luasnip.locally_jumpable(-1) then
-							luasnip.jump(-1)
-						end
-					end, { 'i', 's' }),
 				}),
 				sources = {
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
 					{ name = 'path' },
+					{ name = 'buffer' },
+				},
+				formatting = {
+					expandable_indicator = true,
+					fields = { 'abbr', 'kind', 'menu' },
+					format = lspkind.cmp_format(),
 				}
 			})
+
+			vim.keymap.set({ 'i', 's' }, '<C-j>', function()
+				if luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				end
+			end, { silent = true })
+
+			vim.keymap.set({ 'i', 's' }, '<C-k>', function()
+				if luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				end
+			end, { silent = true })
 		end
 	},
 	{
@@ -103,7 +113,7 @@ return {
 					map('<F4>', vim.lsp.buf.code_action, 'Code Action')
 					map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
-					vim.keymap.set({ 'n', 'i' }, '<C-h>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
+					vim.keymap.set({ 'n', 'i', 's' }, '<C-h>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = 'LSP: Signature Help' })
 					map('gT', vim.lsp.buf.type_definition, 'Type Definition')
 					map('gr', function() trouble.toggle('lsp_references') end, 'References')
 
