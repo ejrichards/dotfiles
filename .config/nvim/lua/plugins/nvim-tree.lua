@@ -18,6 +18,7 @@ return {
 			vim.keymap.set('n', 'i', api.tree.change_root_to_node, opts('CD'))
 			vim.keymap.set('n', '=', api.tree.change_root_to_node, opts('CD'))
 			vim.keymap.set('n', 'o', api.tree.change_root_to_parent, opts('Up'))
+			vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
 		end
 
 		require("nvim-tree").setup({
