@@ -8,6 +8,9 @@ return {
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
+		dependencies = {
+			'windwp/nvim-ts-autotag'
+		},
 		-- version = "*",
 		build = ":TSUpdate",
 		config = function()
@@ -16,13 +19,13 @@ return {
 
 			-- Windows: Open in native tools prompt for VS
 			require('nvim-treesitter.configs').setup({
-				-- A list of parser names, or "all"
 				ensure_installed = {
 					"css",
 					"gitattributes",
 					"gitcommit",
 					"gitignore",
 					"go",
+					"html",
 					"javascript",
 					"json",
 					"rust",
@@ -59,6 +62,9 @@ return {
 					-- Using this option may slow down your editor, and you may see some duplicate highlights.
 					-- Instead of true it can also be a list of languages
 					additional_vim_regex_highlighting = false,
+				},
+				autotag = {
+					enable = true,
 				},
 			})
 		end
