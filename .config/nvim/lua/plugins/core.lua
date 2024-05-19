@@ -1,6 +1,6 @@
 return {
 	{ 'mbbill/undotree' },
-	{ 'NvChad/nvim-colorizer.lua', config = true },
+	{ 'brenoprata10/nvim-highlight-colors', config = true },
 	{
 		'folke/which-key.nvim',
 		event = "VeryLazy",
