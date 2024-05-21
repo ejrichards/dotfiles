@@ -31,5 +31,11 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		config = true
+	},
+	{
+		"folke/ts-comments.nvim",
+		version = "*",
+		event = "VeryLazy",
+		config = true,
 	}
 }
