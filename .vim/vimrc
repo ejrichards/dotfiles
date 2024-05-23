@@ -33,6 +33,10 @@ nnoremap <leader>lw <Cmd>let &l:listchars=(&listchars == 'tab:  ,trail:Â·,nbsp:â
 
 nnoremap <leader>ls <Cmd>let &l:signcolumn=(&signcolumn == 'auto' ? 'no' : 'auto')<CR>
 
+set scrolloff=10
+
+set cursorlineopt=number
+set cursorline
 
 set autoindent
 set smartindent
