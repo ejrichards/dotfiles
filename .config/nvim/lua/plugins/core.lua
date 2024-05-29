@@ -7,13 +7,6 @@ return {
 		config = true
 	},
 	{
-		'nvim-lualine/lualine.nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
-		opts = {
-			options = { theme = 'tokyonight' }
-		}
-	},
-	{
 		'stevearc/dressing.nvim',
 		opts = {
 			input = {

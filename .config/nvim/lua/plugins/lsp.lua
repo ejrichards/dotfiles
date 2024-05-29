@@ -67,7 +67,6 @@ return {
 		dependencies = {
 			'folke/trouble.nvim',
 			'hrsh7th/cmp-nvim-lsp',
-			{ 'j-hui/fidget.nvim', config = true },
 			{
 				'folke/neodev.nvim',
 				opts = {},

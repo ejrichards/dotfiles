@@ -28,6 +28,7 @@ return {
 					"html",
 					"javascript",
 					"json",
+					"regex",
 					"rust",
 					"toml",
 					"typescript",

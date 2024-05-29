@@ -83,7 +83,8 @@ nnoremap <tab> <C-w><C-w>
 " Buffer navigation
 nnoremap <silent> <leader><tab> <Cmd>bnext<CR>
 nnoremap <silent> ga <Cmd>bnext<CR>
-nnoremap <leader>cd <Cmd>cd %:p:h<CR>
+command CD cd %:p:h
+nnoremap <leader>cd <Cmd>CD<CR>
 
 " Search helping
 cnoremap <C-k> s/\(.*\)/
