@@ -1,4 +1,5 @@
-# Need to symlink this to "$HOME/Documents/PowerShell/profile.ps1" for pwsh 6+
+# Add to "$HOME/Documents/PowerShell/profile.ps1" for pwsh 6+ on Windows
+# . "$HOME/.config/powershell/profile.ps1"
 Set-PSReadLineKeyHandler -Chord "Ctrl+Spacebar" -Function AcceptSuggestion
 
 function fg-up([string]$file) {
@@ -29,6 +30,12 @@ Set-Alias -Name which -Value Get-Command
 Set-Alias -Name vim -Value nvim
 
 Import-Module posh-git
+. $HOME/.config/powershell/autovenv.ps1
+function prompt {
+	__autovenv
+
+	& $GitPromptScriptBlock
+}
 
 function dot { git --git-dir=$HOME\.dotgit\ --work-tree=$HOME $args }
 
