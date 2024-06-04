@@ -38,6 +38,7 @@ return {
 					{ name = 'luasnip' },
 					{ name = 'path' },
 					{ name = 'buffer' },
+					{ name = 'lazydev', group_index = 0 },
 				},
 				formatting = {
 					expandable_indicator = true,
@@ -67,9 +68,14 @@ return {
 		dependencies = {
 			'folke/trouble.nvim',
 			'hrsh7th/cmp-nvim-lsp',
+			{ "Bilal2453/luvit-meta", lazy = true },
 			{
-				'folke/neodev.nvim',
-				opts = {},
+				"folke/lazydev.nvim",
+				version = "*",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = { "luvit-meta/library" },
+				},
 			},
 		},
 		config = function()
