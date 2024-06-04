@@ -4,9 +4,12 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			local trouble = require('trouble')
-			trouble.setup({})
-			vim.keymap.set('n', 'ge', function() trouble.toggle('document_diagnostics') end, { desc = 'Diag Document' })
-			vim.keymap.set('n', 'gE', function() trouble.toggle('workspace_diagnostics') end, { desc = 'Diag Workspace' })
+			trouble.setup({
+				auto_refresh = false,
+				focus = true,
+			})
+			vim.keymap.set('n', 'ge', "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = 'Diag Document' })
+			vim.keymap.set('n', 'gE', "<Cmd>Trouble diagnostics toggle<CR>", { desc = 'Diag Workspace' })
 		end,
 	},
 	{
@@ -15,7 +18,7 @@ return {
 		config = function ()
 			local todo = require("todo-comments")
 			todo.setup({ signs = false })
-			vim.keymap.set('n', '<leader>td', '<Cmd>TodoTrouble<CR>');
+			vim.keymap.set('n', '<leader>td', '<Cmd>Trouble todo<CR>');
 		end
 	}
 }
