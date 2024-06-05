@@ -1,5 +1,4 @@
 return {
-	-- { 'j-hui/fidget.nvim', config = true },
 	{
 		"folke/noice.nvim",
 		version = "*",
@@ -32,6 +31,16 @@ return {
 				},
 				presets = {
 					bottom_search = true,
+				},
+				routes = {
+					{
+						view = "mini",
+						filter = { cmdline = "^:w" },
+					},
+					{
+						view = "mini",
+						filter = { cmdline = "^:cd" },
+					},
 				},
 				redirect = {
 					view = "mini",
