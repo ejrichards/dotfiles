@@ -227,6 +227,21 @@ return {
 		priority = 99,
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {
+			on_attach = function(client)
+				local is_in_angular_project = #vim.tbl_filter(function(dir)
+					local found = vim.fn.filereadable(vim.uri_to_fname(dir.uri) .. "/angular.json") == 1
+					-- Could make this better, but fine for my personal project
+					if not found then
+						found = vim.fn.filereadable(vim.uri_to_fname(dir.uri) .. "/../angular.json") == 1
+					end
+					return found
+				end, client.workspace_folders) > 0
+
+				if is_in_angular_project then
+					client.server_capabilities.renameProvider = false
+					client.server_capabilities.referencesProvider = false
+				end
+			end,
 			settings = {
 				tsserver_file_preferences = {
 					includeInlayParameterNameHints = "literals",
