@@ -1,5 +1,14 @@
 return {
 	{
+		"rcarriga/nvim-notify",
+		version = "*",
+		opts = {
+			on_open = function(win)
+				vim.api.nvim_win_set_config(win, { focusable = false })
+			end,
+		}
+	},
+	{
 		"folke/noice.nvim",
 		version = "*",
 		event = "VeryLazy",
