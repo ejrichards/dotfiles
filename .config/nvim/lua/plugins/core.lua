@@ -3,6 +3,7 @@ return {
 	{ 'brenoprata10/nvim-highlight-colors', config = true },
 	{
 		'folke/which-key.nvim',
+		version = '*',
 		event = "VeryLazy",
 		config = true
 	},
