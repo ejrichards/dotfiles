@@ -28,6 +28,10 @@ ignored_commands = [
 ]
 
 [keys]
+scroll_exits = true
 
 [sync]
 records = true
+
+[dotfiles]
+enabled = false
