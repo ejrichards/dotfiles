@@ -5,6 +5,12 @@ fpath=( ${ZDOTDIR:-~}/completions "${fpath[@]}" )
 
 WORDCHARS=${WORDCHARS/\/}
 
+# TODO: No way to disable ^R, so put before plugins
+if command -v fzf &> /dev/null; then
+	export FZF_COMPLETION_TRIGGER='~~'
+	source <(fzf --zsh)
+fi
+
 # Plugins
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
