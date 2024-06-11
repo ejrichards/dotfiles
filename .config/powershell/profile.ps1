@@ -30,6 +30,7 @@ Set-Alias -Name which -Value Get-Command
 Set-Alias -Name ip -Value Get-NetIPConfiguration
 function ipp { Get-NetIPConfiguration -InterfaceAlias Ethernet -Detailed }
 Set-Alias -Name vim -Value nvim
+Set-Alias -Name cat -Value bat
 
 Import-Module posh-git
 . $HOME/.config/powershell/autovenv.ps1
