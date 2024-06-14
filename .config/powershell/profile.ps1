@@ -46,4 +46,7 @@ function dot { git --git-dir=$HOME\.dotgit\ --work-tree=$HOME $args }
 Remove-Alias -Name cd
 Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 
-Set-PSReadLineOption -Colors @{ InlinePrediction = [ConsoleColor]::DarkGray }
+Set-PSReadLineOption -Colors @{
+	InlinePrediction = [ConsoleColor]::DarkGray
+	Parameter = [ConsoleColor]::Blue 
+}
