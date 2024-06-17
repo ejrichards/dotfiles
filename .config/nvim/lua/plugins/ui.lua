@@ -69,6 +69,15 @@ return {
 			lualine.setup({
 				options = { theme = 'tokyonight' },
 				sections = {
+					lualine_b = {
+						function()
+							if vim.env.GIT_DIR ~= nil and vim.env.GIT_WORK_TREE ~= nil then
+								return 'Baredot'
+							end
+							return ''
+						end,
+						'branch', 'diff', 'diagnostics'
+					},
 					lualine_c = {
 						'filename',
 						{
