@@ -12,11 +12,13 @@ if vim.g.neovide then
 	if vim.loop.os_uname().sysname == "Linux" then
 		-- Linux paths don't work for wt.exe for some reason...
 		vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wt.exe -p Ubuntu wsl.exe --cd "%:p:h"<CR>')
+		-- vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wezterm.exe start -- wsl.exe --cd "%:p:h"<CR>')
 
 		-- Trying out with plugin now
 		-- vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 	else
 		vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wt -d "%:p:h"<CR>')
+		-- vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wezterm.exe start --cwd "%:p:h"<CR>')
 	end
 
 	vim.g.neovide_transparency = 0.95

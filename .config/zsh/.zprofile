@@ -34,6 +34,10 @@ if [ -f "$HOME/.badpath" ]; then
 	. "$HOME/.badpath"
 fi
 
+if [ -d "/mnt/c/Program Files/WezTerm" ]; then
+	_addpath "/mnt/c/Program Files/WezTerm"
+fi
+
 # In Windows: WSLENV=LOCALAPPDATA/up
 if [[ -n "$LOCALAPPDATA" ]]; then
 	if [ -d "$LOCALAPPDATA/Microsoft/WindowsApps/Microsoft.PowerShell_8wekyb3d8bbwe" ]; then

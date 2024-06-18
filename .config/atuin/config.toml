@@ -13,6 +13,8 @@ workspaces = true
 enter_accept = true
 
 keymap_mode = "vim-insert"
+# Can use this again with Wezterm instead of Windows Terminal
+keymap_cursor = { emacs = "steady-block", vim_insert = "steady-bar", vim_normal = "steady-block" }
 
 history_filter = [
   "^cd ",
