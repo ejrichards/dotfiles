@@ -106,3 +106,10 @@ function unln {
 	fi
 	cp --remove-destination "$(readlink $1)" $1
 }
+
+function completion-update {
+	wget https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -O ${ZDOTDIR:-~}/completions/_eza
+	wget https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/zsh_tealdeer -O ${ZDOTDIR:-~}/completions/_tealdeer
+	atuin gen-completions --shell zsh > ${ZDOTDIR:-~}/completions/_atuin
+	mise completion zsh > ${ZDOTDIR:-~}/completions/_mise
+}
