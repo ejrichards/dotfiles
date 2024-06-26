@@ -183,6 +183,11 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.volar.setup({
+				cmd = { "npx", "vue-language-server", "--stdio" },
+				capabilities = capabilities,
+			})
+
 			-- https://github.com/zigtools/zls/releases/latest
 			vim.g.zig_fmt_autosave = 0
 			lspconfig.zls.setup({
@@ -242,7 +247,15 @@ return {
 					client.server_capabilities.referencesProvider = false
 				end
 			end,
+			filetypes = {
+				"javascript",
+				"typescript",
+				"vue",
+			},
 			settings = {
+				tsserver_plugins = {
+					"@vue/typescript-plugin",
+				},
 				tsserver_file_preferences = {
 					includeInlayParameterNameHints = "literals",
 					includeInlayParameterNameHintsWhenArgumentMatchesName = false,
