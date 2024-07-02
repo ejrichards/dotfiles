@@ -67,7 +67,6 @@ return {
 			-- vim.opt.showcmdloc = 'statusline'
 			vim.opt.showcmd = false
 			lualine.setup({
-				options = { theme = 'tokyonight' },
 				sections = {
 					lualine_b = {
 						function()
