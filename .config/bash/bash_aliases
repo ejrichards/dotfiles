@@ -36,5 +36,4 @@ alias echopath='echo $PATH | tr ":" "\n"'
 
 alias dot="git --git-dir=$HOME/.dotgit/ --work-tree=$HOME"
 
-alias ssha='ssh -o User=terminal -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes
--o PubkeyAuthentication=no'
+alias ssha='ssh -o User=terminal -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes -o PubkeyAuthentication=no'
