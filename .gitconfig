@@ -9,6 +9,8 @@
 	no-skip = update-index --no-skip-worktree
 	ls-skip = ! git ls-files -v | grep '^S'
 	stash-pull = pull --rebase --autostash
+	rebase-master = ! git rebase -i `git merge-base HEAD master`
+	rebase-main = ! git rebase -i `git merge-base HEAD main`
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
 
