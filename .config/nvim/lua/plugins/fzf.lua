@@ -10,8 +10,16 @@ return {
 					preview = { default = "bat" }
 				},
 				grep    = {
-					input_prompt = 'Grep $ ',
+					input_prompt = 'Grep',
 					no_header_i = true
+				},
+				files   = {
+					formatter = "path.filename_first",
+				},
+				git     = {
+					files = {
+						formatter = "path.filename_first",
+					},
 				},
 				keymap  = {
 					builtin = {
