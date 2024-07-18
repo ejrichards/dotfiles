@@ -31,6 +31,7 @@ alias gd='git diff'
 alias gl='git log'
 alias gc='git commit -m'
 alias gca='git commit -am'
+alias gdt='git difftool'
 
 alias echopath='echo $PATH | tr ":" "\n"'
 

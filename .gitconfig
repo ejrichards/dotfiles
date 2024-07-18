@@ -37,8 +37,15 @@
 
 [merge]
     conflictstyle = diff3
+[pager]
+	difftool = true
 [diff]
+	tool = difftastic
     colorMoved = default
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 
 # Domain specific (requires git 2.36)
 # No remote / mistake: `git -c user.name="" -c user.email="" commit ...`

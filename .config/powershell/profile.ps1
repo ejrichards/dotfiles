@@ -25,6 +25,7 @@ function gd { git diff $args }
 function gl { git log $args }
 function gc { git commit -m $args }
 function gca { git commit -am $args }
+function gdt { git difftool $args }
 
 Set-Alias -Name which -Value Get-Command
 Set-Alias -Name ip -Value Get-NetIPConfiguration
