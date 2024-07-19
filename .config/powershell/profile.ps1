@@ -33,13 +33,23 @@ function ipp { Get-NetIPConfiguration -InterfaceAlias Ethernet -Detailed }
 Set-Alias -Name vim -Value nvim
 Set-Alias -Name cat -Value bat
 
-Import-Module posh-git
 . $HOME/.config/powershell/autovenv.ps1
-function prompt {
-	__autovenv
 
-	& $GitPromptScriptBlock
+if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) {
+	function Invoke-Starship-PreCommand {
+		__autovenv
+		$dirname = if ($pwd.Path -eq $HOME) { '~' } else { Split-Path -Path $pwd -Leaf }
+		$host.ui.RawUI.WindowTitle = "$env:COMPUTERNAME`:$dirname`a"
+	}
+	Invoke-Expression (&starship init powershell)
 }
+
+#Import-Module posh-git
+#function prompt {
+#	__autovenv
+#
+#	& $GitPromptScriptBlock
+#}
 
 function dot { git --git-dir=$HOME\.dotgit\ --work-tree=$HOME $args }
 

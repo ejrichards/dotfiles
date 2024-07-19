@@ -7,6 +7,7 @@ $username\
 $hostname\
 $localip\
 $shlvl\
+$shell\
 $directory\
 $docker_context\
 $nix_shell\
@@ -18,7 +19,6 @@ $sudo\
 $jobs\
 $battery\
 $status\
-$os\
 $container\
 $character"""
 
@@ -39,6 +39,12 @@ symbol = '∔'
 [character]
 success_symbol = '[\$](bold green)'
 error_symbol = '[\$](bold red)'
+
+[shell]
+disabled = false
+zsh_indicator = ''
+bash_indicator = ''
+powershell_indicator = ''
 
 [git_branch]
 style = 'bold green'
