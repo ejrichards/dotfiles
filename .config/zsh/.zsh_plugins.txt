@@ -4,7 +4,6 @@ ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 romkatv/gitstatus path:gitstatus.prompt.zsh
 reegnz/jq-zsh-plugin
-atuinsh/atuin
 mfaerevaag/wd
 belak/zsh-utils path:completion
 # Needs to be last
