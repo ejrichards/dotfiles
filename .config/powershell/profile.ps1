@@ -39,7 +39,7 @@ if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) {
 	function Invoke-Starship-PreCommand {
 		__autovenv
 		$dirname = if ($pwd.Path -eq $HOME) { '~' } else { Split-Path -Path $pwd -Leaf }
-		$host.ui.RawUI.WindowTitle = "$env:COMPUTERNAME`:$dirname`a"
+		$host.ui.RawUI.WindowTitle = " $env:COMPUTERNAME`:$dirname`a"
 	}
 	Invoke-Expression (&starship init powershell)
 }
