@@ -42,9 +42,10 @@ error_symbol = '[\$](bold red)'
 
 [shell]
 disabled = false
+format = '[$indicator]($style)'
 zsh_indicator = ''
-bash_indicator = ''
-powershell_indicator = ''
+bash_indicator = ' '
+powershell_indicator = ' '
 
 [git_branch]
 style = 'bold green'
