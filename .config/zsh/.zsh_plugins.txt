@@ -2,7 +2,6 @@ zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
-romkatv/gitstatus path:gitstatus.prompt.zsh
 reegnz/jq-zsh-plugin
 mfaerevaag/wd
 belak/zsh-utils path:completion

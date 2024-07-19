@@ -55,11 +55,20 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_VERIFY # Don't execute immediately
 setopt HIST_IGNORE_SPACE # Ignore if starts with space
 
-# bash style prompt, %F color, 2=green, 10=bgreen, 4=blue, 12=bblue
 # $ makes escape codes work, %{%} indicates no length, \e]0; \a set the title
-# %-80(l|long|short) dynamic with line length
-PS1=$'%{\e]0;%m:%1~\a%}%F{10}%n@%m%F{reset_color}%-80(l|:%F{12}%(5~|%-1~/…/%3~|%4~)|)%F{reset_color}%(!.#.$) '
-RPROMPT='${GITSTATUS_PROMPT}'
+function set_win_title(){
+	print -nP $'\e]0;%m:%1~\a'
+}
+precmd_functions+=(set_win_title)
+
+if command -v starship &> /dev/null; then
+	eval "$(starship init zsh)"
+else
+	# bash style prompt, %F color, 2=green, 10=bgreen, 4=blue, 12=bblue
+	# %-80(l|long|short) dynamic with line length
+	PS1=$'%F{10}%n@%m%F{reset_color}%-80(l|:%F{12}%(5~|%-1~/…/%3~|%4~)|)%F{reset_color}%(!.#.$) '
+	RPROMPT='${GITSTATUS_PROMPT}'
+fi
 
 # WSL
 if [[ `uname -r` = *"microsoft"* ]]; then
