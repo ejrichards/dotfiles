@@ -1,7 +1,7 @@
 return {
 	"ThePrimeagen/harpoon",
-	-- Currenly and issue with :cd
-	commit = "c6446e971f1a34c46deee1a22d06049ea2de0603",
+	-- Currenly an issue with :cd
+	commit = "34b419984ea8e04683a49db0200c6d21d493b252",
 	config = function()
 		local extensions = require("harpoon.extensions");
 		local harpoon = require("harpoon"):setup({
