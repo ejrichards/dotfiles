@@ -15,6 +15,7 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
+			"natecraddock/workspaces.nvim",
 			{
 				'nvim-lualine/lualine.nvim',
 				dependencies = {
@@ -25,6 +26,7 @@ return {
 		config = function()
 			local noice = require("noice")
 			local lualine = require("lualine")
+			local workspaces = require("workspaces")
 
 			noice.setup({
 				messages = {
@@ -74,6 +76,21 @@ return {
 								return 'Baredot'
 							end
 							return ''
+						end,
+						function()
+							local workspace_path = workspaces.path()
+							if workspace_path == nil then
+								return ''
+							end
+
+							-- Always has trailing / or \
+							workspace_path = workspace_path:sub(0, workspace_path:len() - 1)
+
+							if workspace_path ~= vim.fn.getcwd() then
+								return ''
+							end
+
+							return workspaces.name()
 						end,
 						'branch', 'diff', 'diagnostics'
 					},
