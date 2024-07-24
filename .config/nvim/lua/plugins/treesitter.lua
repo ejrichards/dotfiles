@@ -20,6 +20,7 @@ return {
 			-- Windows: Open in native tools prompt for VS
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = {
+					"bash",
 					"css",
 					"gitattributes",
 					"gitcommit",
