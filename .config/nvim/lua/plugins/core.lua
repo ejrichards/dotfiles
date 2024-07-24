@@ -36,5 +36,14 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		config = true,
-	}
+	},
+	{
+		"natecraddock/workspaces.nvim",
+		event = "VeryLazy",
+		config = function ()
+			local workspaces = require("workspaces")
+			workspaces.setup({})
+			vim.keymap.set('n', '<leader>ew', workspaces.open);
+		end,
+	},
 }
