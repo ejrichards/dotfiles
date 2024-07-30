@@ -36,9 +36,6 @@ nnoremap <leader>ls <Cmd>let &l:signcolumn=(&signcolumn == 'auto' ? 'no' : 'auto
 
 set scrolloff=10
 
-set cursorlineopt=number
-set cursorline
-
 set autoindent
 set smartindent
 set tabstop=4

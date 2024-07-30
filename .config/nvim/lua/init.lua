@@ -6,6 +6,8 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.undofile = true
+vim.opt.cursorlineopt = "number"
+vim.opt.cursorline = true
 
 if vim.g.neovide then
 	vim.opt.title = true
