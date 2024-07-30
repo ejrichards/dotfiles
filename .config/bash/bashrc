@@ -16,6 +16,10 @@ if [[ $- == *i* ]]; then
 	alias dot="git --git-dir=$HOME/.dotgit --work-tree=$HOME"
 
 	if command -v starship &> /dev/null; then
+		function set_win_title(){
+			printf "\033]0;%s:%s\007" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"
+		}
+		starship_precmd_user_func="set_win_title"
 		eval "$(starship init bash)"
 	else
 		PROMPT_DIRTRIM=3
