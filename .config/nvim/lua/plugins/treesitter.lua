@@ -7,6 +7,12 @@ return {
 		end
 	},
 	{
+		'windwp/nvim-ts-autotag',
+		config = function()
+			require('nvim-ts-autotag').setup({})
+		end
+	},
+	{
 		'nvim-treesitter/nvim-treesitter',
 		dependencies = {
 			'windwp/nvim-ts-autotag'
@@ -64,9 +70,6 @@ return {
 					-- Using this option may slow down your editor, and you may see some duplicate highlights.
 					-- Instead of true it can also be a list of languages
 					additional_vim_regex_highlighting = false,
-				},
-				autotag = {
-					enable = true,
 				},
 			})
 		end
