@@ -1,5 +1,18 @@
 return {
 	{
+		"echasnovski/mini.starter",
+		version = "*",
+		config = function()
+			local starter = require("mini.starter")
+			starter.setup({
+				items = {
+					starter.sections.recent_files(8, true),
+					starter.sections.recent_files(8, false),
+				},
+			})
+		end
+	},
+	{
 		"rcarriga/nvim-notify",
 		version = "*",
 		opts = {
