@@ -6,8 +6,22 @@ return {
 			local starter = require("mini.starter")
 			starter.setup({
 				items = {
+					function()
+						local workspaces = require("workspaces").get()
+						local workspace_items = {}
+						for i, workspace in ipairs(workspaces) do
+							if i > 8 then
+								break
+							end
+							table.insert(workspace_items, {
+								section = 'Workspaces',
+								name = workspace.name,
+								action = 'exe "WorkspacesOpen ' .. workspace.name .. '" | bw',
+							})
+						end
+						return workspace_items
+					end,
 					starter.sections.recent_files(8, true),
-					starter.sections.recent_files(8, false),
 				},
 			})
 		end
