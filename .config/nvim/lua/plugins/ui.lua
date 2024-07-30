@@ -23,6 +23,10 @@ return {
 					end,
 					starter.sections.recent_files(8, true),
 				},
+				footer = function()
+					local stats = require("lazy").stats()
+					return stats.count .. ' plugins 󰒲  ' .. stats.times.LazyDone .. 'ms'
+				end,
 			})
 		end
 	},
