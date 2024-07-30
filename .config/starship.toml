@@ -3,11 +3,12 @@
 add_newline = false
 
 format = """
+$shell\
+$python\
 $username\
 $hostname\
 $localip\
 $shlvl\
-$shell\
 $directory\
 $docker_context\
 $nix_shell\
@@ -63,3 +64,7 @@ modified = '[!$count](red) '
 staged = '+${count} '
 renamed = '»${count} '
 deleted = '[✘${count}](red) '
+
+[python]
+format = '[${symbol}(\($virtualenv\) )]($style)'
+symbol = '🐍'
