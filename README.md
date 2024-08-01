@@ -38,18 +38,6 @@ chmod +x ~/.dotgit/hooks/post-checkout
 chmod +x ~/.dotgit/hooks/post-merge
 ```
 
-Update .bashrc
-```bash
-if ! grep -q '.config/bash/bashrc' ~/.bashrc; then
-    cat <<EOT >> ~/.bashrc
-
-if [ -f ~/.config/bash/bashrc ]; then
-    . ~/.config/bash/bashrc
-fi
-EOT
-fi
-```
-
 Download starship
 ```bash
 curl -L --remote-name https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz && sudo tar xf starship-x86_64-unknown-linux-gnu.tar.gz --directory=/usr/local/bin --no-same-owner && rm starship-x86_64-unknown-linux-gnu.tar.gz
