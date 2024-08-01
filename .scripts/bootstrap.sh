@@ -12,5 +12,6 @@ dot config --local core.logAllRefUpdates true
 dot config --local remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 dot config --local branch.master.remote origin
 dot config --local branch.master.merge refs/heads/master
+dot config --local pull.ff only
 dot fetch
 dot checkout
