@@ -124,4 +124,5 @@ function completion-update {
 	wget https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/zsh_tealdeer -O ${ZDOTDIR:-~}/completions/_tealdeer
 	atuin gen-completions --shell zsh > ${ZDOTDIR:-~}/completions/_atuin
 	mise completion zsh > ${ZDOTDIR:-~}/completions/_mise
+	rm -f ~/.cache/zsh/compdump
 }

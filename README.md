@@ -29,7 +29,6 @@ Hooks to clean/build caches
 ```bash
 cat <<EOT > ~/.dotgit/hooks/post-checkout
 #!/usr/bin/env bash
-rm -f ~/.cache/zsh/compdump
 if command -v bat &> /dev/null; then
 	bat cache --build
 elif command -v batcat &> /dev/null; then
@@ -39,7 +38,6 @@ EOT
 
 cat <<EOT > ~/.dotgit/hooks/post-merge
 #!/usr/bin/env bash
-rm -f ~/.cache/zsh/compdump
 if command -v bat &> /dev/null; then
 	bat cache --build
 elif command -v batcat &> /dev/null; then
