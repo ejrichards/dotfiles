@@ -1,7 +1,9 @@
 #/usr/bin/env bash
 set -x
 
-alias dot="git --git-dir=$HOME/.dotgit --work-tree=$HOME"
+function dot {
+	git --git-dir=$HOME/.dotgit --work-tree=$HOME "$@"
+}
 
 cd
 git clone --bare https://github.com/ejrichards/dotfiles.git .dotgit
