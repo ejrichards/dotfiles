@@ -1,20 +1,9 @@
 # dotfiles
 Currently using the bare repo + git alias method for managing
 
-### TODO: bootstrap script
 Warning: Assumes no spaces in $HOME
 ```bash
-alias dot="git --git-dir=$HOME/.dotgit --work-tree=$HOME"
-
-cd
-git clone --bare https://github.com/ejrichards/dotfiles.git .dotgit
-dot config --local status.showUntrackedFiles no
-dot config --local core.logAllRefUpdates true
-dot config --local remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-dot config --local branch.master.remote origin
-dot config --local branch.master.merge refs/heads/master
-dot fetch
-dot checkout
+curl https://raw.githubusercontent.com/ejrichards/dotfiles/master/.scripts/bootstrap.sh | bash
 ```
 
 Add write
