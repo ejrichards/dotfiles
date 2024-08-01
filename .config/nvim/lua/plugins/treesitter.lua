@@ -8,15 +8,10 @@ return {
 	},
 	{
 		'windwp/nvim-ts-autotag',
-		config = function()
-			require('nvim-ts-autotag').setup({})
-		end
+		opts = {}
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
-		dependencies = {
-			'windwp/nvim-ts-autotag'
-		},
 		-- version = "*",
 		build = ":TSUpdate",
 		config = function()
