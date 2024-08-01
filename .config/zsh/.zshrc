@@ -125,4 +125,5 @@ function completion-update {
 	atuin gen-completions --shell zsh > ${ZDOTDIR:-~}/completions/_atuin
 	mise completion zsh > ${ZDOTDIR:-~}/completions/_mise
 	rm -f ~/.cache/zsh/compdump
+	rm -rf ~/.cache/zsh/compcache
 }
