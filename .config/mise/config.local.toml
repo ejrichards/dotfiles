@@ -2,3 +2,4 @@
 status.show_env = true
 status.show_tools = true
 status.missing_tools = "always"
+go_default_packages_file = "~/.config/mise/default-go-packages"
