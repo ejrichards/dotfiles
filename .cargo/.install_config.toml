@@ -1,0 +1,23 @@
+[bat]
+default_features = true
+features = []
+enforce_lock = true
+
+[difftastic]
+default_features = true
+features = []
+enforce_lock = true
+
+[hyperfine]
+default_features = true
+features = []
+enforce_lock = true
+
+[ripgrep]
+default_features = true
+features = ["pcre2"]
+
+[starship]
+default_features = true
+features = []
+enforce_lock = true
