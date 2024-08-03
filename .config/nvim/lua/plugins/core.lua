@@ -42,7 +42,9 @@ return {
 		event = "VeryLazy",
 		config = function ()
 			local workspaces = require("workspaces")
-			workspaces.setup({})
+			workspaces.setup({
+				auto_dir = true,
+			})
 			vim.keymap.set('n', '<leader>ew', workspaces.open);
 		end,
 	},
