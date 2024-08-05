@@ -10,6 +10,9 @@ if !has('nvim')
 	if isdirectory($HOME."/.vim/pack/dist/start/vim-airline")
 		let g:airline_powerline_fonts = 1
 	endif
+
+	" Wipe first [No Name] after leaving
+	autocmd VimEnter * if len(bufname()) == 0 | setlocal buftype=nofile | setlocal bufhidden=wipe | setlocal noswapfile | endif
 endif
 
 set laststatus=2
@@ -50,11 +53,11 @@ set wildignorecase
 set smartcase
 
 "cursor changing
-let &t_ti.="\e[2 q"
-let &t_SI.="\e[6 q"
-let &t_EI.="\e[2 q"
-" Exit cursor (2 instead of 0 for Terminal workaround)
-let &t_te.="\e[2 q"
+let &t_ti.="\e[2 q"  " Enter vim
+let &t_SI.="\e[6 q"  " Start Insert
+let &t_EI.="\e[2 q"  " Exit Insert
+" Exit vim (2 instead of 0 for Terminal workaround)
+let &t_te.="\e[0 q"
 
 " Default escape timeout, more responsive in terminal 
 set timeoutlen=1000 ttimeoutlen=10
@@ -116,9 +119,6 @@ autocmd FileType netrw nnoremap <buffer> <silent> <nowait> q :bw<CR>
 autocmd FileType netrw setl bufhidden=wipe
 
 "nnoremap <C-c> <Cmd>bd<CR>
-
-" Wipe first [No Name] after leaving
-autocmd VimEnter * if len(bufname()) == 0 | setlocal buftype=nofile | setlocal bufhidden=wipe | setlocal noswapfile | endif
 
 " Help page
 autocmd FileType help nnoremap <buffer> <silent> q <Cmd>bw<CR>

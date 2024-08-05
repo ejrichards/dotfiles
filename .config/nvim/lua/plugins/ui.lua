@@ -22,6 +22,11 @@ return {
 						return workspace_items
 					end,
 					starter.sections.recent_files(8, true),
+					{
+						section = 'Lazy',
+						name = 'Lazy - Open',
+						action = 'Lazy',
+					},
 				},
 				footer = function()
 					local stats = require("lazy").stats()

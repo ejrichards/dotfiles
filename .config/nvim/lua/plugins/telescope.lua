@@ -1,5 +1,6 @@
 return {
 	'nvim-telescope/telescope.nvim',
+	enabled = false,
 	branch = '0.1.x',
 	dependencies = {
 		'nvim-lua/plenary.nvim',
@@ -48,7 +49,6 @@ return {
 			telescope.load_extension('fzf')
 		end
 
-		--[[
 		local builtin = require('telescope.builtin')
 
 		vim.keymap.set('n', '<leader>eb', builtin.buffers);
@@ -71,6 +71,5 @@ return {
 		vim.keymap.set('n', '<C-f>', function()
 			builtin.grep_string({ search = vim.fn.input("Grep $ ") })
 		end)
-		--]]
 	end
 }
