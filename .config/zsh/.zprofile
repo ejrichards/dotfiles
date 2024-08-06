@@ -47,4 +47,8 @@ if [[ -n "$LOCALAPPDATA" ]]; then
 	if [ -d "$LOCALAPPDATA/Microsoft/WindowsApps/Microsoft.WindowsTerminal_8wekyb3d8bbwe" ]; then
 		_addpath "$LOCALAPPDATA/Microsoft/WindowsApps/Microsoft.WindowsTerminal_8wekyb3d8bbwe"
 	fi
+
+	if [ -d "$LOCALAPPDATA/wslpath" ]; then
+		_addpath "$LOCALAPPDATA/wslpath"
+	fi
 fi
