@@ -44,6 +44,10 @@ if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) {
 	Invoke-Expression (&starship init powershell)
 }
 
+if (Get-Command "rage.exe" -ErrorAction SilentlyContinue) {
+	Set-Alias -Name age -Value rage
+}
+
 #Import-Module posh-git
 #function prompt {
 #	__autovenv
