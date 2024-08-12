@@ -122,6 +122,7 @@ autocmd FileType netrw setl bufhidden=wipe
 
 " Help page
 autocmd FileType help nnoremap <buffer> <silent> q <Cmd>bw<CR>
+autocmd FileType help nnoremap <buffer> gd <C-]>
 autocmd FileType help autocmd WinLeave <buffer> close
 autocmd FileType help setl bufhidden=wipe
 
