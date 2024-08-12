@@ -152,6 +152,9 @@ return {
 					['rust-analyzer'] = {
 						diagnostics = {
 							enable = false,
+						},
+						cargo = {
+							extraArgs = {"--target-dir=target/analyzer"}
 						}
 					}
 				}
