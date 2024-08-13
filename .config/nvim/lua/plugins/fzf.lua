@@ -6,6 +6,7 @@ return {
 			local fzf = require("fzf-lua")
 
 			fzf.setup({
+				fzf_args = "--bind=change:first",
 				winopts = {
 					preview = { default = "bat" }
 				},
