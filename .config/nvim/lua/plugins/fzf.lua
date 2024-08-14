@@ -24,10 +24,10 @@ return {
 				},
 				keymap  = {
 					builtin = {
-						["<F1>"]     = "toggle-help",
+						["<C-/>"]    = "toggle-help",
+						["<C-s>"]    = "toggle-preview",
 						["<F2>"]     = "toggle-fullscreen",
 						["<F3>"]     = "toggle-preview-wrap",
-						["<F4>"]     = "toggle-preview",
 						["<F5>"]     = "toggle-preview-ccw",
 						["<F6>"]     = "toggle-preview-cw",
 						["<C-d>"]    = "preview-page-down",
@@ -42,7 +42,7 @@ return {
 						["ctrl-e"] = "end-of-line",
 						["alt-a"]  = "toggle-all",
 						["f3"]     = "toggle-preview-wrap",
-						["f4"]     = "toggle-preview",
+						["ctrl-s"] = "toggle-preview",
 						["ctrl-d"] = "preview-page-down",
 						["ctrl-u"] = "preview-page-up",
 					},
