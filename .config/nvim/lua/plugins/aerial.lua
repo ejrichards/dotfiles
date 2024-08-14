@@ -3,11 +3,11 @@ return {
 	version = "*",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
-		"nvim-tree/nvim-web-devicons"
+		"nvim-tree/nvim-web-devicons",
 	},
 	opts = {
 		layout = {
-			default_direction = "float"
+			default_direction = "float",
 		},
 		close_automatic_events = { "unfocus" },
 		on_attach = function(bufnr)
@@ -21,7 +21,7 @@ return {
 			keymaps = {
 				["<Esc>"] = "actions.close",
 				["q"] = "actions.close",
-			}
+			},
 		},
-	}
+	},
 }

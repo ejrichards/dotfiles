@@ -1,19 +1,19 @@
 return {
-	{ 'mbbill/undotree' },
-	{ 'brenoprata10/nvim-highlight-colors', config = true },
+	{ "mbbill/undotree" },
+	{ "brenoprata10/nvim-highlight-colors", config = true },
 	{
-		'folke/which-key.nvim',
-		version = '*',
+		"folke/which-key.nvim",
+		version = "*",
 		event = "VeryLazy",
 		opts = {
 			preset = "modern",
 			delay = function(ctx)
 				return ctx.plugin and 0 or 500
 			end,
-		}
+		},
 	},
 	{
-		'stevearc/dressing.nvim',
+		"stevearc/dressing.nvim",
 		opts = {
 			input = {
 				get_config = function()
@@ -29,7 +29,7 @@ return {
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
-		config = true
+		config = true,
 	},
 	{
 		"folke/ts-comments.nvim",
@@ -40,12 +40,12 @@ return {
 	{
 		"natecraddock/workspaces.nvim",
 		event = "VeryLazy",
-		config = function ()
+		config = function()
 			local workspaces = require("workspaces")
 			workspaces.setup({
 				auto_dir = true,
 			})
-			vim.keymap.set('n', '<leader>ew', workspaces.open);
+			vim.keymap.set("n", "<leader>ew", workspaces.open)
 		end,
 	},
 }

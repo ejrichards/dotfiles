@@ -1,10 +1,10 @@
 return {
-	'sindrets/diffview.nvim',
+	"sindrets/diffview.nvim",
 	config = function()
-		vim.keymap.set('n', '<leader>gs', "<Cmd>DiffviewOpen<CR>");
-		vim.keymap.set('n', '<leader>gh', "<Cmd>DiffviewFileHistory<CR>");
-		vim.keymap.set('n', '<leader>gd', "<Cmd>DiffviewFileHistory %<CR>");
-		vim.keymap.set('n', '<leader>gt', "<Cmd>DiffviewFileHistory -g --range=stash<CR>");
+		vim.keymap.set("n", "<leader>gs", "<Cmd>DiffviewOpen<CR>")
+		vim.keymap.set("n", "<leader>gh", "<Cmd>DiffviewFileHistory<CR>")
+		vim.keymap.set("n", "<leader>gd", "<Cmd>DiffviewFileHistory %<CR>")
+		vim.keymap.set("n", "<leader>gt", "<Cmd>DiffviewFileHistory -g --range=stash<CR>")
 
 		local actions = require("diffview.actions")
 		require("diffview").setup({
@@ -16,6 +16,7 @@ return {
 				file_panel = {
 					["<tab>"] = false,
 					{ "n", "<s-tab>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
+					-- stylua: ignore
 					{ "n", "o", function ()
 						actions.goto_file_edit()
 						vim.cmd.tabclose('#')
@@ -24,6 +25,7 @@ return {
 				file_history_panel = {
 					["<tab>"] = false,
 					{ "n", "<s-tab>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
+					-- stylua: ignore
 					{ "n", "o", function ()
 						actions.goto_file_edit()
 						vim.cmd.tabclose('#')
@@ -33,7 +35,7 @@ return {
 					["<tab>"] = false,
 					{ "n", "<CR>", actions.select_entry, { desc = "Change the current option" } },
 				},
-			}
+			},
 		})
-	end
+	end,
 }

@@ -37,14 +37,18 @@ else
 
 	if vim.loop.os_uname().sysname == "Linux" and vim.loop.os_uname().release:find("microsoft") then
 		vim.g.clipboard = {
-			name = 'WslClipboard',
+			name = "WslClipboard",
 			copy = {
-				['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-				['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+				["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+				["*"] = require("vim.ui.clipboard.osc52").copy("*"),
 			},
 			paste = {
-				['+'] = function() return 0 end,
-				['*'] = function() return 0 end,
+				["+"] = function()
+					return 0
+				end,
+				["*"] = function()
+					return 0
+				end,
 			},
 		}
 	end
@@ -54,8 +58,8 @@ end
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 
 -- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-	group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,

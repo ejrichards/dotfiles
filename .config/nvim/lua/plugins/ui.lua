@@ -14,7 +14,7 @@ return {
 								break
 							end
 							table.insert(workspace_items, {
-								section = 'Workspaces',
+								section = "Workspaces",
 								name = workspace.name,
 								action = 'exe "WorkspacesOpen ' .. workspace.name .. '" | bw',
 							})
@@ -23,17 +23,17 @@ return {
 					end,
 					starter.sections.recent_files(8, true),
 					{
-						section = 'Lazy',
-						name = 'Lazy - Open',
-						action = 'Lazy',
+						section = "Lazy",
+						name = "Lazy - Open",
+						action = "Lazy",
 					},
 				},
 				footer = function()
 					local stats = require("lazy").stats()
-					return stats.count .. ' plugins 󰒲  ' .. stats.times.LazyDone .. 'ms'
+					return stats.count .. " plugins 󰒲  " .. stats.times.LazyDone .. "ms"
 				end,
 			})
-		end
+		end,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -42,34 +42,36 @@ return {
 			on_open = function(win)
 				vim.api.nvim_win_set_config(win, { focusable = false })
 			end,
-		}
+		},
 	},
 	{
-		'nvim-lualine/lualine.nvim',
+		"nvim-lualine/lualine.nvim",
 		dependencies = {
-			'nvim-tree/nvim-web-devicons',
+			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
 			sections = {
 				lualine_b = {
 					function()
 						if vim.env.GIT_DIR ~= nil and vim.env.GIT_WORK_TREE ~= nil then
-							return 'Baredot'
+							return "Baredot"
 						end
-						return ''
+						return ""
 					end,
 					function()
 						local workspace_name = require("workspaces").name()
 						if workspace_name == nil then
-							return ''
+							return ""
 						end
 
 						return workspace_name
 					end,
-					'branch', 'diff', 'diagnostics'
+					"branch",
+					"diff",
+					"diagnostics",
 				},
 				lualine_c = {
-					'filename',
+					"filename",
 					{
 						require("noice").api.status.search.get,
 						cond = require("noice").api.status.search.has,
@@ -83,10 +85,12 @@ return {
 						cond = require("noice").api.status.mode.has,
 						color = { fg = "#ff9e64" },
 					},
-					'encoding', 'fileformat', 'filetype'
+					"encoding",
+					"fileformat",
+					"filetype",
 				},
 			},
-		}
+		},
 	},
 	{
 		"folke/noice.nvim",
@@ -101,7 +105,7 @@ return {
 
 			noice.setup({
 				messages = {
-					view_search = false
+					view_search = false,
 				},
 				lsp = {
 					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -130,15 +134,15 @@ return {
 				},
 			})
 
-			vim.keymap.set('n', '<leader>cd', function()
+			vim.keymap.set("n", "<leader>cd", function()
 				vim.cmd.CD()
-				noice.redirect('pwd')
-			end, { desc = ':cd to current buffer' })
+				noice.redirect("pwd")
+			end, { desc = ":cd to current buffer" })
 
 			vim.opt.showmode = false
 			-- Trying no showcmd for now
 			-- vim.opt.showcmdloc = 'statusline'
 			vim.opt.showcmd = false
-		end
+		end,
 	},
 }

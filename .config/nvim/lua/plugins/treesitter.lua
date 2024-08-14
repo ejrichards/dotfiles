@@ -1,17 +1,17 @@
 return {
 	{
-		'nvim-treesitter/nvim-treesitter-context',
+		"nvim-treesitter/nvim-treesitter-context",
 		config = function()
-			vim.api.nvim_command('highlight TreesitterContextBottom gui=underline guisp=Grey cterm=underline')
-			vim.api.nvim_command('highlight TreesitterContextLineNumberBottom gui=underline guisp=Grey cterm=underline')
-		end
+			vim.api.nvim_command("highlight TreesitterContextBottom gui=underline guisp=Grey cterm=underline")
+			vim.api.nvim_command("highlight TreesitterContextLineNumberBottom gui=underline guisp=Grey cterm=underline")
+		end,
 	},
 	{
-		'windwp/nvim-ts-autotag',
-		opts = {}
+		"windwp/nvim-ts-autotag",
+		opts = {},
 	},
 	{
-		'nvim-treesitter/nvim-treesitter',
+		"nvim-treesitter/nvim-treesitter",
 		-- version = "*",
 		build = ":TSUpdate",
 		config = function()
@@ -19,7 +19,7 @@ return {
 			require("nvim-treesitter.install").prefer_git = false
 
 			-- Windows: Open in native tools prompt for VS
-			require('nvim-treesitter.configs').setup({
+			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"bash",
 					"css",
@@ -67,6 +67,6 @@ return {
 					additional_vim_regex_highlighting = false,
 				},
 			})
-		end
-	}
+		end,
+	},
 }

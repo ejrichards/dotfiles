@@ -3,12 +3,12 @@ return {
 		"OXY2DEV/markview.nvim",
 		lazy = false,
 		dependencies = {
-			"nvim-tree/nvim-web-devicons"
+			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
 			modes = { "n", "i", "c" },
 			hybrid_modes = { "i" },
-		}
+		},
 	},
 	{
 		--[[
@@ -30,9 +30,9 @@ return {
 			mappings = {
 				["<leader>ef"] = {
 					action = function()
-						vim.api.nvim_command('ObsidianQuickSwitch')
+						vim.api.nvim_command("ObsidianQuickSwitch")
 					end,
-					opts = { buffer = true }
+					opts = { buffer = true },
 				},
 				["gf"] = {
 					action = function()
@@ -54,7 +54,7 @@ return {
 						return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
 					end,
 				},
-			}
+			},
 		},
-	}
+	},
 }

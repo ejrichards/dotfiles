@@ -8,30 +8,30 @@ return {
 			fzf.setup({
 				fzf_args = "--bind=change:first",
 				winopts = {
-					preview = { default = "bat" }
+					preview = { default = "bat" },
 				},
-				grep    = {
-					input_prompt = 'Grep',
-					no_header_i = true
+				grep = {
+					input_prompt = "Grep",
+					no_header_i = true,
 				},
-				files   = {
+				files = {
 					formatter = "path.filename_first",
 				},
-				git     = {
+				git = {
 					files = {
 						formatter = "path.filename_first",
 					},
 				},
-				keymap  = {
+				keymap = {
 					builtin = {
-						["<C-/>"]    = "toggle-help",
-						["<C-s>"]    = "toggle-preview",
-						["<F2>"]     = "toggle-fullscreen",
-						["<F3>"]     = "toggle-preview-wrap",
-						["<F5>"]     = "toggle-preview-ccw",
-						["<F6>"]     = "toggle-preview-cw",
-						["<C-d>"]    = "preview-page-down",
-						["<C-u>"]    = "preview-page-up",
+						["<C-/>"] = "toggle-help",
+						["<C-s>"] = "toggle-preview",
+						["<F2>"] = "toggle-fullscreen",
+						["<F3>"] = "toggle-preview-wrap",
+						["<F5>"] = "toggle-preview-ccw",
+						["<F6>"] = "toggle-preview-cw",
+						["<C-d>"] = "preview-page-down",
+						["<C-u>"] = "preview-page-up",
 						["<S-left>"] = "preview-page-reset",
 					},
 					fzf = {
@@ -40,8 +40,8 @@ return {
 						["ctrl-b"] = "half-page-up",
 						["ctrl-a"] = "beginning-of-line",
 						["ctrl-e"] = "end-of-line",
-						["alt-a"]  = "toggle-all",
-						["f3"]     = "toggle-preview-wrap",
+						["alt-a"] = "toggle-all",
+						["f3"] = "toggle-preview-wrap",
 						["ctrl-s"] = "toggle-preview",
 						["ctrl-d"] = "preview-page-down",
 						["ctrl-u"] = "preview-page-up",
@@ -50,25 +50,25 @@ return {
 				actions = {
 					files = {
 						["default"] = fzf.actions.file_edit_or_qf,
-						["ctrl-x"]  = fzf.actions.file_split,
-						["ctrl-v"]  = fzf.actions.file_vsplit,
-						["ctrl-q"]  = { fn = fzf.actions.file_sel_to_qf, prefix = 'select-all+' },
-						["ctrl-t"]  = require("trouble.sources.fzf").actions.open,
+						["ctrl-x"] = fzf.actions.file_split,
+						["ctrl-v"] = fzf.actions.file_vsplit,
+						["ctrl-q"] = { fn = fzf.actions.file_sel_to_qf, prefix = "select-all+" },
+						["ctrl-t"] = require("trouble.sources.fzf").actions.open,
 					},
 					buffers = {
 						["default"] = fzf.actions.buf_edit,
-						["ctrl-x"]  = fzf.actions.buf_split,
-						["ctrl-v"]  = fzf.actions.buf_vsplit,
-					}
+						["ctrl-x"] = fzf.actions.buf_split,
+						["ctrl-v"] = fzf.actions.buf_vsplit,
+					},
 				},
 			})
 
-			vim.keymap.set('n', '<leader>eb', fzf.buffers);
-			vim.keymap.set('n', '<leader>ef', fzf.files);
-			vim.keymap.set('n', '<leader>eg', fzf.live_grep);
-			vim.keymap.set('n', '<leader>eh', fzf.helptags);
+			vim.keymap.set("n", "<leader>eb", fzf.buffers)
+			vim.keymap.set("n", "<leader>ef", fzf.files)
+			vim.keymap.set("n", "<leader>eg", fzf.live_grep)
+			vim.keymap.set("n", "<leader>eh", fzf.helptags)
 
-			vim.keymap.set('n', '<C-e>', fzf.git_files);
+			vim.keymap.set("n", "<C-e>", fzf.git_files)
 
 			-- FIXME: pcall doesn't fail
 			-- vim.keymap.set('n', '<C-e>', function()
@@ -79,9 +79,9 @@ return {
 			-- end);
 
 			-- winget install BurntSushi.ripgrep.MSVC
-			vim.keymap.set('n', '<leader>ee', fzf.grep_cword);
-			vim.keymap.set('n', '<leader>EE', fzf.grep_cWORD);
-			vim.keymap.set('n', '<C-f>', fzf.grep)
-		end
-	}
+			vim.keymap.set("n", "<leader>ee", fzf.grep_cword)
+			vim.keymap.set("n", "<leader>EE", fzf.grep_cWORD)
+			vim.keymap.set("n", "<C-f>", fzf.grep)
+		end,
+	},
 }
