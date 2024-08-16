@@ -119,11 +119,32 @@ function unln {
 	cp --remove-destination "$(readlink $1)" $1
 }
 
-function completion-update {
+function completion-update { (
+	set -e
+	cd /tmp
+
+	set -x
+
+	# Man pages
+	mkdir -p ~/.local/share/man/man1/
+	mkdir -p ~/.local/share/man/man5/
+	name=$(curl https://api.github.com/repos/eza-community/eza/releases/latest | jq --raw-output --exit-status '.assets[] | select(.name | contains("man-")) | .browser_download_url')
+	curl -L --remote-name $name
+	tar xvf man-*.tar.gz --directory=$HOME/.local/share/man/man1 --no-same-owner --strip-components 3 --no-anchored --wildcards "*.1"
+	tar xvf man-*.tar.gz --directory=$HOME/.local/share/man/man5 --no-same-owner --strip-components 3 --no-anchored --wildcards "*.5"
+	rm man-*.tar.gz
+
+	wget https://raw.githubusercontent.com/jdx/mise/main/man/man1/mise.1 --directory-prefix $HOME/.local/share/man/man1/
+	wget https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1 --directory-prefix $HOME/.local/share/man/man1/
+	rg --generate=man > $HOME/.local/share/man/man1/rg.1
+
+	# Completions
 	wget https://raw.githubusercontent.com/eza-community/eza/main/completions/zsh/_eza -O ${ZDOTDIR:-~}/completions/_eza
 	wget https://raw.githubusercontent.com/dbrgn/tealdeer/main/completion/zsh_tealdeer -O ${ZDOTDIR:-~}/completions/_tealdeer
 	atuin gen-completions --shell zsh > ${ZDOTDIR:-~}/completions/_atuin
 	mise completion zsh > ${ZDOTDIR:-~}/completions/_mise
+	rg --generate=complete-zsh > ${ZDOTDIR:-~}/completions/_rg
+
 	rm -f ~/.cache/zsh/compdump
 	rm -rf ~/.cache/zsh/compcache
-}
+) }
