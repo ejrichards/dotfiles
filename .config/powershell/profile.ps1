@@ -10,14 +10,16 @@ function backup([string]$file) {
 	7z a -tzip "$backupFolder\$(Split-Path -Path $file -Leaf)-backup-$(Get-Date -Format 'yyyy-MM-dd_HH-mm-ss').zip" "$file"
 }
 
-If (Test-Path Alias:gc) {Remove-Item Alias:gc -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gcb) {Remove-Item Alias:gcb -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gcm) {Remove-Item Alias:gcm -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gcs) {Remove-Item Alias:gcs -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gl) {Remove-Item Alias:gl -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gm) {Remove-Item Alias:gm -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gp) {Remove-Item Alias:gp -Force -ErrorAction SilentlyContinue}
-If (Test-Path Alias:gpv) {Remove-Item Alias:gpv -Force -ErrorAction SilentlyContinue}
+Remove-Alias -Name diff -Force -ErrorAction SilentlyContinue
+
+Remove-Alias -Name gc -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gcb -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gcm -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gcs -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gl -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gm -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gp -Force -ErrorAction SilentlyContinue
+Remove-Alias -Name gpv -Force -ErrorAction SilentlyContinue
 
 function gs { git status $args }
 function gsh { git show $args }
