@@ -31,6 +31,9 @@ fi
 
 if command -v systemctl &> /dev/null; then
 	alias sc='systemctl'
+	if command -v complete &> /dev/null; then
+		. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl sc
+	fi
 fi
 
 alias gs='git status'
