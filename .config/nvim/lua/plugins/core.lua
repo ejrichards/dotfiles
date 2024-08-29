@@ -29,7 +29,14 @@ return {
 		"kylechui/nvim-surround",
 		version = "*",
 		event = "VeryLazy",
-		config = true,
+		opts = {
+			keymaps = {
+				normal = "s",
+				normal_cur = "ss",
+				normal_line = "S",
+				normal_cur_line = "SS",
+			}
+		},
 	},
 	{
 		"folke/ts-comments.nvim",

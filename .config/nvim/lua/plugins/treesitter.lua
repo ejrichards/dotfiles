@@ -4,6 +4,9 @@ return {
 		config = function()
 			vim.api.nvim_command("highlight TreesitterContextBottom gui=underline guisp=Grey cterm=underline")
 			vim.api.nvim_command("highlight TreesitterContextLineNumberBottom gui=underline guisp=Grey cterm=underline")
+			require("treesitter-context").setup({
+				max_lines = 6,
+			})
 		end,
 	},
 	{
@@ -12,6 +15,9 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		-- version = "*",
 		build = ":TSUpdate",
 		config = function()
@@ -69,6 +75,28 @@ return {
 					-- Using this option may slow down your editor, and you may see some duplicate highlights.
 					-- Instead of true it can also be a list of languages
 					additional_vim_regex_highlighting = false,
+				},
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["af"] = { query = "@function.outer", desc = "Around function" },
+							["if"] = { query = "@function.inner", desc = "Inside function" },
+							["ac"] = { query = "@class.outer", desc = "Around class" },
+							["ic"] = { query = "@class.inner", desc = "Inside class" },
+						},
+						selection_modes = {
+							["@function.outer"] = "V",
+							["@function.inner"] = "V",
+						},
+					},
+					swap = {
+						enable = true,
+						swap_next = {
+							["<leader>sp"] = "@parameter.inner",
+						},
+					},
 				},
 			})
 		end,
