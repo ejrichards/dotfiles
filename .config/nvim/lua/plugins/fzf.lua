@@ -63,12 +63,14 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>eb", fzf.buffers)
-			vim.keymap.set("n", "<leader>ef", fzf.files)
-			vim.keymap.set("n", "<leader>eg", fzf.live_grep)
-			vim.keymap.set("n", "<leader>eh", fzf.helptags)
+			vim.keymap.set("n", "<leader>eb", fzf.buffers, { desc = "Buffers" })
+			vim.keymap.set("n", "<leader>ef", fzf.files, { desc = "Files" })
+			vim.keymap.set("n", "<leader>eg", fzf.live_grep, { desc = "Live Grep" })
+			vim.keymap.set("n", "<leader>eh", fzf.helptags, { desc = "Help" })
+			vim.keymap.set("n", "<leader>er", fzf.registers, { desc = "Registers" })
+			vim.keymap.set("n", "<leader>ps", fzf.registers, { desc = "Fzf Registers" })
 
-			vim.keymap.set("n", "<C-e>", fzf.git_files)
+			vim.keymap.set("n", "<C-e>", fzf.git_files, { desc = "Git Files" })
 
 			-- FIXME: pcall doesn't fail
 			-- vim.keymap.set('n', '<C-e>', function()
@@ -79,9 +81,9 @@ return {
 			-- end);
 
 			-- winget install BurntSushi.ripgrep.MSVC
-			vim.keymap.set("n", "<leader>ee", fzf.grep_cword)
-			vim.keymap.set("n", "<leader>EE", fzf.grep_cWORD)
-			vim.keymap.set("n", "<C-f>", fzf.grep)
+			vim.keymap.set("n", "<leader>ee", fzf.grep_cword, { desc = "<cword>" })
+			vim.keymap.set("n", "<leader>EE", fzf.grep_cWORD, { desc = "<cWORD>" })
+			vim.keymap.set("n", "<C-f>", fzf.grep, { desc = "Grep" })
 		end,
 	},
 }

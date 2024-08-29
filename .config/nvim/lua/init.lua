@@ -65,6 +65,33 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+--[[ fzf does this, but was interesting to figure out
+vim.keymap.set("n", "<leader>ps", function()
+	local regs = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ%/:"
+	local register_list = {}
+	local register_contents = {}
+	for i = 1, #regs do
+		local register = regs:sub(i, i)
+		local contents = vim.fn.getreg(register)
+		if #contents > 0 then
+			table.insert(register_list, register)
+			register_contents[register] = contents
+		end
+	end
+
+	vim.ui.select(register_list, {
+		prompt = "Registers",
+		format_item = function(item)
+			return register_contents[item]:gsub("\n", "↲"):gsub("\t", "» ")
+		end,
+	}, function(choice)
+		if choice ~= nil then
+			vim.api.nvim_put(vim.split(register_contents[choice], "\n"), "", true, false)
+		end
+	end)
+end)
+--]]
+
 -- Lazy package config
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

@@ -63,8 +63,10 @@ let &t_te.="\e[0 q"
 set timeoutlen=1000 ttimeoutlen=10
 
 " Yank/Paste
-nnoremap <leader>p "0p
-nnoremap <leader>P "+p
+nnoremap <leader>pp "0p
+nnoremap <leader>PP "0P
+nnoremap <leader>pv "+p
+nnoremap <leader>PV "+P
 nnoremap <leader>y "+y
 
 vnoremap <leader>y "+y
