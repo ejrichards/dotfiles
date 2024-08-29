@@ -2,12 +2,18 @@
 # . "$HOME/.config/powershell/profile.ps1"
 Set-PSReadLineKeyHandler -Chord "Ctrl+Spacebar" -Function AcceptSuggestion
 
-function fg-up([string]$file) {
-	scp $file fgup:$(Split-Path -Path $pwd -Leaf)/
-}
 function backup([string]$file) {
 	$backupFolder = if ($env:EJR_BACKUP) { $env:EJR_BACKUP } else { "$HOME\Documents\Backups\" };
 	7z a -tzip "$backupFolder\$(Split-Path -Path $file -Leaf)-backup-$(Get-Date -Format 'yyyy-MM-dd_HH-mm-ss').zip" "$file"
+}
+
+if (Get-Command "eza.exe" -ErrorAction SilentlyContinue) {
+	$defargs = @("--group-directories-first", "--color=auto", "--time-style=relative")
+	Remove-Alias -Name ls -Force -ErrorAction SilentlyContinue
+	function ls { eza $defargs --icons=auto $args}
+	function ll { eza $defargs --icons=auto --git -lahF $args}
+	function la { eza $defargs --icons=auto -a $args}
+	function l  { eza $defargs -F $args}
 }
 
 Remove-Alias -Name diff -Force -ErrorAction SilentlyContinue
@@ -50,18 +56,13 @@ if (Get-Command "rage.exe" -ErrorAction SilentlyContinue) {
 	Set-Alias -Name age -Value rage
 }
 
-#Import-Module posh-git
-#function prompt {
-#	__autovenv
-#
-#	& $GitPromptScriptBlock
-#}
-
 function dot { git --git-dir=$HOME\.dotgit\ --work-tree=$HOME $args }
 
 # winget install ajeetdsouza.zoxide
-Remove-Alias -Name cd
-Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+if (Get-Command "zoxide.exe" -ErrorAction SilentlyContinue) {
+	Remove-Alias -Name cd
+	Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
+}
 
 Set-PSReadLineOption -Colors @{
 	InlinePrediction = [ConsoleColor]::DarkGray
