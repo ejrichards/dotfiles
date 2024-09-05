@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 if ! grep -q '.config/bash/bashrc' ~/.bashrc; then
     cat <<EOT >> ~/.bashrc
 
