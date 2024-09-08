@@ -1,0 +1,75 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+# git here for pwsh
+format = """
+$shell\
+$python\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$directory\
+$docker_context\
+$nix_shell\
+$aws\
+$gcloud\
+$azure\
+$custom\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$sudo\
+$jobs\
+$battery\
+$status\
+$container\
+$character"""
+
+[username]
+disabled = true
+format = '[$user]($style)'
+
+[hostname]
+format = '[$ssh_symbol$hostname]($style) '
+ssh_symbol = '🌐'
+
+[directory]
+style = 'bold blue'
+truncation_symbol = '…/'
+truncation_length = 2 # Reduced for pwsh
+
+[jobs]
+symbol = '∔'
+
+[character]
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red)'
+
+[shell]
+disabled = false
+format = '[$indicator]($style)'
+zsh_indicator = ''
+bash_indicator = ' '
+powershell_indicator = ' '
+
+[git_branch]
+style = 'bold green'
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+# Compacted status for pwsh
+[git_status]
+style = 'bold green'
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = '🛑'
+untracked = '[?](red)'
+stashed = '📦'
+modified = '[!](red)'
+deleted = '[✘](red)'
+
+[python]
+format = '[${symbol}(\($virtualenv\) )]($style)'
+symbol = '🐍'

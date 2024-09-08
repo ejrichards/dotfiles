@@ -44,6 +44,7 @@ Set-Alias -Name cat -Value bat
 . $HOME/.config/powershell/autovenv.ps1
 
 if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) {
+	$env:STARSHIP_CONFIG = "$HOME\.config\starship-pwsh.toml"
 	function Invoke-Starship-PreCommand {
 		__autovenv
 		$dirname = if ($pwd.Path -eq $HOME) { '~' } else { Split-Path -Path $pwd -Leaf }
