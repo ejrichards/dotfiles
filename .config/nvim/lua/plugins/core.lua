@@ -35,7 +35,7 @@ return {
 				normal_cur = "ss",
 				normal_line = "S",
 				normal_cur_line = "SS",
-			}
+			},
 		},
 	},
 	{
@@ -54,5 +54,18 @@ return {
 			})
 			vim.keymap.set("n", "<leader>ew", workspaces.open)
 		end,
+	},
+	{
+		"isakbm/gitgraph.nvim",
+		opts = {},
+		keys = {
+			{
+				"<leader>gl",
+				function()
+					require("gitgraph").draw({}, { all = true, max_count = 5000 })
+				end,
+				desc = "GitGraph",
+			},
+		},
 	},
 }
