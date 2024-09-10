@@ -27,13 +27,13 @@ Remove-Alias -Name gm -Force -ErrorAction SilentlyContinue
 Remove-Alias -Name gp -Force -ErrorAction SilentlyContinue
 Remove-Alias -Name gpv -Force -ErrorAction SilentlyContinue
 
-function gs { git status $args }
-function gsh { git show $args }
-function gd { git diff $args }
-function gl { git log $args }
 function gc { git commit -m $args }
 function gca { git commit -am $args }
+function gd { git diff $args }
 function gdt { git difftool $args }
+function gl { git log $args }
+function gs { git status $args }
+function gsh { git show $args }
 
 Set-Alias -Name which -Value Get-Command
 Set-Alias -Name ip -Value Get-NetIPConfiguration
@@ -68,4 +68,11 @@ if (Get-Command "zoxide.exe" -ErrorAction SilentlyContinue) {
 Set-PSReadLineOption -Colors @{
 	InlinePrediction = [ConsoleColor]::DarkGray
 	Parameter = [ConsoleColor]::Blue 
+}
+
+if (Get-Command "carapace.exe" -ErrorAction SilentlyContinue) {
+	$env:CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+	Set-PSReadLineOption -Colors @{ "Selection" = "`e[7m" }
+	Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+	carapace _carapace | Out-String | Invoke-Expression
 }
