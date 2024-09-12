@@ -55,6 +55,8 @@ if (Get-Command "starship.exe" -ErrorAction SilentlyContinue) {
 
 if (Get-Command "rage.exe" -ErrorAction SilentlyContinue) {
 	Set-Alias -Name age -Value rage
+
+	. $HOME/.config/powershell/key.ps1
 }
 
 function dot { git --git-dir=$HOME\.dotgit\ --work-tree=$HOME $args }
