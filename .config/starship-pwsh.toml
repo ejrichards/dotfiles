@@ -59,6 +59,8 @@ powershell_indicator = ' '
 [git_branch]
 style = 'bold green'
 format = '[$symbol$branch(:$remote_branch)]($style) '
+# Compacted status for pwsh
+ignore_branches = ['master', 'main']
 
 # Compacted status for pwsh
 [git_status]
