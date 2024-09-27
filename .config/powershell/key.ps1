@@ -1,8 +1,18 @@
 function key {
 	[CmdletBinding()]
-	param ($action, $keyname, $varname)
+	param (
+		$action,
+		$keyname,
+		$varname,
+		[switch]$v
+	)
 
-	$dir = "$env:LOCALAPPDATA\ejrichards\keys"
+	if (-Not (Test-Path env:EJR_KEYS)) {
+		echo "env var 'EJR_KEYS' not set"
+		return
+	}
+
+	$dir = $env:EJR_KEYS
 
 	if ($action -eq 'add') {
 		if (!$keyname) {
@@ -31,7 +41,21 @@ function key {
 		if (!$varname) {
 			$varname = $keyname
 		}
+
+		if (Test-Path env:$varname) {
+			if ($v) {
+				echo "'$varname' is already set"
+			}
+			return
+		}
+
 		age --decrypt -i $HOME\.age\identities.txt "$path" | Set-Item env:$varname
+
+		if (Test-Path env:$varname) {
+			echo "`n'$varname' is set"
+		} else {
+			echo "`nIssue setting '$varname'"
+		}
 	} elseif ($action -eq 'list') {
 		Get-ChildItem -Path "$dir" | Select-Object -ExpandProperty BaseName
 	} else {
