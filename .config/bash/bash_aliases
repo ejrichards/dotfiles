@@ -30,9 +30,15 @@ if command -v rage &> /dev/null; then
 fi
 
 if command -v systemctl &> /dev/null; then
-	alias sc='systemctl'
+	alias sctl='systemctl'
 	if command -v complete &> /dev/null; then
-		. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl sc
+		. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl sctl
+	fi
+fi
+if command -v journalctl &> /dev/null; then
+	alias jctl='journalctl'
+	if command -v complete &> /dev/null; then
+		. /usr/share/bash-completion/completions/journalctl && complete -F _journalctl journalctl jctl
 	fi
 fi
 
@@ -48,4 +54,4 @@ alias echopath='echo $PATH | tr ":" "\n"'
 
 alias dot="git --git-dir=$HOME/.dotgit/ --work-tree=$HOME"
 
-alias ssha='ssh -o User=terminal -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes -o PubkeyAuthentication=no'
+alias ssha='ssh -o User=ubuntu -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes -o PubkeyAuthentication=no'
