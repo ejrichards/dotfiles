@@ -17,24 +17,27 @@ function key {
 	if ($action -eq 'add') {
 		if (!$keyname) {
 			echo 'Usage: key add <key_name>'
+			return
 		}
-		$path = "$dir\$keyname.age"
-		if (Test-Path -path $path) {
+		$filepath = "$dir\$keyname.age"
+		if (Test-Path -path $filepath) {
 			echo "key file '$keyname' already exists"
 			return
 		}
 		$key = Read-Host 'Enter key' -MaskInput
 		if (!$key) {
 			echo 'Aborting'
+			return
 		}
 
-		echo $key | age -R $HOME\.age\recipients.txt -o "$path" -
+		echo $key | age -R $HOME\.age\recipients.txt -o "$filepath" -
 	} elseif ($action -eq 'use') {
 		if (!$keyname) {
 			echo 'Usage: key use <key_name> <var_name>'
+			return
 		}
-		$path = "$dir\$keyname.age"
-		if (-Not (Test-Path -path $path)) {
+		$filepath = "$dir\$keyname.age"
+		if (-Not (Test-Path -path $filepath)) {
 			echo "no key file '$keyname'"
 			return
 		}
@@ -49,7 +52,7 @@ function key {
 			return
 		}
 
-		age --decrypt -i $HOME\.age\identities.txt "$path" | Set-Item env:$varname
+		age --decrypt -i $HOME\.age\identities.txt "$filepath" | Set-Item env:$varname
 
 		if (Test-Path env:$varname) {
 			echo "`n'$varname' is set"
