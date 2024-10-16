@@ -148,3 +148,7 @@ function completion-update { (
 	rm -f ~/.cache/zsh/compdump
 	rm -rf ~/.cache/zsh/compcache
 ) }
+
+if [ -f "${ZDOTDIR:-~}/key.zsh" ]; then
+	source "${ZDOTDIR:-~}/key.zsh"
+fi
