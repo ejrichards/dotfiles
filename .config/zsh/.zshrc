@@ -87,8 +87,12 @@ if [[ `uname -r` = *"microsoft"* ]]; then
 	}
 
 	if [[ $- == *i* ]]; then
+		function __reset_cursor() {
+			echo -en '\e[2 q'
+		}
+
 		# Solid block cursor to stop WSL from blinking
-		echo -en '\e[2 q'
+		precmd_functions+=(__reset_cursor)
 	fi
 fi
 
