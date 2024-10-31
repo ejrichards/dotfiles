@@ -96,6 +96,11 @@ cnoremap <C-k> s/\(.*\)/
 command Unix setlocal ff=unix
 command Windows e ++ff=dos
 
+" Input remaps
+inoremap <C-l> <C-k>
+inoremap <C-j> <Nop>
+inoremap <C-k> <Nop>
+
 " Tabs
 function! WipeTab()
 	if tabpagenr() > 1

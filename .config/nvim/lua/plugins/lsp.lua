@@ -2,6 +2,7 @@ return {
 	-- Autocompletion
 	{
 		"hrsh7th/nvim-cmp",
+		enabled = false,
 		dependencies = {
 			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp",
@@ -67,7 +68,7 @@ return {
 		priority = 99,
 		dependencies = {
 			"folke/trouble.nvim",
-			"hrsh7th/cmp-nvim-lsp",
+			-- "hrsh7th/cmp-nvim-lsp",
 			{ "Bilal2453/luvit-meta", lazy = true },
 			{
 				"folke/lazydev.nvim",
@@ -83,7 +84,9 @@ return {
 			local trouble = require("trouble")
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+			-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+			capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+
 			-- For UFO folding
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
