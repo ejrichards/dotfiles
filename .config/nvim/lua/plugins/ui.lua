@@ -1,5 +1,29 @@
 return {
 	{
+		"stevearc/dressing.nvim",
+		opts = {
+			input = {
+				get_config = function()
+					-- Don't seem to play well
+					if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "NvimTree" then
+						return { enabled = false }
+					end
+				end,
+			},
+		},
+	},
+	{
+		"folke/which-key.nvim",
+		version = "*",
+		event = "VeryLazy",
+		opts = {
+			preset = "modern",
+			delay = function(ctx)
+				return ctx.plugin and 0 or 500
+			end,
+		},
+	},
+	{
 		"echasnovski/mini.starter",
 		version = "*",
 		config = function()
@@ -34,15 +58,6 @@ return {
 				end,
 			})
 		end,
-	},
-	{
-		"rcarriga/nvim-notify",
-		version = "*",
-		opts = {
-			on_open = function(win)
-				vim.api.nvim_win_set_config(win, { focusable = false })
-			end,
-		},
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -93,12 +108,46 @@ return {
 		},
 	},
 	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		opts = {
+			bigfile = { enabled = true },
+			notifier = {
+				enabled = true,
+				timeout = 3000,
+			},
+			words = { enabled = true },
+			styles = {
+				notification = {
+					wo = { wrap = true },
+				},
+			},
+
+			statuscolumn = { enabled = false },
+			quickfile = { enabled = false },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "VeryLazy",
+				callback = function()
+					_G.dd = function(...)
+						Snacks.debug.inspect(...)
+					end
+					_G.bt = function()
+						Snacks.debug.backtrace()
+					end
+					vim.print = _G.dd -- Override print to use snacks for `:=` command
+				end,
+			})
+		end,
+	},
+	{
 		"folke/noice.nvim",
 		version = "*",
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
 		config = function()
 			local noice = require("noice")
