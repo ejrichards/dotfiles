@@ -1,5 +1,5 @@
 return {
-	"ejrichards/nvim-ufo",
+	"kevinhwang91/nvim-ufo",
 	dependencies = { "kevinhwang91/promise-async" },
 	config = function()
 		vim.o.foldcolumn = "0"
