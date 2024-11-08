@@ -9,6 +9,16 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			sources = {
+				completion = {
+					enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+				},
+				providers = {
+					lsp = { fallback_for = { "lazydev" } },
+					lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+				},
+			},
+
 			highlight = {
 				use_nvim_cmp_as_default = true,
 			},

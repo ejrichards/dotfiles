@@ -72,10 +72,11 @@ return {
 			{ "Bilal2453/luvit-meta", lazy = true },
 			{
 				"folke/lazydev.nvim",
-				version = "*",
 				ft = "lua", -- only load on lua files
 				opts = {
-					library = { "luvit-meta/library" },
+					library = {
+						{ path = "luvit-meta/library", words = { "vim%.uv" } },
+					},
 				},
 			},
 		},
@@ -85,7 +86,7 @@ return {
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-			capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 			-- For UFO folding
 			capabilities.textDocument.foldingRange = {

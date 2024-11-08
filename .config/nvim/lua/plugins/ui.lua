@@ -109,8 +109,12 @@ return {
 	},
 	{
 		"folke/snacks.nvim",
+		-- version = "*",
 		priority = 1000,
 		lazy = false,
+
+		---@module 'snacks'
+		---@type snacks.Config
 		opts = {
 			bigfile = { enabled = true },
 			notifier = {
@@ -144,7 +148,7 @@ return {
 	},
 	{
 		"folke/noice.nvim",
-		version = "*",
+		-- version = "*",
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
