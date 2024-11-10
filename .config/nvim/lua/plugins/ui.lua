@@ -148,7 +148,7 @@ return {
 	},
 	{
 		"folke/noice.nvim",
-		-- version = "*",
+		version = "*",
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
