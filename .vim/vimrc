@@ -76,6 +76,10 @@ inoremap <C-v> <C-r>+
 cnoremap <C-p> <C-r>0
 cnoremap <C-v> <C-r>+
 
+" Moving cursor
+nnoremap gM M
+nnoremap M gM
+
 " Moving text (this has to be : NOT <Cmd>)
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -112,7 +116,7 @@ function! WipeTab()
 	endif
 endfunction
 nnoremap <silent> <C-q> <Cmd>call WipeTab()<CR>
-" Use gv for visual block instead
+" Use <leader>v for visual block instead
 nnoremap <leader>v <C-q>
 
 nnoremap Q <Cmd>tabclose<CR>
