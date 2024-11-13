@@ -18,7 +18,11 @@ return {
 		"folke/ts-comments.nvim",
 		version = "*",
 		event = "VeryLazy",
-		config = true,
+		opts = {
+			lang = {
+				elvish = '# %s'
+			},
+		},
 	},
 	{
 		"natecraddock/workspaces.nvim",

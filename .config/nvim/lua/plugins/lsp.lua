@@ -226,6 +226,17 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "elvish",
+				callback = function(args)
+					vim.lsp.start({
+						name = "elvish",
+						cmd = { "elvish", "-lsp" },
+						capabilities = capabilities,
+					})
+				end,
+			})
+
 			-- winget install LuaLS.lua-language-server
 			-- need to add actual dir to path, symlink doesn't work
 			lspconfig.lua_ls.setup({
