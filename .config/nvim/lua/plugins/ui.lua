@@ -127,9 +127,6 @@ return {
 					wo = { wrap = true },
 				},
 			},
-
-			statuscolumn = { enabled = false },
-			quickfile = { enabled = false },
 		},
 		init = function()
 			vim.api.nvim_create_autocmd("User", {
