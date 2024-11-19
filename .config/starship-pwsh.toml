@@ -55,6 +55,7 @@ format = '[$indicator]($style)'
 zsh_indicator = ''
 bash_indicator = ' '
 powershell_indicator = ' '
+elvish_indicator = 'λ '
 
 [git_branch]
 style = 'bold green'
