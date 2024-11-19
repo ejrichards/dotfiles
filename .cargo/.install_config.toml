@@ -21,3 +21,18 @@ features = ["pcre2"]
 default_features = true
 features = []
 enforce_lock = true
+
+[watchexec-cli]
+default_features = true
+features = []
+enforce_lock = true
+
+[yazi-cli]
+default_features = true
+features = []
+enforce_lock = true
+
+[yazi-fm]
+default_features = true
+features = []
+enforce_lock = true
