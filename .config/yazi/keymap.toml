@@ -1,29 +1,35 @@
 [manager]
 append_keymap = [
+	{ on = [ "g", "?" ], run = 'help', desc = "Open help" },
 	{ on = "<C-/>", run = 'help', desc = "Open help" },
 ]
 
 [tasks]
 append_keymap = [
+	{ on = [ "g", "?" ], run = 'help', desc = "Open help" },
 	{ on = "<C-/>", run = 'help', desc = "Open help" },
 ]
 
 [select]
 append_keymap = [
+	{ on = [ "g", "?" ], run = 'help', desc = "Open help" },
 	{ on = "<C-/>", run = 'help', desc = "Open help" },
 ]
 
 [input]
 append_keymap = [
+	{ on = [ "g", "?" ], run = 'help', desc = "Open help" },
 	{ on = "<C-/>", run = 'help', desc = "Open help" },
 ]
 
 [confirm]
 append_keymap = [
+	{ on = [ "g", "?" ], run = 'help', desc = "Open help" },
 	{ on = "<C-/>", run = 'help', desc = "Open help" },
 ]
 
 [completion]
 append_keymap = [
+	{ on = [ "g", "?" ], run = 'help', desc = "Open help" },
 	{ on = "<C-/>", run = 'help', desc = "Open help" },
 ]
