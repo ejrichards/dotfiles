@@ -79,3 +79,7 @@ if (Get-Command "carapace.exe" -ErrorAction SilentlyContinue) {
 	Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 	carapace _carapace | Out-String | Invoke-Expression
 }
+
+if (Get-Command "yazi.exe" -ErrorAction SilentlyContinue) {
+	Set-Alias -Name y -Value yazi
+}

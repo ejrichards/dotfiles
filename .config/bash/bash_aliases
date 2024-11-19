@@ -38,6 +38,10 @@ if command -v systemctl &> /dev/null; then
 	fi
 fi
 
+if command -v yazi &> /dev/null; then
+	alias y='yazi'
+fi
+
 alias gs='git status'
 alias gsh='git show'
 alias gd='git diff'
