@@ -100,7 +100,7 @@ return {
 						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
 						{ icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
 						{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-						{ icon = " ", key = "w", desc = "Workspaces", action = ":WorkspacesOpen" },
+						{ icon = " ", key = "w", desc = "Workspaces", action = ':exe "WorkspacesOpen" | bw' },
 						{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
 						{ icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
 					},
@@ -108,8 +108,9 @@ return {
 				sections = {
 					{ section = "header" },
 					function()
+						local current_name = require("workspaces").name()
 						local items = {
-							{ icon = " ", title = "Workspaces ", file = require("workspaces").name() },
+							{ icon = " ", title = "Workspaces" .. (current_name ~= nil and " - " .. current_name or "") },
 						}
 						local workspaces = require("workspaces").get()
 						for i = 1, math.min(#workspaces, 5) do
@@ -125,7 +126,9 @@ return {
 
 						return items
 					end,
-					{ icon = " ", title = "Recent Files ", file = vim.fn.fnamemodify(".", ":~") },
+					function()
+						return { icon = " ", title = "Recent Files ", file = vim.fn.fnamemodify(".", ":~") }
+					end,
 					{ section = "recent_files", cwd = true, indent = 2, padding = 1 },
 					{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
 					{ section = "startup" },
