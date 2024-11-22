@@ -24,42 +24,6 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.starter",
-		version = "*",
-		config = function()
-			local starter = require("mini.starter")
-			starter.setup({
-				items = {
-					function()
-						local workspaces = require("workspaces").get()
-						local workspace_items = {}
-						for i, workspace in ipairs(workspaces) do
-							if i > 8 then
-								break
-							end
-							table.insert(workspace_items, {
-								section = "Workspaces",
-								name = workspace.name,
-								action = 'exe "WorkspacesOpen ' .. workspace.name .. '" | bw',
-							})
-						end
-						return workspace_items
-					end,
-					starter.sections.recent_files(8, true),
-					{
-						section = "Lazy",
-						name = "Lazy - Open",
-						action = "Lazy",
-					},
-				},
-				footer = function()
-					local stats = require("lazy").stats()
-					return stats.count .. " plugins 󰒲  " .. stats.times.LazyDone .. "ms"
-				end,
-			})
-		end,
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
@@ -125,6 +89,46 @@ return {
 			styles = {
 				notification = {
 					wo = { wrap = true },
+				},
+			},
+
+			dashboard = {
+				preset = {
+					-- stylua: ignore
+					keys = {
+						{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+						{ icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+						{ icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+						{ icon = " ", key = "w", desc = "Workspaces", action = ":WorkspacesOpen" },
+						{ icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+						{ icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+					},
+				},
+				sections = {
+					{ section = "header" },
+					function()
+						local items = {
+							{ icon = " ", title = "Workspaces ", file = require("workspaces").name() },
+						}
+						local workspaces = require("workspaces").get()
+						for i = 1, math.min(#workspaces, 5) do
+							local workspace = workspaces[i]
+							table.insert(items, {
+								title = workspace.name,
+								autokey = true,
+								action = ':exe "WorkspacesOpen ' .. workspace.name .. '" | lua Snacks.dashboard.update()',
+								indent = 2,
+							})
+						end
+						items[#items].padding = 1
+
+						return items
+					end,
+					{ icon = " ", title = "Recent Files ", file = vim.fn.fnamemodify(".", ":~") },
+					{ section = "recent_files", cwd = true, indent = 2, padding = 1 },
+					{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+					{ section = "startup" },
 				},
 			},
 		},
