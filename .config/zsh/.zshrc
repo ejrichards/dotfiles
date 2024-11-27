@@ -12,8 +12,10 @@ if command -v fzf &> /dev/null; then
 fi
 
 # Plugins
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load
+if [ -d "${ZDOTDIR:-~}/.antidote" ]; then
+	source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+	antidote load
+fi
 
 if command -v mise &> /dev/null; then
 	eval "$(mise activate zsh)"
@@ -67,7 +69,7 @@ else
 	# bash style prompt, %F color, 2=green, 10=bgreen, 4=blue, 12=bblue
 	# %-80(l|long|short) dynamic with line length
 	PS1=$'%F{10}%n@%m%F{reset_color}%-80(l|:%F{12}%(5~|%-1~/…/%3~|%4~)|)%F{reset_color}%(!.#.$) '
-	RPROMPT='${GITSTATUS_PROMPT}'
+	# RPROMPT='${GITSTATUS_PROMPT}'
 fi
 
 # WSL
