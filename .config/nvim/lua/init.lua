@@ -98,6 +98,11 @@ vim.filetype.add({
 	},
 })
 
+local additional_rtp = {}
+if vim.uv.fs_stat("/etc/nvim/nvim-treesitter-parsers.lua") then
+	table.insert(additional_rtp, dofile("/etc/nvim/nvim-treesitter-parsers.lua"))
+end
+
 -- Lazy package config
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -112,4 +117,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup({
+	spec = {
+		{ import = "plugins" },
+	},
+	performance = {
+		rtp = {
+			paths = additional_rtp,
+		},
+	},
+})

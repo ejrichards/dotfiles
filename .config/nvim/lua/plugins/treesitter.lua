@@ -20,6 +20,7 @@ return {
 		},
 		-- version = "*",
 		build = ":TSUpdate",
+		enabled = not vim.uv.fs_stat("/etc/nvim/nvim-treesitter-parsers.lua"),
 		config = function()
 			-- Avoid conflicts with Baredot
 			require("nvim-treesitter.install").prefer_git = false
