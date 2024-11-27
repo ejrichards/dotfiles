@@ -33,8 +33,10 @@ if command -v systemctl &> /dev/null; then
 	alias ctl='systemctl'
 	alias sctl='sudo systemctl'
 	if command -v complete &> /dev/null; then
-		. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl ctl
-		. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl sctl
+		if [ -f "/usr/share/bash-completion/completions/systemctl" ]; then
+			. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl ctl
+			. /usr/share/bash-completion/completions/systemctl && complete -F _systemctl systemctl sctl
+		fi
 	fi
 fi
 
