@@ -52,10 +52,11 @@ error_symbol = '[\$](bold red)'
 [shell]
 disabled = false
 format = '[$indicator]($style)'
-zsh_indicator = ''
+zsh_indicator = '🅉 '
 bash_indicator = ' '
 powershell_indicator = ' '
 elvish_indicator = 'λ '
+fish_indicator = ' '
 
 [git_branch]
 style = 'bold green'
