@@ -48,7 +48,7 @@ if status is-interactive
 	alias gca='git commit -am'
 	alias gdt='git difftool'
 
-	alias echopath='echo $PATH | tr " " "\n"'
+	alias echopath='printf \'%s\n\' $PATH'
 
 	alias dot="git --git-dir=$HOME/.dotgit/ --work-tree=$HOME"
 
