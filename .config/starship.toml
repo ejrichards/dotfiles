@@ -52,7 +52,7 @@ error_symbol = '[\$](bold red)'
 [shell]
 disabled = false
 format = '[$indicator]($style)'
-zsh_indicator = '🅉 '
+zsh_indicator = 'ℤ '
 bash_indicator = ' '
 powershell_indicator = ' '
 elvish_indicator = 'λ '
