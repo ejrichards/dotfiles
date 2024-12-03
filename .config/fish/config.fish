@@ -2,6 +2,10 @@
 set -g fish_greeting ""
 
 if status is-interactive
+	# man coloring
+	set -gx MANROFFOPT '-c'
+	set -gx MANPAGER 'less -R --use-color -Dd+g -Du+b'
+
 	bind \b backward-kill-word
 	bind -k nul forward-char
 	bind \cz fancy_ctrl_z
