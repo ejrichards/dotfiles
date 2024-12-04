@@ -9,6 +9,7 @@ return {
 					typescript = { "biome", "biome-check" },
 					sh = { "shellharden" },
 					lua = { "stylua" },
+					nix = { "nixfmt" },
 				},
 			})
 			vim.keymap.set({ "n", "x" }, "<leader>f", function()
