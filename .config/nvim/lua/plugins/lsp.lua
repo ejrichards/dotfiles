@@ -226,6 +226,14 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.gleam.setup({
+				capabilities = capabilities,
+			})
+
+			lspconfig.nil_ls.setup({
+				capabilities = capabilities,
+			})
+
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "elvish",
 				callback = function(args)
