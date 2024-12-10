@@ -21,6 +21,10 @@ if status is-interactive
 		end
 	end
 
+	if command -v mise &> /dev/null
+		mise activate fish | source
+	end
+
 	if command -v fzf &> /dev/null
 		fzf --fish | source
 	end

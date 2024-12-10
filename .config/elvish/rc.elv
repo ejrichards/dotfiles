@@ -15,8 +15,9 @@ set edit:insert:binding[Ctrl-n] = { nop }
 set edit:history:binding[Ctrl-n] = { edit:history:down-or-quit }
 
 if (has-external mise) {
-	var mise: = (eval &ns=[&] &on-end=$put~ (mise activate elvish | slurp))
-	edit:add-var mise~ {|@args| mise:mise $@args  }
+	var mise: = (ns [&])
+	eval (mise activate elvish | slurp) &ns=$mise: &on-end={|ns| set mise: = $ns }
+	edit:add-var mise~ {|@args| mise:mise $@args }
 
 	mise:activate
 }
@@ -30,3 +31,9 @@ if (has-external zoxide) {
 }
 
 use aliases
+
+if (has-external atuin) {
+	use atuin
+	set edit:insert:binding[Ctrl-r] = { atuin:search }
+	set edit:insert:binding[Up] = { atuin:search-up }
+}
