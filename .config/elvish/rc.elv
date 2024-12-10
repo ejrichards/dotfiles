@@ -14,6 +14,13 @@ set edit:history:binding[Ctrl-p] = { edit:history:up }
 set edit:insert:binding[Ctrl-n] = { nop }
 set edit:history:binding[Ctrl-n] = { edit:history:down-or-quit }
 
+if (has-external mise) {
+	var mise: = (eval &ns=[&] &on-end=$put~ (mise activate elvish | slurp))
+	edit:add-var mise~ {|@args| mise:mise $@args  }
+
+	mise:activate
+}
+
 if (has-external starship) {
 	eval (starship init elvish)
 }
