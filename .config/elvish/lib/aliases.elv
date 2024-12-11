@@ -4,7 +4,7 @@ use str
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
 
 edit:add-var vim~ {|@argv| nvim $@argv }
-edit:add-var clear~ { edit:clear }
+edit:add-var clear~ { print "\e[H\e[2J\e[3J" }
 edit:add-var pwd~ { echo $pwd }
 edit:add-var ssha~ { ssh -o User=ubuntu -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes -o PubkeyAuthentication=no }
 
@@ -42,4 +42,10 @@ if (has-external eza) {
 	edit:add-var ls~ $ls~
 	edit:add-var ll~ $ll~
 	set builtin:after-chdir = [$@builtin:after-chdir {|_| ls }]
+}
+
+if (and (has-external rg) (not (has-external grep))) {
+	edit:add-var grep~ {|@argv|
+		set _ = ?(rg $@argv)
+	}
 }

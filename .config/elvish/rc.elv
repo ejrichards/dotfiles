@@ -1,4 +1,6 @@
 use os
+use path
+use platform
 
 set-env HOME ~
 
@@ -6,9 +8,12 @@ if (os:is-dir $E:XDG_CONFIG_HOME/elvish/bin) {
 	set paths = [ $E:XDG_CONFIG_HOME/elvish/bin $@paths ]
 }
 
-# Tab completion smart-case
-set edit:completion:matcher[argument] = {|seed| edit:match-prefix $seed &smart-case=$true }
+set notify-bg-job-success = $false
 
+# Tab completion smart-case
+set edit:completion:matcher[argument] = {|seed| edit:match-prefix $seed &ignore-case=$true }
+
+set edit:insert:binding[Ctrl-Backspace] = { edit:kill-small-word-left }
 set edit:insert:binding[Ctrl-p] = { edit:history:start }
 set edit:history:binding[Ctrl-p] = { edit:history:up }
 set edit:insert:binding[Ctrl-n] = { nop }
@@ -23,6 +28,7 @@ if (has-external mise) {
 }
 
 if (has-external starship) {
+	set-env STARSHIP_CONFIG ~/.config/starship-elv.toml
 	eval (starship init elvish)
 }
 
@@ -36,4 +42,19 @@ if (has-external atuin) {
 	use atuin
 	set edit:insert:binding[Ctrl-r] = { atuin:search }
 	set edit:insert:binding[Up] = { atuin:search-up }
+} elif (has-external fzf) {
+	use fzf
+	set edit:insert:binding[Ctrl-r] = { fzf:history }
+	set edit:insert:binding[Up] = { fzf:history }
 }
+
+# Title
+set edit:before-readline = [$@edit:before-readline {
+	var dirname
+	if (eq $pwd ~) {
+		set dirname = '~'
+	} else {
+		set dirname = (path:base $pwd)
+	}
+	print "\e]0;"(platform:hostname):$dirname"\007"
+}]

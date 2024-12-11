@@ -26,8 +26,7 @@ set edit:after-command = [$@edit:after-command {|m|
 		}
 		var duration = (exact-num (math:round (* $m[duration] 1000000000)))
 
-		# TODO: elvish can't detach, so '&' always reports a background process
-		with E:ATUIN_LOG = 'error' { atuin history end --exit $exit-status --duration=$duration -- $E:ATUIN_HISTORY_ID >$os:dev-null 2>&1 }
+		with E:ATUIN_LOG = 'error' { atuin history end --exit $exit-status --duration=$duration -- $E:ATUIN_HISTORY_ID >$os:dev-null 2>&1 & }
 
 		unset-env ATUIN_HISTORY_ID
 	}
@@ -39,7 +38,7 @@ fn search {|@argv|
 	var p = (file:pipe)
 	# TODO: Will need an elvish flag in Atuin binary
 	with [E:ATUIN_LOG = 'error'] [E:ATUIN_SHELL_BASH = t] [E:ATUIN_QUERY = $edit:current-command] {
-		atuin search $@argv -i >/dev/tty 2>$p
+		atuin search $@argv -i >$os:dev-tty 2>$p; edit:redraw &full=$true
 	}
 	file:close $p[w]
 	var command = (str:trim-space (slurp < $p))
