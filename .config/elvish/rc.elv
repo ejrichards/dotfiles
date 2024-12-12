@@ -28,6 +28,8 @@ set edit:history:binding[Ctrl-n] = { edit:history:down-or-quit }
 set edit:completion:binding[Ctrl-p] = { edit:completion:up-cycle }
 set edit:completion:binding[Ctrl-n] = { edit:completion:down-cycle }
 set edit:completion:binding[Ctrl-y] = { edit:completion:accept }
+set edit:completion:binding[Tab] = { edit:completion:accept }
+set edit:completion:binding[Enter] = { edit:completion:accept; edit:return-line }
 
 if (has-external mise) {
 	var mise: = (ns [&])
