@@ -8,6 +8,11 @@ if (os:is-dir $E:XDG_CONFIG_HOME/elvish/bin) {
 	set paths = [ $E:XDG_CONFIG_HOME/elvish/bin $@paths ]
 }
 
+if (not (os:is-dir /etc/nixos)) {
+	use epm
+	epm:install &silent-if-installed=$true github.com/ejrichards/mellon
+}
+
 set notify-bg-job-success = $false
 
 set edit:completion:matcher[argument] = {|seed| edit:match-prefix $seed &ignore-case=$true }
@@ -47,7 +52,7 @@ if (has-external atuin) {
 	set edit:insert:binding[Ctrl-r] = { atuin:search }
 	set edit:insert:binding[Up] = { atuin:search-up }
 } elif (has-external fzf) {
-	use fzf
+	use github.com/ejrichards/mellon/fzf
 	set edit:insert:binding[Ctrl-r] = { fzf:history }
 	set edit:insert:binding[Up] = { fzf:history }
 }
