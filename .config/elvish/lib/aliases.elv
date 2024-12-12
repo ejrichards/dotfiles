@@ -4,8 +4,11 @@ use os
 use file
 
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
+set edit:completion:arg-completer[dot] = $edit:completion:arg-completer[git]
 
 edit:add-var vim~ {|@argv| nvim $@argv }
+set edit:completion:arg-completer[vim] = $edit:completion:arg-completer[nvim]
+
 edit:add-var clear~ { print "\e[H\e[2J\e[3J" }
 edit:add-var pwd~ { echo $pwd }
 edit:add-var ssha~ { ssh -o User=ubuntu -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes -o PubkeyAuthentication=no }
@@ -17,19 +20,20 @@ edit:add-var which~ {|command|
 	}
 }
 
-edit:add-var gs~ {|@argv| git status $@argv }
-edit:add-var gsh~ {|@argv| git show $@argv }
-edit:add-var gd~ {|@argv| git diff $@argv }
-edit:add-var gl~ {|@argv| git log $@argv }
-edit:add-var gc~ {|@argv| git commit -m $@argv }
-edit:add-var gca~ {|@argv| git commit -am $@argv }
-edit:add-var gdt~ {|@argv| git difftool $@argv }
+set edit:small-word-abbr['gs'] = 'git status'
+set edit:small-word-abbr['gsh'] = 'git show'
+set edit:small-word-abbr['gd'] = 'git diff'
+set edit:small-word-abbr['gl'] = 'git log'
+set edit:small-word-abbr['gc'] = 'git commit -m'
+set edit:small-word-abbr['gca'] = 'git commit -am'
+set edit:small-word-abbr['gdt'] = 'git difftool'
 
 if (has-external rage) {
 	edit:add-var age~ {|@argv| rage $@argv }
 }
 if (has-external bat) {
 	edit:add-var cat~ {|@argv| bat $@argv }
+	set edit:completion:arg-completer[cat] = $edit:completion:arg-completer[bat]
 }
 if (has-external yazi) {
 	edit:add-var y~ {|@argv|
@@ -57,10 +61,14 @@ if (has-external eza) {
 	edit:add-var ls~ $ls~
 	edit:add-var ll~ $ll~
 	set builtin:after-chdir = [$@builtin:after-chdir {|_| ls }]
+
+	set edit:completion:arg-completer[ls] = $edit:completion:arg-completer[eza]
+	set edit:completion:arg-completer[ll] = $edit:completion:arg-completer[eza]
 }
 
 if (and (has-external rg) (not (has-external grep))) {
 	edit:add-var grep~ {|@argv|
 		set _ = ?(rg $@argv)
 	}
+	set edit:completion:arg-completer[grep] = $edit:completion:arg-completer[rg]
 }

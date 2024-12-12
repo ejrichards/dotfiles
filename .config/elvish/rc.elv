@@ -17,6 +17,7 @@ set notify-bg-job-success = $false
 
 set edit:completion:matcher[argument] = {|seed| edit:match-prefix $seed &ignore-case=$true }
 
+set edit:insert:binding[Shift-Backspace] = { edit:kill-rune-left }
 set edit:insert:binding[Ctrl-Backspace] = { edit:kill-small-word-left }
 set edit:insert:binding[Ctrl-p] = { edit:history:start }
 set edit:insert:binding[Ctrl-n] = { nop }
@@ -45,6 +46,10 @@ if (has-external zoxide) {
 	eval (zoxide init elvish --cmd cd | slurp)
 }
 
+if (has-external carapace) {
+	eval (carapace _carapace elvish | slurp)
+}
+
 use aliases
 
 if (has-external atuin) {
@@ -57,7 +62,6 @@ if (has-external atuin) {
 	set edit:insert:binding[Up] = { fzf:history }
 }
 
-# Title
 set edit:before-readline = [$@edit:before-readline {
 	var dirname
 	if (eq $pwd ~) {
@@ -67,3 +71,4 @@ set edit:before-readline = [$@edit:before-readline {
 	}
 	print "\e]0;"(platform:hostname):$dirname"\007"
 }]
+
