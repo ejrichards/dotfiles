@@ -3,6 +3,7 @@ use path
 use platform
 
 use env
+use wsl
 
 if (not (os:is-dir /etc/nixos)) {
 	use epm
