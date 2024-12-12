@@ -10,6 +10,7 @@ fn history {
 		try {
 			fzf --no-multi --no-sort --read0 --print0 --info-command="print History" ^
 			--scheme=history --expect=tab,ctrl-d --border=rounded --exact ^
+			--bind 'down:transform:if (<= $E:FZF_POS 1) { print abort } else { print down }' ^
 			--query=$edit:current-command | slurp
 		} catch {
 			edit:redraw &full=$true

@@ -10,14 +10,18 @@ if (os:is-dir $E:XDG_CONFIG_HOME/elvish/bin) {
 
 set notify-bg-job-success = $false
 
-# Tab completion smart-case
 set edit:completion:matcher[argument] = {|seed| edit:match-prefix $seed &ignore-case=$true }
 
 set edit:insert:binding[Ctrl-Backspace] = { edit:kill-small-word-left }
 set edit:insert:binding[Ctrl-p] = { edit:history:start }
-set edit:history:binding[Ctrl-p] = { edit:history:up }
 set edit:insert:binding[Ctrl-n] = { nop }
+
+set edit:history:binding[Ctrl-p] = { edit:history:up }
 set edit:history:binding[Ctrl-n] = { edit:history:down-or-quit }
+
+set edit:completion:binding[Ctrl-p] = { edit:completion:up-cycle }
+set edit:completion:binding[Ctrl-n] = { edit:completion:down-cycle }
+set edit:completion:binding[Ctrl-y] = { edit:completion:accept }
 
 if (has-external mise) {
 	var mise: = (ns [&])

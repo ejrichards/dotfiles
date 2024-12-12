@@ -1,5 +1,7 @@
 use builtin
 use str
+use os
+use file
 
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
 
@@ -30,7 +32,20 @@ if (has-external bat) {
 	edit:add-var cat~ {|@argv| bat $@argv }
 }
 if (has-external yazi) {
-	edit:add-var y~ {|@argv| yazi $@argv }
+	edit:add-var y~ {|@argv|
+		var f = (os:temp-file)
+
+		yazi --cwd-file=$f[name] $@argv
+
+		var dir = (str:trim-space (slurp < $f))
+
+		file:close $f
+		os:remove $f[name]
+
+		if (not-eq $dir '') {
+			cd $dir
+		}
+	}
 }
 
 if (has-external eza) {
