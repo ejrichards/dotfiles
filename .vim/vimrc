@@ -3,6 +3,8 @@ let maplocalleader = '\'
 
 " vim only stuff
 if !has('nvim')
+	set shell=/bin/sh
+
 	set directory^=$HOME/.vim/swap//
 
 	" git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/dist/start/vim-airline

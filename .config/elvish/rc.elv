@@ -2,11 +2,7 @@ use os
 use path
 use platform
 
-set-env HOME ~
-
-if (os:is-dir $E:XDG_CONFIG_HOME/elvish/bin) {
-	set paths = [ $E:XDG_CONFIG_HOME/elvish/bin $@paths ]
-}
+use env
 
 if (not (os:is-dir /etc/nixos)) {
 	use epm
@@ -28,7 +24,6 @@ set edit:history:binding[Ctrl-n] = { edit:history:down-or-quit }
 set edit:completion:binding[Ctrl-p] = { edit:completion:up-cycle }
 set edit:completion:binding[Ctrl-n] = { edit:completion:down-cycle }
 set edit:completion:binding[Ctrl-y] = { edit:completion:accept }
-set edit:completion:binding[Tab] = { edit:completion:accept }
 set edit:completion:binding[Enter] = { edit:completion:accept; edit:return-line }
 
 if (has-external mise) {

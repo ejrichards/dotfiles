@@ -1,6 +1,10 @@
 -- Optional loading, ignore error
 pcall(require, "local")
 
+if vim.uv.os_uname().sysname == "Linux" then
+	vim.opt.shell = "/bin/sh"
+end
+
 -- Byebye netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -11,7 +15,7 @@ vim.opt.cursorline = true
 
 if vim.g.neovide then
 	vim.opt.title = true
-	if vim.loop.os_uname().sysname == "Linux" then
+	if vim.uv.os_uname().sysname == "Linux" then
 		-- Linux paths don't work for wt.exe for some reason...
 		vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wt.exe -p Ubuntu wsl.exe --cd "%:p:h"<CR>')
 		-- vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wezterm.exe start -- wsl.exe --cd "%:p:h"<CR>')
@@ -35,7 +39,7 @@ if vim.g.neovide then
 else
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 
-	if vim.loop.os_uname().sysname == "Linux" and vim.loop.os_uname().release:find("microsoft") then
+	if vim.uv.os_uname().sysname == "Linux" and vim.uv.os_uname().release:find("microsoft") then
 		vim.g.clipboard = {
 			name = "WslClipboard",
 			copy = {
@@ -105,7 +109,7 @@ end
 
 -- Lazy package config
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",

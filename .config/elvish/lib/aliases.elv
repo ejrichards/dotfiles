@@ -4,7 +4,6 @@ use os
 use file
 
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
-set edit:completion:arg-completer[dot] = $edit:completion:arg-completer[git]
 
 edit:add-var vim~ {|@argv| nvim $@argv }
 set edit:completion:arg-completer[vim] = $edit:completion:arg-completer[nvim]
