@@ -4,6 +4,11 @@ return {
 	priority = 1000,
 	lazy = false,
 
+	keys = {
+		{ "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
+		{ "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+	},
+
 	---@module 'snacks'
 	---@type snacks.Config
 	opts = {
@@ -18,6 +23,7 @@ return {
 				wo = { wrap = true },
 			},
 		},
+		indent = { enabled = true },
 
 		dashboard = {
 			preset = {
