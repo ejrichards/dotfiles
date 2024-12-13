@@ -19,13 +19,13 @@ edit:add-var which~ {|command|
 	}
 }
 
-set edit:small-word-abbr['gs'] = 'git status'
-set edit:small-word-abbr['gsh'] = 'git show'
-set edit:small-word-abbr['gd'] = 'git diff'
-set edit:small-word-abbr['gl'] = 'git log'
-set edit:small-word-abbr['gc'] = 'git commit -m'
-set edit:small-word-abbr['gca'] = 'git commit -am'
-set edit:small-word-abbr['gdt'] = 'git difftool'
+set edit:command-abbr['gs'] = 'git status'
+set edit:command-abbr['gsh'] = 'git show'
+set edit:command-abbr['gd'] = 'git diff'
+set edit:command-abbr['gl'] = 'git log'
+set edit:command-abbr['gc'] = 'git commit -m'
+set edit:command-abbr['gca'] = 'git commit -am'
+set edit:command-abbr['gdt'] = 'git difftool'
 
 if (has-external rage) {
 	edit:add-var age~ {|@argv| rage $@argv }

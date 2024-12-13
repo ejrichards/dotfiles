@@ -18,6 +18,13 @@ set edit:insert:binding[Shift-Backspace] = { edit:kill-rune-left }
 set edit:insert:binding[Ctrl-Backspace] = { edit:kill-small-word-left }
 set edit:insert:binding[Ctrl-p] = { edit:history:start }
 set edit:insert:binding[Ctrl-n] = { nop }
+set edit:insert:binding[Enter] = {
+	if (has-key $edit:command-abbr $edit:current-command) {
+		edit:replace-input $edit:command-abbr[$edit:current-command]
+	}
+	edit:smart-enter
+}
+set edit:insert:binding[Shift-Enter] = { edit:insert-at-dot "\n" }
 
 set edit:history:binding[Ctrl-p] = { edit:history:up }
 set edit:history:binding[Ctrl-n] = { edit:history:down-or-quit }
