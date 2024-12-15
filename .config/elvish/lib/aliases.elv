@@ -59,7 +59,7 @@ if (has-external eza) {
 	edit:add-var eza~ $eza~
 	edit:add-var ls~ $ls~
 	edit:add-var ll~ $ll~
-	set builtin:after-chdir = [$@builtin:after-chdir {|_| ls }]
+	# set builtin:after-chdir = [$@builtin:after-chdir {|_| edit:notify (eza --icons=always -w 120 | slurp) }]
 
 	set edit:completion:arg-completer[ls] = $edit:completion:arg-completer[eza]
 	set edit:completion:arg-completer[ll] = $edit:completion:arg-completer[eza]
