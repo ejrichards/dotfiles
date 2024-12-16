@@ -63,8 +63,8 @@ if (has-external atuin) {
 	set edit:insert:binding[Up] = { atuin:search-up }
 } elif (has-external fzf) {
 	use github.com/ejrichards/mellon/fzf
-	set edit:insert:binding[Ctrl-r] = { fzf:history }
-	set edit:insert:binding[Up] = { fzf:history }
+	set edit:insert:binding[Ctrl-r] = { fzf:history --border=rounded --no-mouse --exact }
+	set edit:insert:binding[Up] = { fzf:history --border=rounded --no-mouse --exact }
 }
 
 set edit:before-readline = [$@edit:before-readline {
