@@ -13,11 +13,21 @@ default_features = true
 features = []
 enforce_lock = true
 
+[mise]
+default_features = true
+features = []
+enforce_lock = true
+
 [ripgrep]
 default_features = true
 features = ["pcre2"]
 
 [starship]
+default_features = true
+features = []
+enforce_lock = true
+
+[usage-cli]
 default_features = true
 features = []
 enforce_lock = true
