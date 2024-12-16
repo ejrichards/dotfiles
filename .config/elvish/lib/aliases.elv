@@ -35,16 +35,8 @@ if (has-external bat) {
 	set edit:completion:arg-completer[cat] = $edit:completion:arg-completer[bat]
 }
 if (has-external yazi) {
-	edit:add-var y~ {|@argv|
-		var tmp = (os:temp-file)
-		yazi $@argv --cwd-file=$tmp[name]
-		var cwd = (str:trim-space (slurp < $tmp))
-		file:close $tmp
-		os:remove $tmp[name]
-		if (and (not-eq $cwd '') (not-eq $cwd $pwd)) {
-			cd $cwd
-		}
-	}
+	use github.com/ejrichards/mellon/yazi
+	edit:add-var y~ $yazi:y~
 }
 
 if (has-external eza) {
