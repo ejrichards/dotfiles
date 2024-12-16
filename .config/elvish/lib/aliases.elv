@@ -36,17 +36,13 @@ if (has-external bat) {
 }
 if (has-external yazi) {
 	edit:add-var y~ {|@argv|
-		var f = (os:temp-file)
-
-		yazi --cwd-file=$f[name] $@argv
-
-		var dir = (str:trim-space (slurp < $f))
-
-		file:close $f
-		os:remove $f[name]
-
-		if (not-eq $dir '') {
-			cd $dir
+		var tmp = (os:temp-file)
+		yazi $@argv --cwd-file=$tmp[name]
+		var cwd = (str:trim-space (slurp < $tmp))
+		file:close $tmp
+		os:remove $tmp[name]
+		if (and (not-eq $cwd '') (not-eq $cwd $pwd)) {
+			cd $cwd
 		}
 	}
 }
