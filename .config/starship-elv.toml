@@ -78,3 +78,14 @@ deleted = '[✘${count}](red) '
 [python]
 format = '[${symbol}(\($virtualenv\) )]($style)'
 symbol = '🐍'
+
+[nix_shell]
+format = '[$symbol$state( \($name\))]($style) '
+impure_msg = 'i'
+pure_msg = 'p'
+
+[custom.mise]
+symbol = '🍴 '
+when = 'if (<= (count (mise config ls --json | from-json)) 2) { fail "" }'
+shell = ['elvish', '-c']
+use_stdin = false
