@@ -24,6 +24,7 @@
 	navigate = true    # use n and N to move between diff sections
 	true-color = always
 	features = tokyo-night
+	tabs = 4
 [delta "tokyo-night"]
 	dark                          = true
 	minus-style                   = syntax "#37222c"

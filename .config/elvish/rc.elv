@@ -17,6 +17,8 @@ set edit:completion:matcher[argument] = {|seed| edit:match-prefix $seed &ignore-
 
 set edit:insert:binding[Shift-Backspace] = { edit:kill-rune-left }
 set edit:insert:binding[Ctrl-Backspace] = { edit:kill-small-word-left }
+set edit:insert:binding[Ctrl-h] = { edit:kill-small-word-left }
+
 set edit:insert:binding[Ctrl-p] = { edit:history:start }
 set edit:insert:binding[Ctrl-n] = { nop }
 set edit:insert:binding[Enter] = {
