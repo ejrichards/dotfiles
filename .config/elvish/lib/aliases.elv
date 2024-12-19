@@ -4,6 +4,7 @@ use os
 use file
 
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
+set edit:completion:arg-completer[dot] = $edit:completion:arg-completer[git]
 
 edit:add-var vim~ {|@argv| nvim $@argv }
 set edit:completion:arg-completer[vim] = $edit:completion:arg-completer[nvim]
@@ -26,6 +27,10 @@ set edit:command-abbr['gl'] = 'git log'
 set edit:command-abbr['gc'] = 'git commit -m'
 set edit:command-abbr['gca'] = 'git commit -am'
 set edit:command-abbr['gdt'] = 'git difftool'
+set edit:command-abbr['ctl'] = 'systemctl'
+set edit:command-abbr['sctl'] = 'sudo systemctl'
+set edit:command-abbr['jctl'] = 'journalctl'
+set edit:command-abbr['sjctl'] = 'sudo journalctl'
 
 if (has-external rage) {
 	edit:add-var age~ {|@argv| rage $@argv }
