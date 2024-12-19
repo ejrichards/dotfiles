@@ -98,9 +98,11 @@ commands:
   description: "Marks a config file as trusted"
 - name: uninstall
   description: "Removes installed tool versions"
-  aliases: [remove, rm]
 - name: unset
   description: "Remove environment variable(s) from the config file."
+- name: unuse
+  description: "Removes installed tool versions from mise.toml"
+  aliases: [remove, rm]
 - name: upgrade
   description: "Upgrades outdated tools"
   aliases: [up]

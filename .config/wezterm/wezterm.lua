@@ -55,6 +55,7 @@ if wezterm.target_triple:find('windows') then
 	end
 	config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
+	local elvish = { label = 'Elvish', args = { 'elvish.exe' } }
 	local powershell = { label = 'PowerShell', args = { 'pwsh.exe', '-NoLogo' } }
 	local cmd = { label = 'cmd', args = { 'cmd.exe' } }
 	local ubuntu = { label = 'Ubuntu', args = { 'ubuntu.exe' } }
@@ -64,9 +65,10 @@ if wezterm.target_triple:find('windows') then
 		cmd,
 		ubuntu
 	}
-	table.insert(keys, { key = 'phys:1', mods = 'SHIFT|CTRL', action = wezterm.action.SpawnCommandInNewTab(powershell) })
+	table.insert(keys, { key = 'phys:1', mods = 'SHIFT|CTRL', action = wezterm.action.SpawnCommandInNewTab(elvish) })
 	table.insert(keys, { key = 'phys:2', mods = 'SHIFT|CTRL', action = wezterm.action.SpawnCommandInNewTab(cmd) })
 	table.insert(keys, { key = 'phys:3', mods = 'SHIFT|CTRL', action = wezterm.action.SpawnCommandInNewTab(ubuntu) })
+	table.insert(keys, { key = 'phys:4', mods = 'SHIFT|CTRL', action = wezterm.action.SpawnCommandInNewTab(powershell) })
 else
 	-- Not working in Windows WebGpu right now
 	config.window_background_opacity = 0.95

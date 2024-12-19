@@ -18,11 +18,13 @@ return {
 				},
 			},
 
-			windows = {
+			completion = {
 				documentation = {
 					auto_show = true,
 				},
 			},
+
+			-- signature = { enabled = true },
 
 			keymap = {
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
