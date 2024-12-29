@@ -80,3 +80,6 @@ set edit:before-readline = [$@edit:before-readline {
 	print "\e]0;"(platform:hostname):$dirname"\007"
 }]
 
+if (has-external fastfetch) {
+	fastfetch --logo ~/.config/fastfetch/elvish.txt --logo-color-1 white --logo-color-2 green
+}
