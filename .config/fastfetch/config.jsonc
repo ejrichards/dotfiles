@@ -18,7 +18,12 @@
     "memory",
     "swap",
     "disk",
-    "localip",
+	{
+		"type": "localip",
+		"showIpv4": true,
+		"showIpv6": true,
+		"showPrefixLen": false
+	},
     "battery",
     "poweradapter"
   ]
