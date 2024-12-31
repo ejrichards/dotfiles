@@ -6,6 +6,9 @@ update_check = false
 sync_address = "http://ejri.local:8888"
 sync_frequency = "10m"
 
+style = "full"
+inline_height = 0
+
 filter_mode_shell_up_key_binding = "session"
 
 workspaces = true

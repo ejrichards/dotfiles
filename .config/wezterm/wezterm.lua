@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 config.color_scheme = 'tokyonight_night'
 -- config.font = wezterm.font('JetBrains Mono', { weight = 'Bold' })
 config.font_size = 13.0
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.tab_max_width = 26
 
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
@@ -53,7 +53,7 @@ if wezterm.target_triple:find('windows') then
 			break
 		end
 	end
-	config.default_prog = { 'pwsh.exe', '-NoLogo' }
+	config.default_prog = { 'elvish.exe' }
 
 	local elvish = { label = 'Elvish', args = { 'elvish.exe' } }
 	local powershell = { label = 'PowerShell', args = { 'pwsh.exe', '-NoLogo' } }

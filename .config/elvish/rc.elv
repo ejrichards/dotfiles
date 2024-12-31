@@ -81,5 +81,5 @@ set edit:before-readline = [$@edit:before-readline {
 }]
 
 if (has-external fastfetch) {
-	fastfetch --logo ~/.config/fastfetch/elvish.txt --logo-color-1 white --logo-color-2 green
+	fastfetch --logo ~/.config/fastfetch/elvish.txt --logo-type file --logo-color-1 white --logo-color-2 green
 }
