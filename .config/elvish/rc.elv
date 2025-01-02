@@ -46,7 +46,6 @@ if (has-external mise) {
 }
 
 if (has-external starship) {
-	set-env STARSHIP_CONFIG ~/.config/starship-elv.toml
 	eval (starship init elvish)
 }
 
