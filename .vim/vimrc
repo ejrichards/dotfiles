@@ -74,6 +74,7 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
 inoremap <C-v> <C-r>+
+inoremap <C-b> <C-v>
 
 cnoremap <C-p> <C-r>0
 cnoremap <C-v> <C-r>+
@@ -83,8 +84,8 @@ nnoremap gM M
 nnoremap M gM
 
 " Moving text (this has to be : NOT <Cmd>)
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" vnoremap J :m '>+1<CR>gv=gv
+" vnoremap K :m '<-2<CR>gv=gv
 
 " Window navigation
 nnoremap <tab> <C-w><C-w>
