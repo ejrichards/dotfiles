@@ -1,0 +1,13 @@
+{
+	"$schema": "wtq.schema.2.json",
+	"Apps": [
+		{
+			"Name": "WezTerm",
+			"Hotkeys": [{ "Modifiers": "Super", "Key": "Oemtilde" }],
+			"FileName": "wezterm-gui",
+			"Arguments": "--config window_decorations='NONE' --config hide_tab_bar_if_only_one_tab=true"
+		}
+	],
+	"HorizontalScreenCoverage": 100,
+	"VerticalScreenCoverage": 45
+}
