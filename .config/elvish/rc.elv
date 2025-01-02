@@ -77,7 +77,13 @@ set edit:before-readline = [$@edit:before-readline {
 	} else {
 		set dirname = (path:base $pwd)
 	}
-	print "\e]0;"(platform:hostname):$dirname"\007"
+	var hostname
+	if (not-eq $E:WSL_DISTRO_NAME '') {
+		set hostname = $E:WSL_DISTRO_NAME
+	} else {
+		set hostname = (platform:hostname)
+	}
+	print "\e]0;"{$hostname}:{$dirname}"\007"
 }]
 
 if (has-external fastfetch) {
