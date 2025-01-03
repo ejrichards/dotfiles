@@ -70,6 +70,21 @@ if (has-external atuin) {
 	set edit:insert:binding[Up] = { fzf:history --border=rounded --no-mouse --exact }
 }
 
+var hostname
+if (not-eq $E:WSL_DISTRO_NAME '') {
+	set hostname = $E:WSL_DISTRO_NAME
+	if (eq $hostname 'Ubuntu') {
+		set hostname = ' '
+	} elif (eq $hostname 'NixOS') {
+		set hostname = ' '
+	} elif (eq $hostname 'Debian') {
+		set hostname = ' '
+	} else {
+		set hostname = $hostname'│'
+	}
+} else {
+	set hostname = (platform:hostname)'│'
+}
 set edit:before-readline = [$@edit:before-readline {
 	var dirname
 	if (eq $pwd ~) {
@@ -77,14 +92,8 @@ set edit:before-readline = [$@edit:before-readline {
 	} else {
 		set dirname = (path:base $pwd)
 	}
-	var hostname
-	if (not-eq $E:WSL_DISTRO_NAME '') {
-		set hostname = $E:WSL_DISTRO_NAME
-	} else {
-		set hostname = (platform:hostname)
-	}
 	# Title
-	print "\e]0;"{$hostname}:{$dirname}"\007"
+	print "\e]0;"$hostname$dirname"\007"
 
 	# 1 = Blinking Block, 2 = Solid Block
 	# Moved to WezTerm config
