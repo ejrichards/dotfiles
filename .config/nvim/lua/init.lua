@@ -23,6 +23,7 @@ if vim.g.neovide then
 		-- Trying out with plugin now
 		-- vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 	else
+		vim.g.neovide_title_background_color = "#051e05"
 		vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wt -d "%:p:h"<CR>')
 		-- vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wezterm.exe start --cwd "%:p:h"<CR>')
 	end
