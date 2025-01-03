@@ -70,7 +70,7 @@ if (has-external atuin) {
 	set edit:insert:binding[Up] = { fzf:history --border=rounded --no-mouse --exact }
 }
 
-var hostname
+var hostname = ''
 if (not-eq $E:WSL_DISTRO_NAME '') {
 	set hostname = $E:WSL_DISTRO_NAME
 	if (eq $hostname 'Ubuntu') {
@@ -82,7 +82,7 @@ if (not-eq $E:WSL_DISTRO_NAME '') {
 	} else {
 		set hostname = $hostname'│'
 	}
-} else {
+} elif (not-eq $E:SSH_CONNECTION '') {
 	set hostname = (platform:hostname)'│'
 }
 set edit:before-readline = [$@edit:before-readline {
