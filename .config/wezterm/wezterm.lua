@@ -57,8 +57,8 @@ if wezterm.target_triple:find("windows") then
 
 	local elvish = { label = "Elvish", args = { "elvish.exe" } }
 	local cmd = { label = "cmd", args = { "cmd.exe" } }
-	local ubuntu = { label = "Ubuntu", args = { "wsl.exe", "-d", "Ubuntu" } }
-	local nixos = { label = "NixOS", args = { "wsl.exe", "-d", "NixOS" } }
+	local ubuntu = { label = "Ubuntu", domain = { DomainName = 'WSL:Ubuntu' } }
+	local nixos = { label = "NixOS", domain = { DomainName = 'WSL:NixOS' } }
 	local powershell = { label = "PowerShell", args = { "pwsh.exe", "-NoLogo" } }
 
 	config.launch_menu = {
