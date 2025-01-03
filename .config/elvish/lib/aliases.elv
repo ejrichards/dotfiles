@@ -3,11 +3,17 @@ use str
 use os
 use file
 
+fn copy-completer {|from to|
+	if (has-key $edit:completion:arg-completer $from) {
+		set edit:completion:arg-completer[$to] = $edit:completion:arg-completer[$from]
+	}
+}
+
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
-set edit:completion:arg-completer[dot] = $edit:completion:arg-completer[git]
+copy-completer git dot
 
 edit:add-var vim~ {|@argv| nvim $@argv }
-set edit:completion:arg-completer[vim] = $edit:completion:arg-completer[nvim]
+copy-completer nvim vim
 
 edit:add-var clear~ { print "\e[H\e[2J\e[3J" }
 edit:add-var pwd~ { echo $pwd }
@@ -37,7 +43,7 @@ if (has-external rage) {
 }
 if (has-external bat) {
 	edit:add-var cat~ {|@argv| bat $@argv }
-	set edit:completion:arg-completer[cat] = $edit:completion:arg-completer[bat]
+	copy-completer bat cat
 }
 if (has-external yazi) {
 	use github.com/ejrichards/mellon/yazi
@@ -54,13 +60,13 @@ if (has-external eza) {
 	edit:add-var ll~ $ll~
 	# set builtin:after-chdir = [$@builtin:after-chdir {|_| edit:notify (eza --icons=always -w 120 | slurp) }]
 
-	set edit:completion:arg-completer[ls] = $edit:completion:arg-completer[eza]
-	set edit:completion:arg-completer[ll] = $edit:completion:arg-completer[eza]
+	copy-completer eza ls
+	copy-completer eza ll
 }
 
 if (and (has-external rg) (not (has-external grep))) {
 	edit:add-var grep~ {|@argv|
 		set _ = ?(rg $@argv)
 	}
-	set edit:completion:arg-completer[grep] = $edit:completion:arg-completer[rg]
+	copy-completer rg grep
 }
