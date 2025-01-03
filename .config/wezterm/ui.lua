@@ -28,6 +28,9 @@ function m.apply_to_config(config)
 	local colors = wezterm.color.get_builtin_schemes()[config.color_scheme]
 	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 		local title = tab.active_pane.title
+		if #title == 1 then
+			title = ' ' .. title .. ' '
+		end
 
 		if #tabs > 1 and tab.is_active then
 			if tab.tab_index == 0 then
