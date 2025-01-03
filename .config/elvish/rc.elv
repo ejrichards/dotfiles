@@ -2,6 +2,7 @@ use os
 use path
 use platform
 
+# Local modules
 use env
 use ls-colors
 use wsl
@@ -82,7 +83,12 @@ set edit:before-readline = [$@edit:before-readline {
 	} else {
 		set hostname = (platform:hostname)
 	}
+	# Title
 	print "\e]0;"{$hostname}:{$dirname}"\007"
+
+	# 1 = Blinking Block, 2 = Solid Block
+	# Moved to WezTerm config
+	# print "\e[1 q"
 }]
 
 if (has-external fastfetch) {
