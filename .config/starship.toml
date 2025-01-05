@@ -41,6 +41,7 @@ ssh_symbol = '🌐'
 [directory]
 style = 'bold blue'
 truncation_symbol = '…/'
+read_only = ' '
 
 [jobs]
 disabled = true # Don't need for elvish
