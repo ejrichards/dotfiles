@@ -11,9 +11,11 @@ set smartcase
 
 set timeoutlen=10000 ttimeoutlen=10
 
-" Yank/Paste
-nnoremap <leader>p "0p
-nnoremap <leader>P "+p
+" Yank/Paste (from vimrc)
+nnoremap <leader>pp "0p
+nnoremap <leader>PP "0P
+nnoremap <leader>pv "+p
+nnoremap <leader>PV "+P
 nnoremap <leader>y "+y
 
 vnoremap <leader>y "+y
@@ -32,6 +34,8 @@ nmap <leader>f <Action>(ReformatCode)
 nmap <leader>ca <Action>(ShowIntentionActions)
 nmap <leader>cr <Action>(RenameElement)
 nmap <leader>go <Action>(FileStructurePopup)
+nmap gc <Action>(CommentByLineComment)
+vmap gc <Action>(CommentByLineComment)
 
 set ideajoin
 
@@ -45,5 +49,15 @@ sethandler <C-x> a:ide
 sethandler <C-d> a:vim
 sethandler <C-u> a:vim
 sethandler <C-w> a:vim
+
+" Harpoon style
+nmap <C-j> <Action>(GoToTab1)
+nmap <C-k> <Action>(GoToTab2)
+nmap <C-l> <Action>(GoToTab3)
+nmap <C-;> <Action>(GoToTab4)
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+sethandler <C-l> a:vim
+sethandler <C-;> a:vim
 
 Plug 'machakann/vim-highlightedyank'
