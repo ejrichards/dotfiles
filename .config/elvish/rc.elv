@@ -44,6 +44,8 @@ if (has-external mise) {
 	edit:add-var mise~ {|@args| mise:mise $@args }
 
 	mise:activate
+} elif (has-external direnv) {
+	eval (direnv hook elvish | slurp)
 }
 
 if (has-external starship) {
