@@ -19,13 +19,6 @@ edit:add-var clear~ { print "\e[H\e[2J\e[3J" }
 edit:add-var pwd~ { echo $pwd }
 edit:add-var ssha~ { ssh -o User=ubuntu -o IdentityAgent=none -o IdentityFile=/dev/null -o IdentitiesOnly=yes -o PubkeyAuthentication=no }
 
-edit:add-var which~ {|command|
-	var res = ?(search-external $command)
-	if (not $res) {
-		echo "Could not find '"$command"'"
-	}
-}
-
 set edit:command-abbr['gs'] = 'git status'
 set edit:command-abbr['gsh'] = 'git show'
 set edit:command-abbr['gd'] = 'git diff'
