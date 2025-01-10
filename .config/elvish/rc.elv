@@ -38,14 +38,15 @@ set edit:completion:binding[Ctrl-n] = { edit:completion:down-cycle }
 set edit:completion:binding[Ctrl-y] = { edit:completion:accept }
 set edit:completion:binding[Enter] = { edit:completion:accept; edit:return-line }
 
+if (has-external direnv) {
+	eval (direnv hook elvish | slurp)
+}
 if (has-external mise) {
 	var mise: = (ns [&])
 	eval (mise activate elvish | slurp) &ns=$mise: &on-end={|ns| set mise: = $ns }
 	edit:add-var mise~ {|@args| mise:mise $@args }
 
 	mise:activate
-} elif (has-external direnv) {
-	eval (direnv hook elvish | slurp)
 }
 
 if (has-external starship) {
