@@ -87,6 +87,7 @@ impure_msg = 'i'
 pure_msg = 'p'
 
 [custom.mise]
+disabled = true
 symbol = '🍴 '
 when = 'if (<= (count (mise config ls --json | from-json)) 2) { fail "" }'
 shell = ['elvish', '-c']
