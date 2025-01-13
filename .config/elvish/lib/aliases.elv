@@ -12,8 +12,10 @@ fn copy-completer {|from to|
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
 copy-completer git dot
 
-edit:add-var vim~ {|@argv| nvim $@argv }
-copy-completer nvim vim
+if (has-external nvim) {
+	edit:add-var vim~ {|@argv| nvim $@argv }
+	copy-completer nvim vim
+}
 
 edit:add-var clear~ { print "\e[H\e[2J\e[3J" }
 edit:add-var pwd~ { echo $pwd }
@@ -55,6 +57,12 @@ if (has-external eza) {
 
 	copy-completer eza ls
 	copy-completer eza ll
+} else {
+	fn ls {|@argv| e:ls --color=auto $@argv }
+	fn ll {|@argv| ls -Al $@argv }
+
+	edit:add-var ls~ $ls~
+	edit:add-var ll~ $ll~
 }
 
 if (and (has-external rg) (not (has-external grep))) {
