@@ -27,6 +27,13 @@ return {
 				documentation = {
 					auto_show = true,
 				},
+				accept = {
+					auto_brackets = {
+						kind_resolution = {
+							blocked_filetypes = { "elvish" },
+						},
+					},
+				},
 			},
 
 			-- signature = { enabled = true },

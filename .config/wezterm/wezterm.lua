@@ -37,10 +37,34 @@ config.colors = {
 config.enable_kitty_keyboard = true
 
 local keys = {
-	{ key = "Tab", mods = "SHIFT|CTRL", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|TABS" }) },
+	{ key = "h", mods = "CTRL|SHIFT|ALT", action = wezterm.action.SplitPane({ direction = "Left" }) },
+	{ key = "j", mods = "CTRL|SHIFT|ALT", action = wezterm.action.SplitPane({ direction = "Down" }) },
+	{ key = "k", mods = "CTRL|SHIFT|ALT", action = wezterm.action.SplitPane({ direction = "Up" }) },
+	{ key = "l", mods = "CTRL|SHIFT|ALT", action = wezterm.action.SplitPane({ direction = "Right" }) },
+	{ key = "LeftArrow", mods = "CTRL|SHIFT|ALT", action = wezterm.action.AdjustPaneSize({ "Left", 5 }) },
+	{ key = "RightArrow", mods = "CTRL|SHIFT|ALT", action = wezterm.action.AdjustPaneSize({ "Right", 5 }) },
+	{ key = "UpArrow", mods = "CTRL|SHIFT|ALT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+	{ key = "DownArrow", mods = "CTRL|SHIFT|ALT", action = wezterm.action.AdjustPaneSize({ "Down", 5 }) },
+	{ key = "Tab", mods = "CTRL", action = wezterm.action.ActivatePaneDirection("Next") },
+
+	{
+		key = "Tab",
+		mods = "SHIFT|CTRL",
+		action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS|TABS" }),
+	},
 	-- Swap these two
 	{ key = "v", mods = "SHIFT|CTRL", action = wezterm.action.SendString("\x16") },
 	{ key = "v", mods = "CTRL", action = wezterm.action.PasteFrom("Clipboard") },
+
+	{ key = '"', mods = "SHIFT|CTRL", action = wezterm.action.ShowDebugOverlay },
+	-- Harpoon-y
+	{ key = "j", mods = "SHIFT|CTRL", action = wezterm.action.ActivateTab(0) },
+	{ key = "k", mods = "SHIFT|CTRL", action = wezterm.action.ActivateTab(1) },
+	{ key = "l", mods = "SHIFT|CTRL", action = wezterm.action.ActivateTab(2) },
+	{ key = ":", mods = "SHIFT|CTRL", action = wezterm.action.ActivateTab(3) },
+
+	{ key = "RightArrow", mods = "SHIFT|CTRL", action = wezterm.action.MoveTabRelative(1) },
+	{ key = "LeftArrow", mods = "SHIFT|CTRL", action = wezterm.action.MoveTabRelative(-1) },
 }
 
 if wezterm.target_triple:find("windows") then
@@ -55,20 +79,20 @@ if wezterm.target_triple:find("windows") then
 	end
 	config.default_prog = { "elvish.exe" }
 
-	local elvish = { label = "Elvish", args = { "elvish.exe" } }
+	local local_domain = { label = "local", domain = { DomainName = "local" } }
 	local cmd = { label = "cmd", args = { "cmd.exe" } }
-	local ubuntu = { label = "Ubuntu", domain = { DomainName = 'WSL:Ubuntu' } }
-	local nixos = { label = "NixOS", domain = { DomainName = 'WSL:NixOS' } }
+	local ubuntu = { label = "Ubuntu", domain = { DomainName = "WSL:Ubuntu" } }
+	local nixos = { label = "NixOS", domain = { DomainName = "WSL:NixOS" } }
 	local powershell = { label = "PowerShell", args = { "pwsh.exe", "-NoLogo" } }
 
 	config.launch_menu = {
-		elvish,
+		local_domain,
 		cmd,
 		ubuntu,
 		nixos,
 		powershell,
 	}
-	table.insert(keys, { key = "phys:1", mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab(elvish) })
+	table.insert(keys, { key = "phys:1", mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab(local_domain) })
 	table.insert(keys, { key = "phys:2", mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab(cmd) })
 	table.insert(keys, { key = "phys:3", mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab(ubuntu) })
 	table.insert(keys, { key = "phys:4", mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab(nixos) })

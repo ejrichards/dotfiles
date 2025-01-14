@@ -28,7 +28,7 @@ nnoremap Q :tabclose<CR>
 nnoremap <leader>to :tabonly<CR>
 nnoremap <leader>v <C-q>
 
-
+" :actionlist <search>
 nmap gl <Action>(ShowErrorDescription)
 nmap <leader>f <Action>(ReformatCode)
 nmap <leader>ca <Action>(ShowIntentionActions)
@@ -36,6 +36,8 @@ nmap <leader>cr <Action>(RenameElement)
 nmap <leader>go <Action>(FileStructurePopup)
 nmap gc <Action>(CommentByLineComment)
 vmap gc <Action>(CommentByLineComment)
+" imap <C-y> <Action>(InsertInlineCompletionAction)
+imap <C-y> <Action>(EditorChooseLookupItemReplace)
 
 set ideajoin
 
