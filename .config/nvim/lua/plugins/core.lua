@@ -35,4 +35,15 @@ return {
 			vim.keymap.set("n", "<leader>ew", workspaces.open)
 		end,
 	},
+	{
+		"folke/which-key.nvim",
+		version = "*",
+		event = "VeryLazy",
+		opts = {
+			preset = "modern",
+			delay = function(ctx)
+				return ctx.plugin and 0 or 500
+			end,
+		},
+	},
 }

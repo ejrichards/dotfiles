@@ -13,6 +13,7 @@ return {
 		on_attach = function(bufnr)
 			vim.keymap.set("n", "go", "<Cmd>AerialNavOpen<CR>", { buffer = bufnr })
 			vim.keymap.set("n", "gO", "<Cmd>AerialOpen<CR>", { buffer = bufnr })
+			vim.keymap.set("n", "<leader>o", "<Cmd>AerialToggle left<CR>", { buffer = bufnr })
 		end,
 		keymaps = {
 			["<Esc>"] = "actions.close",
