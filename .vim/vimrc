@@ -18,6 +18,7 @@ if !has('nvim')
 endif
 
 set laststatus=2
+set title titlestring=%(%m\ %)%t
 
 " Fix for Terminal causing cursor issue?
 "set t_u7=

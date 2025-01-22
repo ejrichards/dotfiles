@@ -58,6 +58,7 @@ if (has-external zoxide) {
 }
 
 if (has-external carapace) {
+	set-env CARAPACE_MATCH CASE_INSENSITIVE
 	eval (carapace _carapace elvish | slurp)
 }
 

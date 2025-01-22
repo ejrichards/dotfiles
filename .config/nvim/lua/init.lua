@@ -14,7 +14,6 @@ vim.opt.cursorlineopt = "number"
 vim.opt.cursorline = true
 
 if vim.g.neovide then
-	vim.opt.title = true
 	if vim.uv.os_uname().sysname == "Linux" then
 		-- Linux paths don't work for wt.exe for some reason...
 		vim.keymap.set("n", "<leader>tt", '<Cmd>silent !wt.exe -p Ubuntu wsl.exe --cd "%:p:h"<CR>')

@@ -9,6 +9,7 @@ return {
 	keys = {
 		{ "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
 		{ "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
+		{ "<leader>bw", function() Snacks.bufdelete.delete({wipe = true}) end, desc = "bw" },
 		-- Pickers
 		{ "<C-e>", function() Snacks.picker.git_files() end, desc = "Git Files" },
 		{ "<C-f>", function() Snacks.picker.grep() end, desc = "Live Grep" },
