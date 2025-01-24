@@ -16,7 +16,6 @@ function m.apply_to_config(config)
 	config.use_fancy_tab_bar = false
 	config.show_tab_index_in_tab_bar = false
 	config.tab_max_width = 26
-	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 	config.window_padding = {
 		left = "0.5cell",
 		right = "0.5cell",
@@ -68,36 +67,41 @@ function m.apply_to_config(config)
 	end)
 
 	-- Integrated Button Style
-	config.tab_bar_style = {
-		new_tab = wezterm.format({
-			{ Text = " + " },
-		}),
-		new_tab_hover = wezterm.format({
-			{ Foreground = HOVER_COLOR },
-			{ Text = " + " },
-		}),
-		window_hide = wezterm.format({
-			{ Text = " " .. MINIMIZE .. " " },
-		}),
-		window_hide_hover = wezterm.format({
-			{ Foreground = HOVER_COLOR },
-			{ Text = " " .. MINIMIZE .. " " },
-		}),
-		window_maximize = wezterm.format({
-			{ Text = " " .. MAXIMIZE .. " " },
-		}),
-		window_maximize_hover = wezterm.format({
-			{ Foreground = HOVER_COLOR },
-			{ Text = " " .. MAXIMIZE .. " " },
-		}),
-		window_close = wezterm.format({
-			{ Text = " " .. CLOSE .. " " },
-		}),
-		window_close_hover = wezterm.format({
-			{ Foreground = HOVER_COLOR },
-			{ Text = " " .. CLOSE .. " " },
-		}),
-	}
+	if wezterm.target_triple:find("windows") then
+		config.tab_bar_style = {
+			new_tab = wezterm.format({
+				{ Text = " + " },
+			}),
+			new_tab_hover = wezterm.format({
+				{ Foreground = HOVER_COLOR },
+				{ Text = " + " },
+			}),
+			window_hide = wezterm.format({
+				{ Text = " " .. MINIMIZE .. " " },
+			}),
+			window_hide_hover = wezterm.format({
+				{ Foreground = HOVER_COLOR },
+				{ Text = " " .. MINIMIZE .. " " },
+			}),
+			window_maximize = wezterm.format({
+				{ Text = " " .. MAXIMIZE .. " " },
+			}),
+			window_maximize_hover = wezterm.format({
+				{ Foreground = HOVER_COLOR },
+				{ Text = " " .. MAXIMIZE .. " " },
+			}),
+			window_close = wezterm.format({
+				{ Text = " " .. CLOSE .. " " },
+			}),
+			window_close_hover = wezterm.format({
+				{ Foreground = HOVER_COLOR },
+				{ Text = " " .. CLOSE .. " " },
+			}),
+		}
+		config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+	else
+		config.window_decorations = "TITLE|RESIZE"
+	end
 end
 
 return m
