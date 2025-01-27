@@ -7,14 +7,12 @@
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": [
         "hyprland/workspaces",
-        "hyprland/submap",
-        "custom/media"
+        "hyprland/submap"
     ],
     "modules-center": [
         "hyprland/window"
     ],
     "modules-right": [
-        "mpd",
         //"idle_inhibitor",
         "pulseaudio",
         "network",
@@ -167,18 +165,18 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+	},
+	"mpris": {
+		"format": "DEFAULT: {player_icon} {dynamic}",
+		"format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+		"player-icons": {
+			"default": "▶",
+			"mpv": "🎵"
+		},
+		"status-icons": {
+			"paused": "⏸"
+		}
+	// "ignored-players": ["firefox"]
 	},
 	"custom/notification": {
 		"tooltip": false,
@@ -205,10 +203,8 @@
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
+			"shutdown": "systemctl poweroff",
+			"reboot": "systemctl reboot"
 		}
     }
 }
