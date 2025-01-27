@@ -131,9 +131,9 @@ require("lazy").setup({
 		},
 	},
 	throttle = {
-      enabled = true,
-      -- max 2 ops every 5 seconds
-      rate = 2,
-      duration = 500,
-    },
+		enabled = true,
+		-- max 2 ops every 5 seconds
+		rate = 2,
+		duration = 500,
+	},
 })
