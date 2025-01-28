@@ -1,5 +1,8 @@
 theme = tokyonight_night
+
 background-opacity = 0.9
+window-decoration = false
+window-padding-x = 4
 gtk-wide-tabs = false
 
 cursor-style-blink = false
