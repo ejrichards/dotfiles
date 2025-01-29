@@ -19,47 +19,12 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		-- version = "*",
-		build = ":TSUpdate",
-		enabled = not vim.uv.fs_stat("/etc/nvim/nvim-treesitter-parsers.lua"),
+		build = not vim.uv.fs_stat("/etc/nvim/nvim-treesitter-parsers.lua") and ":TSUpdate" or nil,
 		config = function()
 			-- Avoid conflicts with Baredot
 			require("nvim-treesitter.install").prefer_git = false
 
-			-- Windows: Open in native tools prompt for VS
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"bash",
-					"css",
-					"csv",
-					"dockerfile",
-					"gitattributes",
-					"gitcommit",
-					"gitignore",
-					"go",
-					"html",
-					"http",
-					"javascript",
-					"jq",
-					"json",
-					"regex",
-					"rust",
-					"toml",
-					"typescript",
-					"xml",
-					"yaml",
-					"zig",
-				},
-
-				-- Install parsers synchronously (only applied to `ensure_installed`)
-				sync_install = false,
-
-				-- Automatically install missing parsers when entering buffer
-				-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-				auto_install = false,
-
-				-- List of parsers to ignore installing (or "all")
-				ignore_install = {},
-
+			local opts = {
 				highlight = {
 					enable = true,
 
@@ -99,7 +64,55 @@ return {
 						},
 					},
 				},
-			})
+			}
+
+			if not vim.uv.fs_stat("/etc/nvim/nvim-treesitter-parsers.lua") then
+				-- Not Nix
+				opts = vim.tbl_deep_extend("error", opts, {
+					ensure_installed = {
+						"bash",
+						"css",
+						"csv",
+						"dockerfile",
+						"elvish",
+						"gitattributes",
+						"gitcommit",
+						"gitignore",
+						"go",
+						"html",
+						"http",
+						"javascript",
+						"jq",
+						"json",
+						"regex",
+						"rust",
+						"toml",
+						"typescript",
+						"xml",
+						"yaml",
+						"zig",
+					},
+
+					-- Install parsers synchronously (only applied to `ensure_installed`)
+					sync_install = false,
+
+					-- Automatically install missing parsers when entering buffer
+					-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+					auto_install = false,
+
+					-- List of parsers to ignore installing (or "all")
+					ignore_install = {},
+				});
+			else
+				-- NixOS
+				opts = vim.tbl_deep_extend("error", opts, {
+					auto_install = false,
+					ignore_install = "all",
+				});
+			end
+
+			-- Windows: Open in native tools prompt for VS
+			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
 }
