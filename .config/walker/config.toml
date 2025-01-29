@@ -1,1 +1,6 @@
 app_launch_prefix = "uwsm app -- "
+disabled = ["ai", "windows"]
+
+[[builtins.websearch.entries]]
+name = "Kagi"
+url = "https://kagi.com/search?q=%TERM%"
