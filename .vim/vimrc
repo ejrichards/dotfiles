@@ -81,8 +81,15 @@ cnoremap <C-p> <C-r>0
 cnoremap <C-v> <C-r>+
 
 " Moving cursor
-nnoremap gM M
-nnoremap M gM
+nmap sa _
+nmap ss %
+nmap sd gM
+nmap sf $
+
+xmap sa _
+xmap ss %
+xmap sd gM
+xmap sf $
 
 " Moving text (this has to be : NOT <Cmd>)
 " vnoremap J :m '>+1<CR>gv=gv

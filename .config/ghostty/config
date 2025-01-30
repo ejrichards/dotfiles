@@ -14,6 +14,9 @@ font-size = 13
 
 copy-on-select = clipboard
 
+keybind = ctrl+shift+i=unbind
+keybind = ctrl+shift+o=unbind
+
 keybind = ctrl+shift+1=new_tab
 
 keybind = ctrl+v=paste_from_clipboard

@@ -7,10 +7,10 @@ return {
 		event = "VeryLazy",
 		opts = {
 			keymaps = {
-				normal = "s",
-				normal_cur = "ss",
-				normal_line = "S",
-				normal_cur_line = "SS",
+				normal = "gs",
+				normal_cur = "gss",
+				normal_line = "gS",
+				normal_cur_line = "gSS",
 			},
 		},
 	},
