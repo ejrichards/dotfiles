@@ -11,7 +11,7 @@ return {
 		{ "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 		{ "<leader>bw", function() Snacks.bufdelete.delete({wipe = true}) end, desc = "bw" },
 		-- Pickers
-		{ "<C-e>", function() Snacks.picker.git_files() end, desc = "Git Files" },
+		{ "<C-e>", function() Snacks.picker.git_files({cwd = vim.env.GIT_WORK_TREE or Snacks.git.get_root()}) end, desc = "Git Files" },
 		{ "<C-f>", function() Snacks.picker.grep() end, desc = "Live Grep" },
 		{ "<leader>eg", function() Snacks.picker.grep({live = false}) end, desc = "Grep" },
 		{ "<leader>eb", function() Snacks.picker.buffers() end, desc = "Buffers" },
@@ -19,6 +19,34 @@ return {
 		{ "<leader>eh", function() Snacks.picker.help() end, desc = "Help Pages" },
 		{ "<leader>er", function() Snacks.picker.registers() end, desc = "Registers" },
 		{ "<leader>ee", function() Snacks.picker.grep_word() end, desc = "Word", mode = { "n", "x" } },
+		{ "<leader>ed", function() Snacks.picker.explorer({
+			win = {
+				list = {
+					keys = {
+						["i"] = "explorer_focus",
+						["o"] = "explorer_up",
+						["."] = "explorer_cd",
+					}
+				}
+			},
+			layout = { preset = "dropdown" },
+			auto_close = true,
+			follow_file = true,
+		}) end, desc = "Explorer Buffer" },
+		{ "<leader>ec", function() Snacks.picker.explorer({
+			win = {
+				list = {
+					keys = {
+						["i"] = "explorer_focus",
+						["o"] = "explorer_up",
+						["."] = "explorer_cd",
+					}
+				}
+			},
+			layout = { preset = "dropdown" },
+			auto_close = true,
+			follow_file = false,
+		}) end, desc = "Explorer PWD" },
 	},
 
 		---@module 'snacks'

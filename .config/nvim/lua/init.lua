@@ -55,6 +55,14 @@ else
 				end,
 			},
 		}
+	else
+		vim.keymap.set("n", "<leader>tt", function()
+			local bwd = vim.fn.expand("%:p:h")
+			if bwd:len() > 0 then
+				vim.fn.setreg("+", bwd)
+				print("Copied " .. bwd)
+			end
+		end)
 	end
 end
 
