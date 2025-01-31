@@ -2,8 +2,8 @@
 <interface>
   <object class="GtkMenu" id="menu">
     <child>
-        <object class="GtkMenuItem" id="shutdown">
-			<property name="label">Shutdown</property>
+        <object class="GtkMenuItem" id="logout">
+			<property name="label">Logout</property>
         </object>
     </child>
     <child>
@@ -13,6 +13,14 @@
 		<object class="GtkMenuItem" id="reboot">
 			<property name="label">Reboot</property>
 		</object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="delimiter2"/>
+    </child>
+    <child>
+        <object class="GtkMenuItem" id="shutdown">
+			<property name="label">Shutdown</property>
+        </object>
     </child>
   </object>
 </interface>

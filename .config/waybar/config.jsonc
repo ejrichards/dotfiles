@@ -204,8 +204,9 @@
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
-			"shutdown": "systemctl poweroff",
-			"reboot": "systemctl reboot"
+			"logout": "/run/current-system/sw/bin/uwsm stop",
+			"reboot": "systemctl reboot",
+			"shutdown": "systemctl poweroff"
 		}
     }
 }

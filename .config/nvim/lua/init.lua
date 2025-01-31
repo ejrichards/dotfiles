@@ -37,8 +37,6 @@ if vim.g.neovide then
 
 	vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
 else
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-
 	if vim.uv.os_uname().sysname == "Linux" and vim.uv.os_uname().release:find("microsoft") then
 		vim.g.clipboard = {
 			name = "WslClipboard",
