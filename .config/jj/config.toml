@@ -1,0 +1,16 @@
+[ui]
+default-command = ["log", "-s"]
+paginate = "never"
+
+[signing]
+backend = "ssh"
+key = "~/.ssh/id_ed25519_sk.pub"
+
+[git]
+sign-on-push = true
+subprocess = true
+
+[[--scope]]
+--when.commands = ["diff"]
+[--scope.ui]
+paginate = "auto"

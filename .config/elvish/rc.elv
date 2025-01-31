@@ -62,6 +62,10 @@ if (has-external carapace) {
 	eval (carapace _carapace elvish | slurp)
 }
 
+if (has-external jj) {
+	set-env JJ_CONFIG ~/.config/jj/
+}
+
 use aliases
 
 if (has-external atuin) {
