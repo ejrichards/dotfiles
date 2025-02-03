@@ -19,32 +19,10 @@ return {
 		{ "<leader>eh", function() Snacks.picker.help() end, desc = "Help Pages" },
 		{ "<leader>er", function() Snacks.picker.registers() end, desc = "Registers" },
 		{ "<leader>ee", function() Snacks.picker.grep_word() end, desc = "Word", mode = { "n", "x" } },
-		{ "<leader>ed", function() Snacks.picker.explorer({
-			win = {
-				list = {
-					keys = {
-						["i"] = "explorer_focus",
-						["o"] = "explorer_up",
-						["."] = "explorer_cd",
-					}
-				}
-			},
-			layout = { preset = "dropdown" },
-			auto_close = true,
+		{ "<leader>ed", function() Snacks.explorer.open({
 			follow_file = true,
 		}) end, desc = "Explorer Buffer" },
-		{ "<leader>ec", function() Snacks.picker.explorer({
-			win = {
-				list = {
-					keys = {
-						["i"] = "explorer_focus",
-						["o"] = "explorer_up",
-						["."] = "explorer_cd",
-					}
-				}
-			},
-			layout = { preset = "dropdown" },
-			auto_close = true,
+		{ "<leader>ec", function() Snacks.explorer.open({
 			follow_file = false,
 		}) end, desc = "Explorer PWD" },
 	},
@@ -65,6 +43,10 @@ return {
 			},
 			indent = { enabled = true },
 
+			explorer = {
+				enabled = true,
+				replace_netrw = true,
+			},
 			picker = {
 				enabled = true,
 				win = {
@@ -76,6 +58,22 @@ return {
 					list = {
 						keys = {
 							["<c-s>"] = "toggle_preview",
+						},
+					},
+				},
+				sources = {
+					explorer = {
+						layout = { preset = "dropdown" },
+						auto_close = true,
+						git_status = false,
+						win = {
+							list = {
+								keys = {
+									["i"] = "explorer_focus",
+									["o"] = "explorer_up",
+									["."] = "explorer_cd",
+								},
+							},
 						},
 					},
 				},
