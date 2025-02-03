@@ -1,2 +1,2 @@
-export HYPRCURSOR_SIZE=24
-export HYPRCURSOR_THEME=phinger-cursors-dark-hypr
+export HYPRCURSOR_SIZE=32
+export HYPRCURSOR_THEME=catppuccin-mocha-dark-cursors
