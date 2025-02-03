@@ -26,6 +26,7 @@ return {
 	},
 	{
 		"natecraddock/workspaces.nvim",
+		enabled = false,
 		event = "VeryLazy",
 		config = function()
 			local workspaces = require("workspaces")
@@ -39,11 +40,24 @@ return {
 		"folke/which-key.nvim",
 		version = "*",
 		event = "VeryLazy",
+
+		---@module 'which-key'
+		---@type wk.Config
 		opts = {
 			preset = "modern",
 			delay = function(ctx)
 				return ctx.plugin and 0 or 500
 			end,
+			spec = {
+				{ "<leader>b", group = "Buffer" },
+				{ "<leader>c", group = "CD / Code Action" },
+				{ "<leader>e", group = "Pickers" },
+				{ "<leader>g", group = "Git", icon = { name = "git", cat = "filetype" } },
+				{ "<leader>h", group = "Hunks" },
+				{ "<leader>l", group = "View Toggles" },
+				{ "<leader>p", group = "Paste" },
+				{ "<leader>P", group = "Paste" },
+			},
 		},
 	},
 }

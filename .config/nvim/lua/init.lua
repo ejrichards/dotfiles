@@ -60,7 +60,8 @@ else
 				vim.fn.setreg("+", bwd)
 				print("Copied " .. bwd)
 			end
-		end)
+		end,
+		{ desc = "Copy buffer path" })
 	end
 end
 
