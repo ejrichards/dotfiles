@@ -1,0 +1,14 @@
+color background            default  default
+color listnormal            color146 default
+color listfocus             color146 color240
+color listnormal_unread     color208 default
+color listfocus_unread      color208 color240
+color title                 green    default  bold underline
+color info                  white    black
+color hint-key              cyan     black    bold
+color article               color15  default
+color end-of-text-marker    color240 default
+color hint-separator        color240 black
+
+bind-key j down
+bind-key k up
