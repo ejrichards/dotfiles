@@ -14,6 +14,16 @@
 	stash-pull = pull --rebase --autostash
 	rebase-master = ! git rebase -i `git merge-base HEAD master`
 	rebase-main = ! git rebase -i `git merge-base HEAD main`
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[user]
+	signingKey = ~/.ssh/id_ed25519_sign.pub
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
 

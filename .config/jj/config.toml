@@ -4,7 +4,7 @@ paginate = "never"
 
 [signing]
 backend = "ssh"
-key = "~/.ssh/id_ed25519_sk.pub"
+key = "~/.ssh/id_ed25519_sign.pub"
 
 [git]
 sign-on-push = true
