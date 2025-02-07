@@ -1,5 +1,10 @@
 app_launch_prefix = "uwsm app -- "
-disabled = ["ai", "windows"]
+ignore_mouse = true
+disabled = ["ai", "windows", "translation"]
+
+[builtins.runner]
+prefix = ":"
+switcher_only = true
 
 [[builtins.websearch.entries]]
 name = "Kagi"
