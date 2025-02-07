@@ -22,8 +22,6 @@
 	signingKey = ~/.ssh/id_ed25519_sign.pub
 [commit]
 	gpgSign = true
-[tag]
-	gpgSign = true
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/allowed_signers
 

@@ -5,10 +5,37 @@ paginate = "never"
 [signing]
 backend = "ssh"
 key = "~/.ssh/id_ed25519_sign.pub"
+backends.ssh.allowed-signers = "~/.ssh/allowed_signers"
 
 [git]
 sign-on-push = true
 subprocess = true
+
+[aliases]
+ll = ["log", "-r", ".."]
+lll = ["log", "-r", "..", "-T", "log_compact_sig"]
+
+[template-aliases]
+log_compact_sig = '''
+if(root,
+  format_root_commit(self),
+  label(if(current_working_copy, "working_copy"),
+    concat(
+      format_short_commit_header(self) ++ " ",
+	  if(!self.signature(), "none"),
+	  if(self.signature(), self.signature().status()),
+	  "\n",
+      separate(" ",
+        if(empty, label("empty", "(empty)")),
+        if(description,
+          description.first_line(),
+          label(if(empty, "empty"), description_placeholder),
+        ),
+      ) ++ "\n",
+    ),
+  )
+)
+'''
 
 [[--scope]]
 --when.commands = ["diff"]

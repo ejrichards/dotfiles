@@ -12,6 +12,25 @@ fn copy-completer {|from to|
 edit:add-var dot~ {|@argv| git --git-dir=$E:HOME/.dotgit/ --work-tree=$E:HOME $@argv }
 copy-completer git dot
 
+edit:add-var git-release~ {|&config='cliff.toml' @argv|
+	var version = (git-cliff --bumped-version --config $config)
+	var changes = (git-cliff --unreleased --bump --config $config | slurp)
+	var current-tags = (git tag --contains HEAD | slurp)
+
+	if (not-eq $current-tags '') {
+		echo (styled ' WARN ' yellow) 'tags on HEAD: '$current-tags
+	}
+
+	echo $changes
+	echo Tagging version $version
+
+	if (has-external gum) {
+		gum confirm 'Create tag?'
+	}
+
+	git tag -a $version -m $changes $@argv
+}
+
 if (has-external nvim) {
 	edit:add-var vim~ {|@argv| nvim $@argv }
 	copy-completer nvim vim
