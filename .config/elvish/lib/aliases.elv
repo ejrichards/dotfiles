@@ -92,3 +92,14 @@ if (and (has-external rg) (not (has-external grep))) {
 	}
 	copy-completer rg grep
 }
+
+if (has-external aerc) {
+	edit:add-var aerc~ {|@argv|
+		var cert = ~/.local/share/certs/protonbridge.pem
+		if (not (os:is-regular $cert)) {
+			fail 'Missing cert '$cert
+		}
+
+		with E:SSL_CERT_FILE = $cert { e:aerc $@argv }
+	}
+}
