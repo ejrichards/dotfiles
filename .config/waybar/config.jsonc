@@ -35,6 +35,8 @@
         "custom/power"
     ],
     "hyprland/workspaces": {
+		"show-special": true,
+		"special-visible-only": true
     },
     "hyprland/window": {
 		"max-length": 60,
