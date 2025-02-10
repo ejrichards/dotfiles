@@ -22,7 +22,6 @@
         "network",
         //"power-profiles-daemon",
         "cpu",
-        "memory",
         "temperature",
         "custom/nvidia",
         "backlight",
