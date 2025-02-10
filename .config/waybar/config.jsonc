@@ -33,6 +33,13 @@
     ],
     "hyprland/workspaces": {
     },
+    "hyprland/window": {
+		"max-length": 60,
+		"icon": true,
+		"rewrite": {
+			"(.*) — Zen Browser": "$1"
+		}
+    },
     "keyboard-state": {
 		//"device-path": "/dev/input/...",
         "numlock": true,
