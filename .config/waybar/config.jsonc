@@ -3,8 +3,11 @@
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30,
+    "margin-top": 2,
+    "margin-left": 2,
+    "margin-right": 2,
     // "width": 1280,
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 4,
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap",
@@ -149,10 +152,10 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "",
+        "format-ethernet": "",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-disconnected": "⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
@@ -206,7 +209,7 @@
 		"escape": true
 	},
 	"custom/power": {
-        "format" : "⏻ ",
+        "format" : "⏻",
 		"tooltip": false,
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
