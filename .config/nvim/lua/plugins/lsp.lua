@@ -111,11 +111,9 @@ return {
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					-- Moved to UFO
-					-- map('K', vim.lsp.buf.hover, 'Hover')
-					map("gd", vim.lsp.buf.definition, "Definition")
-					map("gD", vim.lsp.buf.declaration, "Declaration")
-					map("gi", vim.lsp.buf.implementation, "Implementation")
+					-- map("gd", vim.lsp.buf.definition, "Definition")
+					-- map("gD", vim.lsp.buf.declaration, "Declaration")
+					-- map("gi", vim.lsp.buf.implementation, "Implementation")
 					map("<F2>", vim.lsp.buf.rename, "Rename")
 					map("<leader>cr", vim.lsp.buf.rename, "Rename")
 					vim.keymap.set({ "n", "x" }, "<F3>", function()
@@ -130,10 +128,10 @@ return {
 						vim.lsp.buf.signature_help,
 						{ buffer = event.buf, desc = "LSP: Signature Help" }
 					)
-					map("gT", vim.lsp.buf.type_definition, "Type Definition")
-					map("gr", function()
-						trouble.toggle("lsp_references")
-					end, "References")
+					-- map("gT", vim.lsp.buf.type_definition, "Type Definition")
+					-- map("gr", function()
+					-- 	trouble.toggle("lsp_references")
+					-- end, "References")
 
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
 

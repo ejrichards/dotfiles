@@ -13,6 +13,7 @@ return {
 		-- Pickers
 		{ "<C-e>", function() Snacks.picker.smart() end, desc = "Smart" },
 		{ "<C-f>", function() Snacks.picker.grep() end, desc = "Live Grep" },
+		{ "<leader>cs", function() Snacks.picker.spelling() end, desc = "Spelling" },
 		{ "<leader>ep", function() Snacks.picker.projects() end, desc = "Projects" },
 		{ "<leader>el", function() Snacks.picker.grep() end, desc = "Live Grep" },
 		{ "<leader>es", function() Snacks.picker() end, desc = "[S]nacks Picker" },
@@ -31,6 +32,13 @@ return {
 			follow_file = false,
 		}) end, desc = "Explorer PWD" },
 		{ "<leader>en", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Nvim config" },
+		{ "<leader>e:", function() Snacks.picker.command_history() end, desc = "Command History" },
+
+		{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "LSP Definitions" },
+		{ "gD", function() Snacks.picker.lsp_declarations() end, desc = "LSP Declarations" },
+		{ "gT", function() Snacks.picker.lsp_type_definitions() end, desc = "LSP Type Definitions" },
+		{ "gi", function() Snacks.picker.lsp_implementations() end, desc = "LSP Implementations" },
+		{ "gr", function() Snacks.picker.lsp_references() end, desc = "LSP References" },
 	},
 
 		---@module 'snacks'
@@ -58,12 +66,14 @@ return {
 				win = {
 					input = {
 						keys = {
-							["<c-s>"] = { "toggle_preview", mode = { "i", "n" } },
+							["<C-s>"] = { "toggle_preview", mode = { "n", "i" } },
+							["<C-y>"] = { "confirm", mode = { "n", "i" } },
 						},
 					},
 					list = {
 						keys = {
-							["<c-s>"] = "toggle_preview",
+							["<C-s>"] = "toggle_preview",
+							["<C-y>"] = "confirm",
 						},
 					},
 				},
