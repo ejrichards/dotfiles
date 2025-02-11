@@ -2,6 +2,9 @@
 default-command = ["log", "-s"]
 paginate = "never"
 
+[ui.movement]
+edit = true
+
 [signing]
 backend = "ssh"
 key = "~/.ssh/id_ed25519_sign.pub"
