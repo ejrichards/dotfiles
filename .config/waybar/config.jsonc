@@ -108,13 +108,12 @@
         "thermal-zone": 1,
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
-        "format": "P {temperatureC}°C {icon}",
-        "format-icons": [""]
+        "format": "{temperatureC}°"
     },
     "custom/nvidia": {
 		"exec": "/run/current-system/sw/bin/nvidia-smi --query-gpu=fan.speed,utilization.gpu,temperature.gpu --format=csv,nounits,noheader | tr ',' '%'",
 		"interval": 5,
-        "format": "FUT {}°C"
+        "format": "󰈐{}°󰢮"
     },
     "backlight": {
         // "device": "acpi_video1",
