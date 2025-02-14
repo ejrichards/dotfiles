@@ -1,22 +1,23 @@
 [ui]
-default-command = ["log", "-s"]
+default-command = ["log", "-s", "-r", "trunk()..@"]
 paginate = "never"
 
 [ui.movement]
 edit = true
 
 [signing]
+sign-all = true
 backend = "ssh"
 key = "~/.ssh/id_ed25519_sign.pub"
 backends.ssh.allowed-signers = "~/.ssh/allowed_signers"
 
 [git]
-sign-on-push = true
 subprocess = true
 
 [aliases]
-ll = ["log", "-r", ".."]
-lll = ["log", "-r", "..", "-T", "log_compact_sig"]
+all = ["log", "-r", ".."]
+ll = ["log", "-r", "..@"]
+lll = ["log", "-r", "..@", "-T", "log_compact_sig"]
 
 [template-aliases]
 log_compact_sig = '''
