@@ -1,7 +1,7 @@
 return {
 	{
 		"folke/snacks.nvim",
-		version = "*",
+		-- version = "*",
 		priority = 1000,
 		lazy = false,
 
@@ -24,10 +24,7 @@ return {
 		{ "<leader>eh", function() Snacks.picker.help() end, desc = "Help Pages" },
 		{ "<leader>er", function() Snacks.picker.registers() end, desc = "Registers" },
 		{ "<leader>ee", function() Snacks.picker.grep_word() end, desc = "Word", mode = { "n", "x" } },
-		{ "<leader>ed", function() Snacks.explorer.open({
-			follow_file = true,
-			-- TODO: Reveal once added and remove hidden
-		}) end, desc = "Explorer Buffer" },
+		{ "<leader>ed", function() Snacks.explorer.reveal() end, desc = "Explorer Buffer" },
 		{ "<leader>ec", function() Snacks.explorer.open({
 			follow_file = false,
 		}) end, desc = "Explorer PWD" },

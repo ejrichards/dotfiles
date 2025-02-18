@@ -18,10 +18,11 @@ return {
 						score_offset = 100,
 					},
 				},
-
-				-- Disable cmdline completions for now
-				cmdline = {},
 			},
+
+			-- cmdline = {
+			-- 	sources = {},
+			-- },
 
 			completion = {
 				documentation = {

@@ -109,9 +109,33 @@ vim.filetype.add({
 	},
 })
 
+-- Pull NixOS treesitter parsers
 local additional_rtp = {}
 if vim.uv.fs_stat("/etc/nvim/nvim-treesitter-parsers.lua") then
 	table.insert(additional_rtp, dofile("/etc/nvim/nvim-treesitter-parsers.lua"))
+end
+
+-- Pull compiled fuzzy from NixOS
+local etc_fuzzy = "/etc/nvim/libblink_cmp_fuzzy.so"
+if vim.uv.fs_stat(etc_fuzzy) then
+	-- blink.cmp is hardcoded for this location:
+	local local_fuzzy = vim.fn.stdpath("data") .. "/lazy/blink.cmp/target/release/libblink_cmp_fuzzy.so"
+	local fuzzy_stat = vim.uv.fs_lstat(local_fuzzy)
+	if fuzzy_stat ~= nil and fuzzy_stat.type == "file" then
+		os.remove(local_fuzzy)
+	end
+	vim.uv.fs_symlink(etc_fuzzy, local_fuzzy)
+end
+
+local spec = {
+	{ import = "plugins" },
+}
+
+-- Pull NixOS plugin definitions
+local etc_plugins = "/etc/nvim/plugins"
+if vim.uv.fs_stat(etc_plugins) then
+	vim.uv.fs_symlink(etc_plugins, vim.fn.stdpath("config") .. "/lua/plugins/system")
+	table.insert(spec, { import = "plugins.system" })
 end
 
 -- Lazy package config
@@ -129,9 +153,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	spec = {
-		{ import = "plugins" },
-	},
+	spec = spec,
 	performance = {
 		rtp = {
 			paths = additional_rtp,
