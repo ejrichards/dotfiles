@@ -3,11 +3,39 @@ return {
 		"saghen/blink.cmp",
 		lazy = false,
 		dependencies = "rafamadriz/friendly-snippets",
-		version = "*",
+		version = vim.uv.fs_stat("/etc/nvim/blink-version.lua") and dofile("/etc/nvim/blink-version.lua") or "*",
+
+		init = function()
+			local etc_fuzzy = "/etc/nvim/libblink_cmp_fuzzy.so"
+			if vim.uv.fs_stat(etc_fuzzy) then
+				-- blink.cmp is hardcoded for this location:
+				local blink_dir = vim.fn.stdpath("data") .. "/lazy/blink.cmp/"
+				local fuzzy_path = blink_dir .. "/target/release/libblink_cmp_fuzzy.so"
+				local fuzzy_stat = vim.uv.fs_lstat(fuzzy_path)
+
+				if fuzzy_stat and fuzzy_stat.type == "link" then
+					return
+				end
+
+				if not vim.uv.fs_stat(blink_dir .. "/target/release") then
+					vim.uv.fs_mkdir(blink_dir .. "/target", tonumber('755', 8))
+					vim.uv.fs_mkdir(blink_dir .. "/target/release", tonumber('755', 8))
+				elseif fuzzy_stat and fuzzy_stat.type == "file" then
+					os.remove(fuzzy_path)
+				end
+				vim.uv.fs_symlink(etc_fuzzy, fuzzy_path)
+			end
+		end,
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			fuzzy = {
+				prebuilt_binaries = {
+					download = not vim.uv.fs_stat("/etc/nixos"),
+				},
+			},
+
 			sources = {
 				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 				providers = {
