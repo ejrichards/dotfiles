@@ -2,7 +2,6 @@
 	pager = delta
 [push]
 	autoSetupRemote = true
-	followTags = true
 [pull]
 	ff = only
 [alias]
