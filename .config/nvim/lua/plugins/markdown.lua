@@ -20,7 +20,6 @@ return {
 		version = "*", -- recommended, use latest release instead of latest commit
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
 			"nvim-treesitter/nvim-treesitter",
 		},
 		lazy = true,

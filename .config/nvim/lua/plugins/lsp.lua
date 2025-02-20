@@ -1,74 +1,12 @@
 return {
 	-- Autocompletion
 	{
-		"hrsh7th/nvim-cmp",
-		enabled = false,
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-			"onsails/lspkind.nvim",
-		},
-		config = function()
-			local cmp = require("cmp")
-			local luasnip = require("luasnip")
-			local lspkind = require("lspkind")
-
-			luasnip.config.setup({})
-
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
-				completion = {
-					completeopt = "menu,menuone,preview",
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<C-y>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-				}),
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "path" },
-					{ name = "buffer" },
-					{ name = "lazydev", group_index = 0 },
-				},
-				formatting = {
-					expandable_indicator = true,
-					fields = { "abbr", "kind", "menu" },
-					format = lspkind.cmp_format(),
-				},
-			})
-
-			vim.keymap.set({ "i", "s" }, "<C-j>", function()
-				if luasnip.expand_or_jumpable() then
-					luasnip.expand_or_jump()
-				end
-			end, { silent = true })
-
-			vim.keymap.set({ "i", "s" }, "<C-k>", function()
-				if luasnip.jumpable(-1) then
-					luasnip.jump(-1)
-				end
-			end, { silent = true })
-		end,
-	},
-	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		-- Seems to be some issue on initial load, force this first
 		priority = 99,
 		dependencies = {
 			"folke/trouble.nvim",
-			-- "hrsh7th/cmp-nvim-lsp",
 			{ "Bilal2453/luvit-meta", lazy = true },
 			{
 				"folke/lazydev.nvim",
@@ -85,7 +23,6 @@ return {
 			local trouble = require("trouble")
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 			-- For UFO folding
