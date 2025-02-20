@@ -24,6 +24,11 @@
 		"showPrefixLen": false
 	},
     "battery",
-    "poweradapter"
+    "poweradapter",
+	{
+		"type": "command",
+		"key": "Newsboat",
+		"text": "newsboat -x print-unread"
+	}
   ]
 }
