@@ -1,7 +1,7 @@
 use os
 use platform
 
-if platform:is-windows {
+if $platform:is-windows {
 	set-env HOME ~
 }
 set-env GOPATH ~/.local/share/go

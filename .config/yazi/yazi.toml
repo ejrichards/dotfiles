@@ -1,3 +1,4 @@
+# NixOS is managing plugins: ln -s /etc/yazi/plugins/ .
 [[plugin.prepend_fetchers]]
 id   = "mime"
 if   = "!mime"

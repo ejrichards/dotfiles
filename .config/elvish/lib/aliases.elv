@@ -2,6 +2,7 @@ use builtin
 use str
 use os
 use file
+use platform
 
 fn copy-completer {|from to|
 	if (has-key $edit:completion:arg-completer $from) {

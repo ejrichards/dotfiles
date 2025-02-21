@@ -14,7 +14,8 @@
 		"mpris"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/window",
+        "gamemode"
     ],
     "modules-right": [
         //"idle_inhibitor",
