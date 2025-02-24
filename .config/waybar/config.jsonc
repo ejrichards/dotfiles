@@ -6,12 +6,12 @@
     "margin-top": 2,
     "margin-left": 2,
     "margin-right": 2,
-    // "width": 1280,
     "spacing": 4,
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap",
-		"mpris"
+		"mpris",
+		"systemd-failed-units"
     ],
     "modules-center": [
         "hyprland/window",
@@ -19,7 +19,6 @@
     ],
     "modules-right": [
         //"idle_inhibitor",
-        //"pulseaudio",
         "network",
         //"power-profiles-daemon",
         "cpu",
@@ -93,10 +92,14 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
         "format": "{:%I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "tooltip-format": "<big>{:%Y-%m-%d}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}",
+		"calendar": {
+			"format": {
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		}
     },
     "cpu": {
         "format": "{usage}% ",
