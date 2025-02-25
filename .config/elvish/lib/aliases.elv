@@ -55,8 +55,29 @@ set edit:command-abbr['sctl'] = 'sudo systemctl'
 set edit:command-abbr['jctl'] = 'journalctl'
 set edit:command-abbr['sjctl'] = 'sudo journalctl'
 
+fn add-age-helpers {
+	edit:add-var age-encrypt~ {|file|
+		age -R ~/.age/recipients.txt -o $file.age $file
+		if (has-external gum) {
+			if ?(gum confirm 'Delete original file? '$file) {
+				os:remove $file
+			}
+		}
+	}
+	edit:add-var age-decrypt~ {|file|
+		age --decrypt -i ~/.age/identities.txt -o (str:replace '.age' '' $file) $file
+		if (has-external gum) {
+			if ?(gum confirm 'Delete original file? '$file) {
+				os:remove $file
+			}
+		}
+	}
+}
 if (has-external rage) {
 	edit:add-var age~ {|@argv| rage $@argv }
+	add-age-helpers
+} elif (has-external age) {
+	add-age-helpers
 }
 if (has-external bat) {
 	edit:add-var cat~ {|@argv| bat $@argv }
