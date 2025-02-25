@@ -59,7 +59,7 @@ fn add-age-helpers {
 	edit:add-var age-encrypt~ {|file|
 		age -R ~/.age/recipients.txt -o $file.age $file
 		if (has-external gum) {
-			if ?(gum confirm 'Delete original file? '$file) {
+			if ?(gum confirm 'Delete original file? '$file --default=no) {
 				os:remove $file
 			}
 		}
@@ -67,7 +67,7 @@ fn add-age-helpers {
 	edit:add-var age-decrypt~ {|file|
 		age --decrypt -i ~/.age/identities.txt -o (str:replace '.age' '' $file) $file
 		if (has-external gum) {
-			if ?(gum confirm 'Delete original file? '$file) {
+			if ?(gum confirm 'Delete original file? '$file --default=no) {
 				os:remove $file
 			}
 		}
