@@ -11,6 +11,7 @@
         "hyprland/workspaces",
         "hyprland/submap",
 		"mpris",
+        "custom/newsboat",
 		"systemd-failed-units"
     ],
     "modules-center": [
@@ -222,5 +223,13 @@
 			"reboot": "systemctl reboot",
 			"shutdown": "systemctl poweroff"
 		}
-    }
+    },
+	"custom/newsboat": {
+        "format": "{}",
+		"exec-if": "[[ `cat ~/.local/state/newsboat-unread` != '0 unread articles' ]]",
+		"exec": "cat ~/.local/state/newsboat-unread",
+		"interval": 600,
+		"signal": 1,
+		"tooltip": false
+	}
 }

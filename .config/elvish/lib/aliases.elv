@@ -125,3 +125,11 @@ if (has-external aerc) {
 		with E:SSL_CERT_FILE = $cert { e:aerc $@argv }
 	}
 }
+
+if (has-external newsboat) {
+	edit:add-var news~ {
+		newsboat
+		newsboat -x print-unread > ~/.local/state/newsboat-unread
+		pkill --signal 35 waybar
+	}
+}

@@ -28,7 +28,7 @@
 	{
 		"type": "command",
 		"key": "Newsboat",
-		"text": "newsboat -x print-unread"
+		"text": "cat ~/.local/state/newsboat-unread"
 	}
   ]
 }
