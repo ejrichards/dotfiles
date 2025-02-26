@@ -7,6 +7,15 @@ if $platform:is-windows {
 set-env GOPATH ~/.local/share/go
 set-env BUN_INSTALL ~/.bun
 
+if (has-external zen) {
+	# Newsboat uses $E:BROWSER instead of XDG
+	if (has-external uwsm) {
+		set-env BROWSER 'uwsm app -- zen'
+	} else {
+		set-env BROWSER zen
+	}
+}
+
 fn prepend-paths {|new-paths|
 	set paths = [ (keep-if {|p| and (not (has-value $paths $p)) (os:is-dir $p) } $new-paths) $@paths ]
 }
