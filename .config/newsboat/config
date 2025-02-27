@@ -1,6 +1,6 @@
 urls-source "miniflux"
 miniflux-url "https://photos.ejri.dev:4444"
-miniflux-tokeneval "secret-tool lookup server miniflux"
+miniflux-tokenfile "~/.config/newsboat/miniflux-token"
 
 color background            default  default
 color listnormal            color146 default
