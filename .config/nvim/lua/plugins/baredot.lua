@@ -1,5 +1,5 @@
 return {
-	"ejrichards/baredot.nvim",
+	"https://git.sr.ht/~ejri/baredot.nvim",
 	opts = {
 		git_dir = "~/.dotgit",
 	},

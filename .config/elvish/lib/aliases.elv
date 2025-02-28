@@ -84,7 +84,7 @@ if (has-external bat) {
 	copy-completer bat cat
 }
 if (has-external yazi) {
-	use github.com/ejrichards/mellon/yazi
+	use git.sr.ht/~ejri/mellon/yazi
 	edit:add-var y~ $yazi:y~
 }
 

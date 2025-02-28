@@ -9,7 +9,7 @@ use wsl
 
 if (not (os:is-dir /etc/nixos)) {
 	use epm
-	epm:install &silent-if-installed=$true github.com/ejrichards/mellon
+	epm:install &silent-if-installed=$true git.sr.ht/~ejri/mellon
 }
 
 set notify-bg-job-success = $false
@@ -70,11 +70,11 @@ if (has-external jj) {
 use aliases
 
 if (has-external atuin) {
-	use github.com/ejrichards/mellon/atuin
+	use git.sr.ht/~ejri/mellon/atuin
 	set edit:insert:binding[Ctrl-r] = { atuin:search }
 	set edit:insert:binding[Up] = { atuin:search-up }
 } elif (has-external fzf) {
-	use github.com/ejrichards/mellon/fzf
+	use git.sr.ht/~ejri/mellon/fzf
 	set edit:insert:binding[Ctrl-r] = { fzf:history --border=rounded --no-mouse --exact }
 	set edit:insert:binding[Up] = { fzf:history --border=rounded --no-mouse --exact }
 }
