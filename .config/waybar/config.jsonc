@@ -23,6 +23,7 @@
         "network",
         //"power-profiles-daemon",
         "cpu",
+        "custom/liquidctl",
         "temperature",
         "custom/nvidia",
         "backlight",
@@ -119,6 +120,12 @@
 		"exec": "/run/current-system/sw/bin/nvidia-smi --query-gpu=fan.speed,utilization.gpu,temperature.gpu --format=csv,nounits,noheader | tr ',' '%'",
 		"interval": 5,
         "format": "󰈐{}°󰢮"
+    },
+    "custom/liquidctl": {
+		"exec": "/run/current-system/sw/bin/liquidctl status --json | /run/current-system/sw/bin/jq -r '.[0].status | \"󰈐\\(.[2].value)% 󱐂\\(.[4].value)% \\(.[0].value)°\"'",
+		"exec-if": "[[ -x /run/current-system/sw/bin/liquidctl ]]",
+		"interval": 10,
+        "format": "{}"
     },
     "backlight": {
         // "device": "acpi_video1",
