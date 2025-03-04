@@ -133,3 +133,10 @@ if (has-external newsboat) {
 		pkill --signal 35 waybar
 	}
 }
+
+if (has-external nvd) {
+	edit:add-var nvd-latest~ {
+		var gens = (nixos-rebuild list-generations --json | from-json)
+		nvd diff /nix/var/nix/profiles/system-{$gens[1][generation],$gens[0][generation]}-link
+	}
+}
