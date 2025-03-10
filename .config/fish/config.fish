@@ -3,6 +3,7 @@ set -g fish_greeting ""
 
 if status is-interactive
 	set -U fish_color_command green
+	set -U fish_color_param white
 
 	set fish_cursor_default block
 	set fish_cursor_external line
@@ -11,9 +12,18 @@ if status is-interactive
 	set -gx MANROFFOPT '-c'
 	set -gx MANPAGER 'less -R --use-color -Dd+g -Du+b'
 
-	bind \b backward-kill-word
+	function __enter_override
+		# Make enter execute the line rather than just accept
+		if commandline --paging-mode
+			commandline -f yank
+		end
+		commandline -f execute
+	end
+	bind enter __enter_override
+
+	bind ctrl-backspace backward-kill-word
 	bind ctrl-space accept-autosuggestion
-	bind \cz fancy_ctrl_z
+	bind ctrl-z fancy_ctrl_z
 
 
 	if command -q lc
@@ -35,6 +45,8 @@ if status is-interactive
 	end
 	if command -q atuin
 		atuin init fish | source
+		# Fix until update
+		bind up _atuin_bind_up
 	end
 	if command -q starship
 		starship init fish | source
