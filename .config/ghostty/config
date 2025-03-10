@@ -8,7 +8,9 @@ gtk-wide-tabs = false
 # Select copy bug mitigation
 app-notifications = no-clipboard-copy
 
+cursor-style = block
 cursor-style-blink = false
+shell-integration-features = no-cursor
 
 font-size = 13
 
