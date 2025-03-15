@@ -6,7 +6,7 @@ paginate = "never"
 edit = true
 
 [signing]
-sign-all = true
+behavior = "own"
 backend = "ssh"
 key = "~/.ssh/id_ed25519_sign.pub"
 backends.ssh.allowed-signers = "~/.ssh/allowed_signers"

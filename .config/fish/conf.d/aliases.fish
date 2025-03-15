@@ -90,7 +90,7 @@ if status is-interactive
 	if command -q nvd
 		function nvd-latest
 			set gens (nixos-rebuild list-generations --json | jq -r '.[0].generation, .[1].generation')
-			nvd diff /nix/var/nix/profiles/system-{$gens[1],$gens[2]}-link
+			nvd diff /nix/var/nix/profiles/system-{$gens[2],$gens[1]}-link
 		end
 	end
 end
