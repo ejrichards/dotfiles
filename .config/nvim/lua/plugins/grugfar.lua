@@ -6,7 +6,7 @@ return {
 			windowCreationCommand = "tabnew %",
 		})
 
-		vim.keymap.set({ "n", "x" }, "<leader>e/", far.grug_far, { desc = "grug-far" })
+		vim.keymap.set({ "n", "x" }, "<leader>e/", far.open, { desc = "grug-far" })
 
 		local far_augroup = vim.api.nvim_create_augroup("grug-far", { clear = true })
 		vim.api.nvim_create_autocmd("FileType", {
