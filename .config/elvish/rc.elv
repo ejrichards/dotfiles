@@ -59,7 +59,7 @@ if (has-external zoxide) {
 
 if (has-external carapace) {
 	set-env CARAPACE_MATCH CASE_INSENSITIVE
-	set-env CARAPACE_BRIDGES 'bash'
+	set-env CARAPACE_BRIDGES 'fish,bash'
 	eval (carapace _carapace elvish | slurp)
 }
 

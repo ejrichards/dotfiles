@@ -43,7 +43,8 @@
 		"max-length": 60,
 		"icon": true,
 		"rewrite": {
-			"(.*) — Zen Browser": "$1"
+			"(.*) — Zen Browser": "$1",
+			"(.*) — Mozilla Firefox": "$1"
 		}
     },
     "keyboard-state": {

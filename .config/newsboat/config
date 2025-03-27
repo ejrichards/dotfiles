@@ -2,6 +2,8 @@ urls-source "miniflux"
 miniflux-url "https://photos.ejri.dev:4444"
 miniflux-tokenfile "~/.config/newsboat/miniflux-token"
 
+browser "xdg-open %u"
+
 color background            default  default
 color listnormal            color146 default
 color listfocus             color146 color240
