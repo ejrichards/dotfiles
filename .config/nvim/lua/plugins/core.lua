@@ -1,4 +1,16 @@
 return {
+	{
+		"https://git.sr.ht/~ejri/javelin.nvim",
+		keys = {
+			{ "<leader>j", function() require("javelin").open() end, desc = "Javelin Open" },
+			{ "<leader>a", function() require("javelin").add() end, desc = "Javelin Add" },
+			{ "<C-j>", function() require("javelin").select(1) end, desc = "Javelin Select 1" },
+			{ "<C-k>", function() require("javelin").select(2) end, desc = "Javelin Select 2" },
+			{ "<C-l>", function() require("javelin").select(3) end, desc = "Javelin Select 3" },
+			{ "<C-;>", function() require("javelin").select(4) end, desc = "Javelin Select 4" },
+		},
+		config = true,
+	},
 	{ "mbbill/undotree" },
 	{ "brenoprata10/nvim-highlight-colors", config = true },
 	{

@@ -1,5 +1,6 @@
 return {
 	"ThePrimeagen/harpoon",
+	enabled = false,
 	-- Currenly an issue with :cd
 	commit = "34b419984ea8e04683a49db0200c6d21d493b252",
 	config = function()
