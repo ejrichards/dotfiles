@@ -18,6 +18,8 @@ subprocess = true
 all = ["log", "-r", ".."]
 ll = ["log", "-r", "..@"]
 lll = ["log", "-r", "..@", "-T", "log_compact_sig"]
+move-main = ["bookmark", "move", "main", "--to", "@-"]
+move-master = ["bookmark", "move", "master", "--to", "@-"]
 
 [template-aliases]
 log_compact_sig = '''
